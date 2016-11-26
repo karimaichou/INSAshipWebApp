@@ -28,4 +28,10 @@ public class HomeController {
     public String register(){
         return "register";
     }
+
+    @RequestMapping(value = "/indexStudent")
+    public String indexStudent(){
+        return "indexStudent";
+    }
+
 }

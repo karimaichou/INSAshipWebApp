@@ -8,7 +8,6 @@
         <put-attribute name="menu" value="/WEB-INF/layouts/menu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
     </definition>
-
     <definition name="index" extends="common">
         <put-attribute name="title" value="Student index" />
         <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
@@ -31,5 +30,10 @@
         <put-attribute name="title" value="Register" />
         <put-attribute name="body" value="/WEB-INF/jsp/register.jsp" />
         <put-attribute name="current" value="register" cascade="true" />
+    </definition>
+    <definition name="indexStudent" extends="common">
+        <put-attribute name="title" value="StudentWelcomPage" />
+        <put-attribute name="body" value="/WEB-INF/jsp/indexStudent.jsp" />
+        <put-attribute name="current" value="indexStudent" cascade="true" />
     </definition>
 </tiles-definitions>
