@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<link href="${pageContext.request.contextPath}/resources/register.css" rel="stylesheet" >
+<link href="${pageContext.request.contextPath}/resources/styles/register.css" rel="stylesheet" >
 
 <div class="box">
     <h1 id="logintoregister">Register</h1>
