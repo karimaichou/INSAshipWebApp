@@ -1,9 +1,6 @@
 package com.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -16,11 +13,19 @@ public class Notification {
     @GeneratedValue
     private Integer id;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date eventDate;
 
     private boolean visualized;
 
     private String message;
+
+    @ManyToOne(optional = false)
+    private User user;
+
+    @ManyToOne(optional = false)
+    private Application application;
+
 
     public long getId() {
         return id;
@@ -54,8 +59,6 @@ public class Notification {
         this.message = message;
     }
 
-    @ManyToOne(optional = false)
-    private Application application;
 
     public Application getApplication() {
         return application;
@@ -65,8 +68,6 @@ public class Notification {
         this.application = application;
     }
 
-    @ManyToOne(optional = false)
-    private User user;
 
     public User getUser() {
         return user;

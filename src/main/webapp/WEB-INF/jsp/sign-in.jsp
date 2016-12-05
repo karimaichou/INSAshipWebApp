@@ -7,12 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-    <form class="form-signin" name='f' action='/login' method='POST'>
+<h1> ${errorLogin}</h1>
+    <form class="form-signin" name='f' action='/sign-in' method='POST'>
         <h3 class="form-signin-heading">Please sign in:</h3>
         <label for="inputUsername" class="sr-only">User Name</label>
-        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="User Name" required autofocus>
+        <input type="text" name="username" id="inputUsername" value="${username}" class="form-control" placeholder="User Name" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" value="${password}" class="form-control" placeholder="Password" required>
+        <input type="checkbox" name="remember"/>Remeber me!<br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 

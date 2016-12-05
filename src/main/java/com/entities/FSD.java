@@ -14,6 +14,9 @@ public class FSD extends User {
 
     private String address;
 
+    @OneToMany(mappedBy = "fsd")
+    private Collection<FSDProcedure> procedures;
+
     public String getAddress() {
         return address;
     }
@@ -22,8 +25,6 @@ public class FSD extends User {
         this.address = address;
     }
 
-    @OneToMany(mappedBy = "fsd")
-    private Collection<FSDProcedure> procedures;
 
     public Collection<FSDProcedure> getProcedures() {
         return procedures;

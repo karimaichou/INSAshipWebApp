@@ -29,6 +29,35 @@ public class Application {
 
     private Integer offer_id;
 
+    @ManyToOne(optional = false)
+    private Student student;
+
+    @ManyToOne(optional = false)
+    private Company company;
+
+    @OneToMany
+    private Collection<Document> documents;
+
+    @OneToOne(mappedBy = "application")
+    private FSDProcedure fsdProcedure;
+
+    @OneToOne(mappedBy = "application")
+    private Agreement agreement;
+
+    @OneToMany(mappedBy = "application")
+    private Collection<Notification> notifications;
+
+    @ManyToOne
+    private INSA insa;
+
+    public INSA getInsa() {
+        return insa;
+    }
+
+    public void setInsa(INSA insa) {
+        this.insa = insa;
+    }
+
     public Integer getOffer_id() {
         return offer_id;
     }
@@ -85,8 +114,7 @@ public class Application {
         this.FSDProcedure = FSDProcedure;
     }
 
-    @ManyToOne(optional = false)
-    private Student student;
+
 
     public Student getStudent() {
         return student;
@@ -96,8 +124,7 @@ public class Application {
         this.student = student;
     }
 
-    @ManyToOne(optional = false)
-    private Company company;
+
 
     public Company getCompany() {
         return company;
@@ -107,19 +134,6 @@ public class Application {
         this.company = company;
     }
 
-    @ManyToOne(optional = false)
-    private INSA insa;
-
-    public INSA getInsa() {
-        return insa;
-    }
-
-    public void setInsa(INSA insa) {
-        this.insa = insa;
-    }
-
-    @OneToOne(mappedBy = "application")
-    private FSDProcedure fsdProcedure;
 
     public com.entities.FSDProcedure getFsdProcedure() {
         return fsdProcedure;
@@ -129,8 +143,7 @@ public class Application {
         this.fsdProcedure = fsdProcedure;
     }
 
-    @OneToOne(mappedBy = "application")
-    private Agreement agreement;
+
 
     public Agreement getAgreement() {
         return agreement;
@@ -140,8 +153,6 @@ public class Application {
         this.agreement = agreement;
     }
 
-    @OneToMany(mappedBy = "application")
-    private Collection<Document> documents;
 
     public Collection<Document> getDocuments() {
         return documents;
@@ -151,8 +162,6 @@ public class Application {
         this.documents = documents;
     }
 
-    @OneToMany(mappedBy = "application")
-    private Collection<Notification> notifications;
 
     public Collection<Notification> getNotifications() {
         return notifications;

@@ -14,6 +14,9 @@ public class Company extends User {
 
     private String address;
 
+    @OneToMany(mappedBy = "company")
+    private Collection<Application> applications;
+
     public String getAddress() {
         return address;
     }
@@ -22,8 +25,7 @@ public class Company extends User {
         this.address = address;
     }
 
-    @OneToMany(mappedBy = "company")
-    private Collection<Application> applications;
+
 
     public Collection<Application> getApplications() {
         return applications;

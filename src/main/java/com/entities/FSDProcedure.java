@@ -15,6 +15,23 @@ public class FSDProcedure {
 
     private boolean result;
 
+    @OneToOne(optional = false)
+    private Application application;
+
+    @ManyToOne(optional = false)
+    private FSD fsd;
+
+    @OneToMany
+    private List<Document> documents;
+
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
+    }
+
     public FSDProcedure(){}
 
     public long getId() {
@@ -33,9 +50,6 @@ public class FSDProcedure {
         this.result = result;
     }
 
-    @OneToOne(optional = false)
-    private Application application;
-
     public Application getApplication() {
         return application;
     }
@@ -43,9 +57,6 @@ public class FSDProcedure {
     public void setApplication(Application application) {
         this.application = application;
     }
-
-    @ManyToOne(optional = false)
-    private FSD fsd;
 
     public FSD getFsd() {
         return fsd;

@@ -21,10 +21,10 @@ public class User {
 
     private String email;
 
-    private String firstName;
+    private String telephone;
 
-    private String lastName;
-
+    @OneToMany(mappedBy = "user")
+    private Collection<Notification> notifications;
 
     @ManyToMany
     @JoinTable
@@ -70,24 +70,14 @@ public class User {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
-    public String getSurName() {
-        return lastName;
-    }
-
-    public void setSurName(String surName) {
-        this.lastName = surName;
-    }
-
-    @OneToMany(mappedBy = "user")
-    private Collection<Notification> notifications;
 
     public Collection<Notification> getNotifications() {
         return notifications;

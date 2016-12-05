@@ -21,6 +21,21 @@ public class Agreement {
 
     private boolean state;
 
+    @OneToOne(optional = false)
+    @Cascade(CascadeType.DELETE)
+    private Application application;
+
+    @OneToOne
+    private Document agreementDoc;
+
+    public Document getAgreementDoc() {
+        return agreementDoc;
+    }
+
+    public void setAgreementDoc(Document agreementDoc) {
+        this.agreementDoc = agreementDoc;
+    }
+
     public long getId() {
         return id;
     }
@@ -36,9 +51,6 @@ public class Agreement {
     public void setState(boolean state) {
         this.state = state;
     }
-
-    @OneToOne(optional = false)
-    private Application application;
 
     public Application getApplication() {
         return application;

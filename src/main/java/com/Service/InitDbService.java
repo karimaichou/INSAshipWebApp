@@ -1,4 +1,4 @@
-package com.services;
+package com.Service;
 
 import com.entities.Role;
 import com.entities.User;
@@ -24,7 +24,7 @@ public class InitDbService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @PostConstruct
+    //@PostConstruct
     public void init(){
         Role roleUser = new Role();
         roleUser.setName("ROLE_USER");
