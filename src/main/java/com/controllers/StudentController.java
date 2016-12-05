@@ -29,6 +29,7 @@ public class StudentController {
     public String registerStudent(@ModelAttribute("StudentRegisterForm")StudentRegisterForm form, ModelMap model)
     {
         Student student=new Student();
+        
         studentService.save(student);
         return "index";
     }
