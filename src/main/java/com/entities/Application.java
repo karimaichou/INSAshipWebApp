@@ -25,9 +25,9 @@ public class Application {
 
     private boolean meetingRequest;
 
-    private boolean FSDProcedure;
+    private boolean isFsd;
 
-    private Integer offer_id;
+    private Integer offerId;
 
     @ManyToOne(optional = false)
     private Student student;
@@ -59,11 +59,11 @@ public class Application {
     }
 
     public Integer getOffer_id() {
-        return offer_id;
+        return offerId;
     }
 
     public void setOffer_id(Integer offer_id) {
-        this.offer_id = offer_id;
+        this.offerId = offer_id;
     }
 
     public Integer getId() {
@@ -107,11 +107,11 @@ public class Application {
     }
 
     public boolean isFSDProcedure() {
-        return FSDProcedure;
+        return isFsd;
     }
 
     public void setFSDProcedure(boolean FSDProcedure) {
-        this.FSDProcedure = FSDProcedure;
+        this.isFsd = FSDProcedure;
     }
 
 

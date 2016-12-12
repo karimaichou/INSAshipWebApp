@@ -1,9 +1,11 @@
 package com.controllers;
 
 import com.Service.StudentService;
+import com.Service.UserService;
 import com.View.StudentLoginForm;
 import com.View.StudentRegisterForm;
 import com.entities.Student;
+import com.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +22,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @Controller
-public class StudentController {
+public class LoginController {
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     StudentService studentService;
@@ -38,8 +43,8 @@ public class StudentController {
     @RequestMapping(value = "/sign-in",method = RequestMethod.POST)
     public String loginStudent(@ModelAttribute("StudentForm")StudentLoginForm form,ModelMap model, HttpServletRequest request, HttpServletResponse resp)
     {
-        Student student=studentService.findByEmailAndPassword(form.getUsername(),form.getPassword());
-        if(student==null)
+        User user=userService.findByEmailAndPassword(form.getUsername(),form.getPassword());
+        if(user==null)
         {
             model.addAttribute("errorLogin","Error! Your email or password is wrong !");
             return "sign-in";
@@ -47,7 +52,7 @@ public class StudentController {
 
         else
         {
-            request.getSession().setAttribute("currentUser",student);
+            request.getSession().setAttribute("currentUser",user);
             if(form.isRemember())
             {
                 Cookie mailCookie=new Cookie("username",form.getUsername());
@@ -57,6 +62,10 @@ public class StudentController {
                 resp.addCookie(mailCookie);
                 resp.addCookie(passCookie);
             }
+            //si c un etudiant aller a la page des offres dirrectement sinon aller dans la page home
+            if(user.getRoles().contains("ROLE_STUDENT"))
+                return "offers";
+
 
         }
             return "index";

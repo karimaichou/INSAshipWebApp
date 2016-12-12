@@ -11,11 +11,17 @@ import java.util.List;
  */
 public interface ApplicationRepository extends JpaRepository<Application,Integer> {
 
+    @Query("SELECT c FROM Application o INNER JOIN o.documents c WHERE o.id = ?1")
+    List<Document> findDocumentById(int id);
+
+    @Query("SELECT c FROM Application o INNER JOIN o.agreement c WHERE o.id = ?1")
+    Agreement findAgreement(int id);
+
     List<Application> findByStudentOrderByCreationDateAsc(Student student);
 
-   // List<Application> findByOffer_idOrderByCreationDateAsc(int offer_id);
+    List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id);
 
-   // List<Application> findByOffer_idAndStateOrderByCreationDateAsc(int offer_id,String state);
+    List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id,String state);
 
     List<Application> findByCompanyOrderByCreationDateAsc(Company company);
 
@@ -27,11 +33,11 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
 
     List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state);
 
-    //List<Application> findByStudentAndFSDProcedureOrderByCreationDateAsc(Student student,boolean fsd);
+    List<Application> findByStudentAndIsFsdOrderByCreationDateAsc(Student student,boolean fsd);
 
-    //Application findByStudentAndOffer_idAndFSDProcedureOrderByCreationDateAsc(Student student,int offer_id,boolean fsd);
+    Application findByStudentAndOfferIdAndIsFsdOrderByCreationDateAsc(Student student,int offer_id,boolean fsd);
 
     List<Application> findByStudentAndMeetingRequestOrderByCreationDateAsc(Student student,boolean meeting);
 
-    //Application findByStudentAndOffer_idAndMeetingRequestOrderByCreationDateAsc(Student student,int offer_id,boolean meeting);
+    Application findByStudentAndOfferIdAndMeetingRequestOrderByCreationDateAsc(Student student,int offer_id,boolean meeting);
 }

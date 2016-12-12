@@ -12,7 +12,7 @@ public class Document {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private int id;
 
     private String name;
 

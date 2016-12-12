@@ -1,17 +1,17 @@
 package com.Service;
 
-import com.entities.Application;
-import com.entities.Company;
-import com.entities.INSA;
-import com.entities.Student;
+import com.entities.*;
 import com.repositories.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by karima on 04/12/2016.
  */
+
+@Service
 public class ApplicationService {
 
     @Autowired
@@ -22,15 +22,15 @@ public class ApplicationService {
         return applicationRepository.findByStudentOrderByCreationDateAsc(student);
     }
 
-   /* List<Application> findByOffer_idOrderByCreationDateAsc(int offer_id)
+    List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id)
     {
-        return applicationRepository.findByOffer_idOrderByCreationDateAsc(offer_id);
+        return applicationRepository.findByOfferIdOrderByCreationDateAsc(offer_id);
     }
 
-    List<Application> findByOffer_idAndStateOrderByCreationDateAsc(int offer_id,String state)
+    List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id,String state)
     {
-        return applicationRepository.findByOffer_idAndStateOrderByCreationDateAsc(offer_id,state);
-    }*/
+        return applicationRepository.findByOfferIdAndStateOrderByCreationDateAsc(offer_id,state);
+    }
 
     List<Application> findByCompanyOrderByCreationDateAsc(Company company)
     {
@@ -57,11 +57,10 @@ public class ApplicationService {
         return applicationRepository.findByStudentAndStateOrderByCreationDateAsc(student,state);
     }
 
-    /*List<Application> findByStudentAndFSDProcedureOrderByCreationDateAsc(Student student,boolean fsd)
+    List<Application> findByStudentAndIsFsdOrderByCreationDateAsc(Student student,boolean fsd)
     {
-        return applicationRepository.findByStudentAndFSDProcedureOrderByCreationDateAsc(student,fsd);
-    }*/
-
+        return applicationRepository.findByStudentAndIsFsdOrderByCreationDateAsc(student,fsd);
+    }
 
 
     List<Application> findByStudentAndMeetingRequestOrderByCreationDateAsc(Student student,boolean meeting)
@@ -69,12 +68,17 @@ public class ApplicationService {
         return applicationRepository.findByStudentAndMeetingRequestOrderByCreationDateAsc(student,meeting);
     }
 
-    /*Application findByStudentAndOffer_idAndMeetingRequestOrderByCreationDateAsc(Student student,int offer_id,boolean meeting)
+    Application findByStudentAndOfferIdAndMeetingRequestOrderByCreationDateAsc(Student student,int offer_id,boolean meeting)
     {
-        return applicationRepository.findByStudentAndOffer_idAndMeetingRequestOrderByCreationDateAsc(student,offer_id,meeting);
+        return applicationRepository.findByStudentAndOfferIdAndMeetingRequestOrderByCreationDateAsc(student,offer_id,meeting);
     }
-    Application findByStudentAndOffer_idAndFSDProcedureOrderByCreationDateAsc(Student student,int offer_id,boolean fsd)
+    Application findByStudentAndOfferIdAndIsFsdOrderByCreationDateAsc(Student student,int offer_id,boolean fsd)
     {
-        return applicationRepository.findByStudentAndOffer_idAndFSDProcedureOrderByCreationDateAsc(student,offer_id,fsd);
-    }*/
+        return applicationRepository.findByStudentAndOfferIdAndIsFsdOrderByCreationDateAsc(student,offer_id,fsd);
+    }
+
+    List<Document> findDocumentById(int id)
+    {
+        return applicationRepository.findDocumentById(id);
+    }
 }

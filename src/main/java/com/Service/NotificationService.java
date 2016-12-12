@@ -5,12 +5,14 @@ import com.entities.Notification;
 import com.entities.User;
 import com.repositories.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by karima on 05/12/2016.
  */
+@Service
 public class NotificationService {
 
     @Autowired

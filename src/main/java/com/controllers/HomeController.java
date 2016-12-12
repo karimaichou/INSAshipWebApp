@@ -52,13 +52,6 @@ public class HomeController {
         return "indexStudent";
     }
 
-    @RequestMapping(value = "/offers")
-    public String offers(Model model){
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Offer[]> responseEntity = restTemplate.getForEntity("http://127.0.0.1:8888/enterprise1jobsofferws-0.0.1-SNAPSHOT/api/v1/offers", Offer[].class);
-        Offer[] offerList = responseEntity.getBody();
-        model.addAttribute("offers",offerList);
-        return "offers";
-    }
+
 
 }

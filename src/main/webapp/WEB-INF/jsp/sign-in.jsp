@@ -6,8 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1> ${errorLogin}</h1>
+<c:if test="${not empty errorLogin}">
+<div class="alert alert-danger"> ${errorLogin}</div>
+</c:if>
+
     <form class="form-signin" name='f' action='/sign-in' method='POST'>
         <h3 class="form-signin-heading">Please sign in:</h3>
         <label for="inputUsername" class="sr-only">User Name</label>

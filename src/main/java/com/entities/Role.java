@@ -13,6 +13,7 @@ public class Role {
     @GeneratedValue
     private Integer id;
 
+    @Column(unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "roles")

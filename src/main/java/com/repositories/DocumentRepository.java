@@ -11,7 +11,6 @@ import java.util.List;
  */
 public interface DocumentRepository extends JpaRepository<Document,Integer> {
 
-    /*@Query("SELECT c FROM Application o INNER JOIN o.documents c WHERE o.id =: id")
-    List<Document> findDocumentByApplication(int id);*/
+
 
 }

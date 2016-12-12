@@ -18,29 +18,42 @@ import java.util.List;
 @Service
 @Transactional
 public class InitDbService {
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private RoleRepository roleRepository;
 
-    //@PostConstruct
+    @PostConstruct
     public void init(){
+
         Role roleUser = new Role();
         roleUser.setName("ROLE_USER");
         roleRepository.save(roleUser);
 
         Role roleAdmin = new Role();
-        roleUser.setName("ROLE_ADMIN");
+        roleAdmin.setName("ROLE_ADMIN");
         roleRepository.save(roleAdmin);
 
-        User admin = new User();
-        admin.setUsername("admin");
-        admin.setPassword("admin");
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(roleUser);
-        roles.add(roleAdmin);
-        admin.setRoles(roles);
-        userRepository.save(admin);
+        Role roleStudent = new Role();
+        roleStudent.setName("ROLE_STUDENT");
+        roleRepository.save(roleStudent);
+
+        Role roleInsa = new Role();
+        roleInsa.setName("ROLE_INSA");
+        roleRepository.save(roleInsa);
+
+        Role roleInsaAdmin = new Role();
+        roleInsaAdmin.setName("ROLE_INSA_ADMIN");
+        roleRepository.save(roleInsaAdmin);
+
+        Role roleCompany = new Role();
+        roleCompany.setName("ROLE_COMPANY");
+        roleRepository.save(roleCompany);
+
+        Role roleFsd = new Role();
+        roleFsd.setName("ROLE_FSD");
+        roleRepository.save(roleFsd);
+
+
+
     }
 }
