@@ -1,8 +1,10 @@
 package com.controllers;
 
+import com.Service.OfferService;
 import com.View.OfferForm;
 import com.View.StudentLoginForm;
 import com.restful.Offer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +22,12 @@ import java.util.List;
 @Controller
 public class OfferController {
 
+    @Autowired
+    OfferService offerService;
+
     @RequestMapping(value = "/offers",method = RequestMethod.GET)
     public String offers(Model model){
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Offer[]> responseEntity = restTemplate.getForEntity("http://127.0.0.1:8888/enterprise1jobsofferws-0.0.1-SNAPSHOT/api/v1/offers", Offer[].class);
-        Offer[] offerList = responseEntity.getBody();
+        List<Offer> offerList = offerService.findAll();
         model.addAttribute("offers",offerList);
         return "offers";
     }
