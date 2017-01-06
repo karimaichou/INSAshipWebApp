@@ -10,26 +10,16 @@
     <!-- Spring Security -->
     <http>
         <csrf disabled="true"/>
-        <intercept-url pattern="/register*" access="isAnonymous()" />
         <intercept-url pattern="/example**" access="hasRole('ADMIN')" />
-        <form-login login-page="/sign-in"
-                    username-parameter="j_username"
-                    password-parameter="j_password"
-                    login-processing-url="/j_spring_security_check"
-                    default-target-url="/welcomePage"
-                    authentication-failure-url="/loginError"/>
-        <logout logout-url="/logout"/>
+        <form-login login-page="/sign-in"/>
+        <logout />
     </http>
 
     <authentication-manager>
         <authentication-provider>
-            <!-- <password-encoder hash="bcrypt" /> -->
-            <jdbc-user-service data-source-ref="dataSource"
-                               users-by-username-query="select email,password,verified from user where email=?"
-                               authorities-by-username-query="select user.email, role.name from user
-											   join user_role on user.id = user_role.users_id
-											   join role on user_role.roles_id = role.id
-											   where user.email = ?"/>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+            </user-service>
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

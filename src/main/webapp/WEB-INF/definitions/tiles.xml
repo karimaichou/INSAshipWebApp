@@ -14,22 +14,16 @@
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 
-    <definition name="offers" extends="common">
-        <put-attribute name="title" value="Student index" />
-        <put-attribute name="body" value="/WEB-INF/jsp/offers.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
-    </definition>
-
     <definition name="example" extends="common">
         <put-attribute name="title" value="Example page" />
         <put-attribute name="body" value="/WEB-INF/jsp/example.jsp" />
         <put-attribute name="current" value="example" cascade="true" />
     </definition>
 
-    <definition name="details" extends="common">
-        <put-attribute name="title" value="offer description" />
-        <put-attribute name="body" value="/WEB-INF/jsp/offerDetails.jsp" />
-        <put-attribute name="current" value="details" cascade="true" />
+    <definition name="offers" extends="common">
+        <put-attribute name="title" value="Example page" />
+        <put-attribute name="body" value="/WEB-INF/jsp/offers.jsp" />
+        <put-attribute name="current" value="offers" cascade="true" />
     </definition>
 
     <definition name="sign-in" extends="common">
@@ -38,15 +32,10 @@
         <put-attribute name="current" value="sign-in" cascade="true" />
     </definition>
 
-    <definition name="user-register" extends="common">
-        <put-attribute name="title" value="Student Registration" />
-        <put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
-        <put-attribute name="current" value="user-register" cascade="true" />
-    </definition>
-    <definition name="confirmation-compte" extends="common">
-        <put-attribute name="title" value="Confirmation du compte" />
-        <put-attribute name="body" value="/WEB-INF/jsp/confirmation-compte.jsp" />
-        <put-attribute name="current" value="confirmation-compte" cascade="true" />
+    <definition name="register" extends="common">
+        <put-attribute name="title" value="Register" />
+        <put-attribute name="body" value="/WEB-INF/jsp/register.jsp" />
+        <put-attribute name="current" value="register" cascade="true" />
     </definition>
     <definition name="indexStudent" extends="common">
         <put-attribute name="title" value="StudentWelcomPage" />
