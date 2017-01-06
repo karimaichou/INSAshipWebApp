@@ -27,15 +27,35 @@
 
 
         <title><tiles:getAsString name="title"/></title>
+
     </head>
     <body>
-        <div class="container">
-            <tiles:insertAttribute name="header" />
-            <tiles:insertAttribute name="menu" />
-            <tiles:insertAttribute name="body" />
-            <tiles:insertAttribute name="footer" />
+    <%@ taglib  uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilex"%>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <tiles:insertAttribute name="header"/>
+    <tilex:useAttribute name="current"/>
+    <div class="container">
+
+        <!--static navbar-->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="<spring:url value="/"/>"></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'>HOME</a></li>
+                        <li class="${current == 'sign-in' ? 'active' : ''}"><a href='<spring:url value="/sign-in"/>'>log in</a></li>
+                        <li class="${current == 'example' ? 'active' : ''}"><a href='<spring:url value="/example"/>'>Example</a></li>
+                        <li class="${current == 'user-register' ? 'active' : ''}"><a href='<spring:url value="/user-register"/>'>Registration</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        <tiles:insertAttribute name="body"/>
+    </div>
+
+
     </body>
+    <tiles:insertAttribute name="footer"/>
 </html>
-
-

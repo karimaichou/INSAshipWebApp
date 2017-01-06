@@ -1,9 +1,12 @@
 package com.Service;
 
 import com.entities.Role;
+import com.entities.Student;
 import com.entities.User;
 import com.repositories.RoleRepository;
+import com.repositories.StudentRepository;
 import com.repositories.UserRepository;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +25,7 @@ public class InitDbService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @PostConstruct
+   /* @PostConstruct
     public void init(){
 
         Role roleUser = new Role();
@@ -54,6 +57,5 @@ public class InitDbService {
         roleRepository.save(roleFsd);
 
 
-
-    }
+    }*/
 }

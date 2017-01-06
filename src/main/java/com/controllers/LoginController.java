@@ -30,16 +30,6 @@ public class LoginController {
     @Autowired
     StudentService studentService;
 
-    @RequestMapping(value="/register",method = RequestMethod.POST)
-    public String registerStudent(@ModelAttribute("StudentRegisterForm")StudentRegisterForm form, ModelMap model)
-    {
-        Student student=new Student();
-        
-        studentService.save(student);
-        return "index";
-    }
-
-
     @RequestMapping(value = "/sign-in",method = RequestMethod.POST)
     public String loginStudent(@ModelAttribute("StudentForm")StudentLoginForm form,ModelMap model, HttpServletRequest request, HttpServletResponse resp)
     {
