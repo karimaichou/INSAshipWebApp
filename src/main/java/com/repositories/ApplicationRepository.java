@@ -21,23 +21,23 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
 
     List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id);
 
-    List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id,String state);
+    List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id, String state);
 
     List<Application> findByCompanyOrderByCreationDateAsc(Company company);
 
-    List<Application> findByCompanyAndStateOrderByCreationDateAsc(Company company,String state);
+    List<Application> findByCompanyAndStateOrderByCreationDateAsc(Company company, String state);
 
     List<Application> findByInsaOrderByCreationDateAsc(INSA insa);
 
-    List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa,String state);
+    List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa, String state);
 
     List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state);
 
-    List<Application> findByStudentAndIsFsdOrderByCreationDateAsc(Student student,boolean fsd);
+    List<Application> findByStudentAndIsFsdOrderByCreationDateAsc(Student student, boolean fsd);
 
-    Application findByStudentAndOfferIdAndIsFsdOrderByCreationDateAsc(Student student,int offer_id,boolean fsd);
+    Application findByStudentAndOfferIdAndIsFsdOrderByCreationDateAsc(Student student, int offer_id, boolean fsd);
 
-    List<Application> findByStudentAndMeetingRequestOrderByCreationDateAsc(Student student,boolean meeting);
+    List<Application> findByStudentAndMeetingRequestOrderByCreationDateAsc(Student student, boolean meeting);
 
-    Application findByStudentAndOfferIdAndMeetingRequestOrderByCreationDateAsc(Student student,int offer_id,boolean meeting);
+    Application findByStudentAndOfferIdAndMeetingRequestOrderByCreationDateAsc(Student student, int offer_id, boolean meeting);
 }

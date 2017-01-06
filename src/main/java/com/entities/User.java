@@ -12,9 +12,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-    @Column(name = "id")
+    @GeneratedValue
     private Integer id;
 
     private String username;

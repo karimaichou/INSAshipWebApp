@@ -10,6 +10,7 @@
     <!-- Spring Security -->
     <http>
         <csrf disabled="true"/>
+        <intercept-url pattern="/sign-in*" access="isAnonymous()" />
         <intercept-url pattern="/example**" access="hasRole('ADMIN')" />
         <form-login login-page="/sign-in"/>
         <logout />

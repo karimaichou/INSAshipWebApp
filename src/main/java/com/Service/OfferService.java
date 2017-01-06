@@ -22,27 +22,8 @@ public class OfferService {
         ResponseEntity<Offer[]> responseEntity = restTemplate.getForEntity(url, Offer[].class);
         return new ArrayList<Offer>(Arrays.asList(responseEntity.getBody()));
     }
-    public Offer findById(Integer id)
+    public Offer findById()
     {
-        List<Offer> offers = findAll();
-        for(Offer offer : offers) {
-            if(offer.getId().equals(id) ){
-                return offer;
-            }
-        }
         return null;
-    }
-
-    public List<Offer> findByKeyword(String keyword)
-    {
-        List<Offer> offers = findAll();
-        List<Offer> matching = new ArrayList<Offer>();
-        String regex = "^.*" + keyword + ".*$";
-        for(Offer offer : offers) {
-            if(offer.getTitle().matches(regex) | offer.getDescription().matches(regex) ){
-                matching.add(offer);
-            }
-        }
-        return matching;
     }
 }

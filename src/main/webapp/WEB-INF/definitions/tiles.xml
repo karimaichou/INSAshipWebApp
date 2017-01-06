@@ -14,17 +14,18 @@
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 
+    <definition name="offers" extends="common">
+        <put-attribute name="title" value="Student index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/offers.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
     <definition name="example" extends="common">
         <put-attribute name="title" value="Example page" />
         <put-attribute name="body" value="/WEB-INF/jsp/example.jsp" />
         <put-attribute name="current" value="example" cascade="true" />
     </definition>
 
-    <definition name="offers" extends="common">
-        <put-attribute name="title" value="Example page" />
-        <put-attribute name="body" value="/WEB-INF/jsp/offers.jsp" />
-        <put-attribute name="current" value="offers" cascade="true" />
-    </definition>
 
     <definition name="sign-in" extends="common">
         <put-attribute name="title" value="Sign in" />

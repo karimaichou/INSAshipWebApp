@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface NotificationRepository extends JpaRepository<Notification,Integer> {
 
-    Notification findByApplicationAndUserOrderByEventDateDesc(Application application,User user);
+    Notification findByApplicationAndUserOrderByEventDateDesc(Application application, User user);
 
-    List<Notification> findByApplicationAndUserAndVisualizedOrderByEventDateDesc(Application application,User user,boolean visualized);
+    List<Notification> findByApplicationAndUserAndVisualizedOrderByEventDateDesc(Application application, User user, boolean visualized);
 }
