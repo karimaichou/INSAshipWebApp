@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,17 @@ public class OfferController {
         model.addAttribute("offers",offerList);
         return "offers";
     }
+
+    //just for testing
+    @RequestMapping(value = "/offer1", method = RequestMethod.GET)
+    public String offer1(Model model){
+        Offer offer = offerService.findById(2);
+        List<Offer> offerList = new ArrayList<Offer>();
+        offerList.add(offer);
+        model.addAttribute("offers",offerList);
+        return "offers";
+    }
+
 
     @RequestMapping(value = "/search-offers",method = RequestMethod.POST)
     public String getOffers(@ModelAttribute("OfferForm")OfferForm form)
