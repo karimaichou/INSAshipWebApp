@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 /**
  * Created by karima on 04/12/2016.
@@ -39,8 +40,22 @@ public class LoginController {
         return "index";
     }
 
+    @RequestMapping(value="loginError")
 
-    @RequestMapping(value = "/sign-in",method = RequestMethod.POST)
+    public String loginError(ModelMap model)
+    {
+        model.addAttribute("errorLogin","Error! Your email or password is wrong !");
+        return "sign-in";
+    }
+
+    @RequestMapping(value="welcomePage")
+    public String loginSuccess(ModelMap model, Principal principal,HttpServletRequest req)
+    {
+        return "offers";
+    }
+
+
+    /*@RequestMapping(value = "/sign-in",method = RequestMethod.POST)
     public String loginStudent(@ModelAttribute("StudentForm")StudentLoginForm form,ModelMap model, HttpServletRequest request, HttpServletResponse resp)
     {
         User user=userService.findByEmailAndPassword(form.getUsername(),form.getPassword());
@@ -69,5 +84,5 @@ public class LoginController {
 
         }
             return "index";
-    }
+    }*/
 }

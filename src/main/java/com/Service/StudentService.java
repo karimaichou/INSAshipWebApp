@@ -2,9 +2,11 @@ package com.Service;
 
 import com.entities.Student;
 import com.repositories.StudentRepository;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  */
 
 @Service
+@Transactional
 public class StudentService {
 
     @Autowired
@@ -20,8 +23,8 @@ public class StudentService {
 
     public Student findByEmailAndPassword(String email,String password)
     {
-        String passHash=hashPassword(password);
-        return studentRepository.findByEmailAndPassword(email,passHash);
+        //String passHash=hashPassword(password);
+        return studentRepository.findByEmailAndPassword(email,password);
     }
 
     public List<Student> findAll()
@@ -31,7 +34,10 @@ public class StudentService {
 
     public void save(Student student)
     {
-        student.setPassword(hashPassword(student.getPassword()));
+        //student.setPassword(hashPassword(student.getPassword()));
+        studentRepository.save(student);
+        String cle = RandomStringUtils.randomAlphanumeric(20).toUpperCase();
+        student.setToken(cle);
         studentRepository.save(student);
     }
 

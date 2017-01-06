@@ -42,10 +42,7 @@ public class HomeController {
         return "sign-in";
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public String register(){
-        return "register";
-    }
+
 
     @RequestMapping(value = "/indexStudent")
     public String indexStudent(){

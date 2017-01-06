@@ -20,9 +20,8 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/insaship" />
         <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="password" value="" />
     </bean>
-
 
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="packagesToScan" value="com.entities" />
@@ -44,5 +43,5 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <jpa:repositories base-package="com.repositories" entity-manager-factory-ref="emf"/>
+   <jpa:repositories base-package="com.repositories" entity-manager-factory-ref="emf"/>
 </beans>
