@@ -26,10 +26,10 @@
         <put-attribute name="current" value="example" cascade="true" />
     </definition>
 
-    <definition name="offers" extends="common">
-        <put-attribute name="title" value="Example page" />
-        <put-attribute name="body" value="/WEB-INF/jsp/offers.jsp" />
-        <put-attribute name="current" value="offers" cascade="true" />
+    <definition name="details" extends="common">
+        <put-attribute name="title" value="offer description" />
+        <put-attribute name="body" value="/WEB-INF/jsp/offerDetails.jsp" />
+        <put-attribute name="current" value="details" cascade="true" />
     </definition>
 
     <definition name="sign-in" extends="common">

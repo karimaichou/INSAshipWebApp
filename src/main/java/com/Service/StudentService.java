@@ -23,8 +23,8 @@ public class StudentService {
 
     public Student findByEmailAndPassword(String email,String password)
     {
-        String passHash=hashPassword(password);
-        return studentRepository.findByEmailAndPassword(email,passHash);
+        //String passHash=hashPassword(password);
+        return studentRepository.findByEmailAndPassword(email,password);
     }
 
     public List<Student> findAll()
