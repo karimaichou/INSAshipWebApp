@@ -23,43 +23,43 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
-    public static void envoyerMailSMTP()  throws Exception{
+    public void sendmail(String destinataire,String cle) {
 
-        String smtpHost = "smtp.xyz.com";
-        String from = "c.azzam@uhp.ac.ma";
-        String to = "azzam.chaimaa88@gmail.com";
-        String username = "";
-        String password = "";
+        final String username = "insaship@gmail.com";
+        final String password = "admin2017";
 
         Properties props = new Properties();
-        props.put("mail.smtp.host", smtpHost);
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "552");
-        props.put("mail.smtp.socketFactory.port", "552");
-        props.put("mail.smtp.starttls.enable","false");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-        Session session = Session.getDefaultInstance(props);
-        session.setDebug(true);
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
 
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(from));
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-        message.setSubject("Hello");
-        message.setText("Hello World");
+        try {
 
-        Transport tr = session.getTransport("smtp");
-        tr.connect(smtpHost, username, password);
-        message.saveChanges();
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("insaship@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(destinataire));
+            message.setSubject("Confirmation de création de compte");
+            message.setText("Bonjour,"
+                    + "\n\n Vous trouvez ci-joint la clé de confirmation de votre compte!"
+                    +"\n\n"+cle);
 
-        // tr.send(message);
-        /** Genere l'erreur. Avec l authentification, oblige d utiliser sendMessage meme pour une seule adresse... */
+            Transport.send(message);
 
-        tr.sendMessage(message,message.getAllRecipients());
-        tr.close();
+            System.out.println("Done");
 
-
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
-
     public Student findByEmailAndPassword(String email,String password)
     {
         String passHash=hashPassword(password);
@@ -77,11 +77,16 @@ public class StudentService {
         String cle = RandomStringUtils.randomAlphanumeric(20).toUpperCase();
         student.setToken(cle);
         try {
-            envoyerMailSMTP();
+            sendmail(student.getEmail(),student.getToken());
         } catch (Exception e) {
             e.printStackTrace();
         }
         studentRepository.save(student);
+    }
+    public Student findByToken(String token){
+
+        return studentRepository.findByToken(token);
+
     }
 
     public void update(Student student)
@@ -94,11 +99,11 @@ public class StudentService {
         return studentRepository.findByScholarYearOrderByScholarYearAsc(year);
     }
 
-    List<Student> getAll()
+    public List<Student> getAll()
     {
+
         return studentRepository.findAll();
     }
-
 
     //utility function to hash password
     public String hashPassword(String password)

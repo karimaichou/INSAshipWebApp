@@ -13,7 +13,7 @@
     <div class="form-group">
         <label for="lastName" class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-6">
-                <form:input path="lastName" cssClass="form-control"/>
+            <form:input path="lastName" cssClass="form-control"/>
         </div>
     </div>
     <div class="form-group">

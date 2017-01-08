@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -6,102 +7,111 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<button class="btn btn-danger" type="button">
-   Notifications <span class="badge">8</span>
-</button>
-<h3><p class="bg-primary">Informations personnelles </p></h3>
-<form>
-    <img src="http://images.google.fr/imgres?imgurl=http%3A%2F%2Fnordic2015.campusfrance.org%2Fwp-content%2Fuploads%2F2015%2F10%2FINSA-TOULOUSE-LOGO.jpg&imgrefurl=http%3A%2F%2Fnordic2015.campusfrance.org%2FParticipants%2Finsa-toulouse%2F&h=436&w=650&tbnid=QOxBEQC9MBQwVM%3A&vet=1&docid=A30DI9n1I837ZM&ei=1Ko5WO-BCYa3sQGcyIXgDA&tbm=isch&iact=rc&uact=3&dur=526&page=0&start=0&ndsp=30&ved=0ahUKEwjvu4733sbQAhWGWywKHRxkAcwQMwguKAowCg&bih=945&biw=1920" alt="..." class="img-circle">
-    <fieldset disabled>
-        <div class="form-group">
-            <label for="nom">Nom </label>
-            <input type="text" id="nom" class="form-control" placeholder="Nom">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Responsive 'Flat Profile' HTML Portfolio Template</title>
+<link href="${pageContext.request.contextPath}/resources/styles/css/demo.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/bootstrap-responsive.css">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/jquery.fancybox.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/font-awesome/css/font-awesome.min.css">
+
+
+<div class="container topbottom">
+    <div class="row-fluid">
+        <div class="span5">
+            <img src="${pageContext.request.contextPath}/resources/styles/img/avatar.jpg" alt="Profile Avatar" class="avatar">
+
+            <div class="navigation">
+                <div>
+                    <ul>
+                        <li>
+                            <img src="${pageContext.request.contextPath}/resources/styles/img/about-icon.png">
+                            <a href="indexStudent.jsp">About Me</a><!-- la descriptioooon -->
+                        </li>
+                        <li>
+                            <img src="${pageContext.request.contextPath}/resources/styles/img/portfolio-icon.png">
+                            <a href="managementCompte.jsp">Management du compte</a><!-- Cruuuud du compte utilisateur-->
+                        </li>
+                        <li>
+                            <img src="${pageContext.request.contextPath}/resources/styles/img/followme-icon.png">
+                            <a href="#">Notification</a><!--notificaation-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="prenom"> Prénom </label>
-            <input type="text" id="prenom" class="form-control" placeholder=" Prenom ">
+    </div>
+    <div class="span7 homeabout">
+        <div class="person">
+            <span class="name">John Donga</span>
+            <div class="font16">Co-founder at <span class="greentext"><a href="#">EGrappler.com</a></span></div>
         </div>
-        <div class="checkbox">
-            <label> Sexe </label>
-            <label>
-                <input type="checkbox" disabled> Femme
-            </label>
-            <label>
-                <input type="checkbox" disabled> Homme
-            </label>
+        <div class="desciption home">
+            <p>Known as Johny, I am a web designer and <span class="rotate greentext">WordPress Theme Designer, WordPress Theme Developer</span> living in Pakistan with my wife and two kids. I‘m an active author at Themeforest where I enjoy spending my day in Photoshop converting custom designs into fancy pants <span class="greentext">Custom WordPress Themes</span>.</p>
         </div>
-        <div class="form-group">
-            <label for="date_naissance">Date de naissance</label>
-            <input type="text" id="date_naissance" class="form-control" placeholder="date_naissance">
+        <div class="row">
+            <div class="span6">
+                <div class="bars">
+                    <div id="bar-1">
+                    </div>
+                    <div id="bar-2">
+                    </div>
+                    <div id="bar-3">
+                    </div>
+                    <div id="bar-4">
+                    </div>
+
+                </div>
+            </div>
+            <div class="span6">
+                <div class="user-tip"><img src="${pageContext.request.contextPath}/resources/styles/img/img-tip.png" alt="" /></div>
+                <div id="bars-content">
+                    <div  class="content" id="content-1">HTML5 is a markup language used for structuring and presenting content for the World Wide Web and a core technology of the Internet.</div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="nationalite"> Nationalité  </label>
-            <input type="text" id="nationalite" class="form-control" placeholder=" nationalite ">
-        </div>
-        <div class="form-group">
-            <label for="pays_residence"> Pays de résidence  </label>
-            <input type="text" id="pays_residence" class="form-control" placeholder=" pays_residence ">
-        </div>
-        <div class="form-group">
-            <label for="adresse_1"> Adresse </label>
-            <input type="text" id="adresse_1" class="form-control" placeholder="adresse_1">
-        </div>
-        <div class="form-group">
-            <label for="adresse_2"> Complément d'adresse  </label>
-            <input type="text" id="adresse_2" class="form-control" placeholder="adresse_2">
-        </div>
-        <div class="form-group">
-            <label for="codePostal">Code postal</label>
-            <input type="text" id="codePostal" class="form-control" placeholder="codePostal">
-        </div>
-        <div class="form-group">
-            <label for="ville"> Ville  </label>
-            <input type="text" id="ville" class="form-control" placeholder="ville">
-        </div>
-        <div class="input-group">
-            <label>E-mail</label>
-            <span class="input-group-addon" id="basic-addon1">@</span>
-            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="form-group">
-            <label for="telephone"> Téléphone </label>
-            <input type="text" id="telephone" class="form-control" placeholder="telephone">
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" id="description" class="form-control" placeholder="description">
-        </div>
-        <button type="button" class="btn btn-info">Modifier</button>
-    </fieldset>
-</form>
-<h3><p class="bg-primary">Suivi des Demandes</p></h3>
-    </br>
-    <table class="table table-striped">
-        <tr>
-            <td>Intitulé de l'offre</td>
-            <td>Entreprise</td>
-            <td>Ville</td>
-            <td>Sujet (pdf )</td>
-            <td>Date de soumission de la demande</td>
-            <td>Label</td>
-            <td>Statut de la demande</td>
-        </tr>
-        /* le nombre de ligne va dépondre des demandes de l'etudiant ci-dessus juste un exemple*/
-        <tr>
-            <td>Stage fin d'étude conception & dev</td>
-            <td>Capgemini</td>
-            <td>Toulouse</td>
-            <td>capgemini.pdf</td>
-            <td>15/11/2016</td>
-            <td>Intéressée</td>
-            <td>En cours de traitement</td>
-        </tr>
-    </table>
-<h3><p class="bg-primary">Chercher les offres </p></h3>
-    </br>
-    <form class="navbar-form navbar-right inline-form">
-        <div class="form-group">
-            <input type="search" class="input-sm form-control" placeholder="Recherche">
-            <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Chercher</button>
-        </div>
-    </form>
+
+    </div>
+
+</div>
+</div>
+<script src="${pageContext.request.contextPath}/resources/styles/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/styles/js/jqbar.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#bar-1').jqbar({ label: 'HTML5', value: 80, barColor: '#21ba82' });
+
+        $('#bar-2').jqbar({ label: 'CSS', value: 99, barColor: '#21ba82' });
+
+        $('#bar-3').jqbar({ label: 'JavaScript', value: 85, barColor: '#21ba82' });
+
+        $('#bar-4').jqbar({ label: 'WordPress', value: 75, barColor: '#21ba82' });
+
+        $('#bars-content .content').css({'opacity':'0',display:'none'});
+        $('#bars-content .content:eq(0)').css('display','block').animate({opacity:1},1000);
+        $('.jqbar:first').addClass('active');
+        $('.jqbar').hover(function(){ $(this).addClass('hover');},function(){ $(this).removeClass('hover');});
+        $('.jqbar').click(function(){
+            $('.jqbar').removeClass('active');
+            var id = $(this).addClass('active').attr('id').replace('bar','content');
+            $('#bars-content .content').css({'opacity':'0',display:'none'});
+            $('#' + id).css('display','block').animate({opacity:1},1000);
+
+        });
+
+        $(".rotate").textrotator({
+            animation: "spin",
+            separator: ",",
+            speed: 2000
+        });
+
+
+    });
+
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/styles/js/jquery.simple-text-rotator.min.js"></script>

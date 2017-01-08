@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.Service.StudentService;
 import com.Service.UserService;
+import com.View.ConfirmationForm;
 import com.View.StudentLoginForm;
 import com.View.StudentRegisterForm;
 import com.entities.Student;
@@ -31,28 +32,53 @@ public class LoginController {
     @Autowired
     StudentService studentService;
 
+    @RequestMapping(value = "/confirmation-compte")
+    public String confirmationCompte(){
+        return "confirmation-compte";
+    }
+
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public String registerStudent(@ModelAttribute("student") Student student)
     {
         studentService.save(student);
-        return "index";
+        return "confirmation-compte";
     }
 
-
-
-    @RequestMapping(value="loginError")
-
-    public String loginError(ModelMap model)
+    @RequestMapping(value="/confirmation-compte",method = RequestMethod.POST)
+    public String registerconfirmation(@ModelAttribute("confirmation") ConfirmationForm confirmation)
     {
-        model.addAttribute("errorLogin","Error! Your email or password is wrong !");
+
         return "sign-in";
     }
-
-    @RequestMapping(value="welcomePage")
-    public String loginSuccess(ModelMap model, Principal principal, HttpServletRequest req)
+    @RequestMapping(value = "/sign-in",method = RequestMethod.POST)
+    public String loginStudent(@ModelAttribute("StudentForm")StudentLoginForm form,ModelMap model, HttpServletRequest request, HttpServletResponse resp)
     {
+        User user=userService.findByEmailAndPassword(form.getUsername(),form.getPassword());
+        if(user==null)
+        {
+            model.addAttribute("errorLogin","Error! Your email or password is wrong !");
+            return "sign-in";
+        }
 
-        return "offers";
+        else
+        {
+            request.getSession().setAttribute("currentUser",user);
+            if(form.isRemember())
+            {
+                Cookie mailCookie=new Cookie("username",form.getUsername());
+                Cookie passCookie=new Cookie("password",form.getPassword());
+                mailCookie.setMaxAge(Integer.MAX_VALUE);
+                passCookie.setMaxAge(Integer.MAX_VALUE);
+                resp.addCookie(mailCookie);
+                resp.addCookie(passCookie);
+            }
+            //si c un etudiant aller a la page des offres dirrectement sinon aller dans la page home
+            if(user.getRoles().contains("ROLE_STUDENT"))
+                return "offers";
+
+
+        }
+        return "index";
     }
 
 }
