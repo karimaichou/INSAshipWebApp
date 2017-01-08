@@ -19,7 +19,7 @@ import java.util.List;
 @Transactional
 public class InitDbService {
 
-    @Autowired
+   /* @Autowired
     private RoleRepository roleRepository;
 
     @PostConstruct
@@ -55,5 +55,5 @@ public class InitDbService {
 
 
 
-    }
+    }*/
 }

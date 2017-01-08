@@ -16,14 +16,12 @@
 
     <!--<jdbc:embedded-database id="dataSource" type="HSQL"/>-->
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/insaship" />
+        <property name="url" value="jdbc:mysql://localhost:3306/insaship"/>
         <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="password" value="" />
     </bean>
-
-
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="packagesToScan" value="com.entities" />
         <property name="dataSource" ref="dataSource"/>
@@ -37,12 +35,9 @@
             <bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
         </property>
     </bean>
-
     <tx:annotation-driven transaction-manager="transactionManager" />
-
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-
-    <jpa:repositories base-package="com.repositories" entity-manager-factory-ref="emf"/>
+   <jpa:repositories base-package="com.repositories" entity-manager-factory-ref="emf"/>
 </beans>

@@ -31,10 +31,8 @@ public class LoginController {
     StudentService studentService;
 
     @RequestMapping(value="/register",method = RequestMethod.POST)
-    public String registerStudent(@ModelAttribute("StudentRegisterForm")StudentRegisterForm form, ModelMap model)
+    public String registerStudent(@ModelAttribute("student") Student student)
     {
-        Student student=new Student();
-        
         studentService.save(student);
         return "index";
     }

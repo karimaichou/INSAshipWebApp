@@ -33,6 +33,10 @@ public class Student extends User {
 
     private int scholarYear;
 
+    public Student() {
+        this.verified = false;
+    }
+
     @OneToMany(mappedBy = "student")
     private Collection<Application> applications;
 
