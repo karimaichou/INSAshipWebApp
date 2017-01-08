@@ -19,7 +19,9 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
 </form>
 </div>
-
+<c:if test="${not empty noOffer}">
+    <div class="alert alert-danger"> ${noOffer}</div>
+</c:if>
 <h2> Neweast Offers:</h2>
 <div>
     <table>
@@ -36,6 +38,7 @@
                     <tr>
                         <td>${offer.id}</td>
                         <td>${offer.title}</td>
+                        <td><button></button></td>
 
                     </tr>
                 </c:forEach>

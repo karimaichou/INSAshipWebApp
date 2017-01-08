@@ -28,6 +28,8 @@ public class OfferController {
     @RequestMapping(value = "/offers",method = RequestMethod.GET)
     public String offers(Model model){
         List<Offer> offerList = offerService.findAll();
+        if(offerList==null)
+            model.addAttribute("noOffer","there is no available internship offer for the moment");
         model.addAttribute("offers",offerList);
         return "offers";
     }

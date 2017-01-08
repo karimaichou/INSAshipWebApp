@@ -16,10 +16,12 @@ import java.util.Arrays;
 @Service
 public class OfferService {
     private String url = "http://localhost:8088/enterprise1jobsofferws-0.0.1-SNAPSHOT/api/v1/offers";
+
     public List<Offer> findAll()
     {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Offer[]> responseEntity = restTemplate.getForEntity(url, Offer[].class);
+        ArrayList<Offer> simulated=new ArrayList<Offer>();
         return new ArrayList<Offer>(Arrays.asList(responseEntity.getBody()));
     }
     public Offer findById(Integer id)
