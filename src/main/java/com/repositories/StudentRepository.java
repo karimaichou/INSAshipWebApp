@@ -19,7 +19,7 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     List<Student> findByApplications(Application application);
 
 
-
+    Student findByToken(String token);
 
 
 }

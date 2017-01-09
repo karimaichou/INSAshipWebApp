@@ -38,7 +38,6 @@
         <put-attribute name="current" value="example" cascade="true" />
     </definition>
 
-
     <definition name="sign-in" extends="common">
         <put-attribute name="title" value="Sign in" />
         <put-attribute name="body" value="/WEB-INF/jsp/sign-in.jsp" />
@@ -54,5 +53,10 @@
         <put-attribute name="title" value="StudentWelcomPage" />
         <put-attribute name="body" value="/WEB-INF/jsp/indexStudent.jsp" />
         <put-attribute name="current" value="indexStudent" cascade="true" />
+    </definition>
+    <definition name="confirmation-compte" extends="common">
+        <put-attribute name="title" value="Confirmation de création de compte" />
+        <put-attribute name="body" value="/WEB-INF/jsp/confirmation-compte.jsp" />
+        <put-attribute name="current" value="confirmation-compte" cascade="true" />
     </definition>
 </tiles-definitions>

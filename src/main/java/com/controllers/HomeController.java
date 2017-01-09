@@ -22,7 +22,6 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class HomeController {
 
-
     @Autowired
     private StudentService studentService;
 
@@ -39,6 +38,7 @@ public class HomeController {
     public String example(){
         return "example";
     }
+
 
     @RequestMapping(value = "/sign-in",method = RequestMethod.GET)
     public String signIn(HttpServletRequest request, ModelMap model){
@@ -58,11 +58,8 @@ public class HomeController {
     public String register(){
         return "register";
     }
-   /* @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String doRegistration(@ModelAttribute("student") Student student){
-        studentService.save(student);
-        return "confirm-registration";
-    }*/
+
+
 
     @RequestMapping(value = "/indexStudent")
     public String indexStudent(){
