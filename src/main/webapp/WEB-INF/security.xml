@@ -12,6 +12,7 @@
         <csrf disabled="true"/>
         <intercept-url pattern="/register*" access="isAnonymous()" />
         <intercept-url pattern="/example**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/offers**" access="isAuthenticated()" />
         <form-login login-page="/sign-in"
                     username-parameter="j_username"
                     password-parameter="j_password"

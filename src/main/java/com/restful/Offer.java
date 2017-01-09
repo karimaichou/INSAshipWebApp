@@ -16,6 +16,12 @@ public class Offer {
     private long expirationDate;
     private Integer id;
 
+    public Offer(){}
+    public Offer(int id)
+    {
+        this.id=id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -62,5 +68,10 @@ public class Offer {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean equals(Object offer)
+    {
+        return this.id==((Offer)offer).getId();
     }
 }

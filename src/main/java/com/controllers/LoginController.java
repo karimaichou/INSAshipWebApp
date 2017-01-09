@@ -52,7 +52,9 @@ public class LoginController {
     public String loginSuccess(ModelMap model, Principal principal, HttpServletRequest req)
     {
 
-        return "offers";
+        User logged=userService.findByEmail(principal.getName());
+        req.getSession().setAttribute("loggedUser",logged);
+        return "redirect:/offers";
     }
 
 }

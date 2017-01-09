@@ -15,10 +15,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User findByEmailAndPassword(String email, String password)
+    public User findByEmail(String email)
     {
-        String passHash=hashPassword(password);
-        return userRepository.findByEmailAndPassword(email,passHash);
+        return userRepository.findByEmail(email);
     }
 
     public String hashPassword(String password)

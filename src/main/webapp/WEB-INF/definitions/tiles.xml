@@ -20,6 +20,18 @@
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 
+    <definition name="offerDetails" extends="common">
+        <put-attribute name="title" value="Offer details | InsaShip" />
+        <put-attribute name="body" value="/WEB-INF/jsp/offerDetails.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
+    <definition name="apply" extends="common">
+        <put-attribute name="title" value="apply for the offer | InsaShip" />
+        <put-attribute name="body" value="/WEB-INF/jsp/apply.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
     <definition name="example" extends="common">
         <put-attribute name="title" value="Example page" />
         <put-attribute name="body" value="/WEB-INF/jsp/example.jsp" />

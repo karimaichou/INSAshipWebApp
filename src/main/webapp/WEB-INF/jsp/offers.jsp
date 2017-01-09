@@ -22,6 +22,9 @@
 <c:if test="${not empty noOffer}">
     <div class="alert alert-danger"> ${noOffer}</div>
 </c:if>
+<c:if test="${not empty success}">
+    <div class="alert alert-success"> ${success}</div>
+</c:if>
 <h2> Neweast Offers:</h2>
 <div>
     <table>
@@ -36,10 +39,8 @@
             <c:if test="${not empty offers}">
                 <c:forEach items="${offers}" var="offer">
                     <tr>
-                        <td>${offer.id}</td>
-                        <td>${offer.title}</td>
-                        <td><button></button></td>
-
+                        <tr><td><input type="button"  onclick="location.href='/details?id=${offer.id}'" value="${offer.title}"/> </td></tr>
+                        <tr><td>${offer.description}</td></tr>
                     </tr>
                 </c:forEach>
             </c:if>
