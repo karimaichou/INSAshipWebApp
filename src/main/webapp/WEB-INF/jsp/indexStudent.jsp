@@ -18,9 +18,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/jquery.fancybox.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/font-awesome/css/font-awesome.min.css">
 
-
 <div class="container topbottom">
     <div class="row-fluid">
+
         <div class="span5">
             <img src="${pageContext.request.contextPath}/resources/styles/img/avatar.jpg" alt="Profile Avatar" class="avatar">
 
@@ -29,54 +29,71 @@
                     <ul>
                         <li>
                             <img src="${pageContext.request.contextPath}/resources/styles/img/about-icon.png">
-                            <a href="indexStudent.jsp">About Me</a><!-- la descriptioooon -->
+                            <a href="#">About Me</a>
                         </li>
                         <li>
                             <img src="${pageContext.request.contextPath}/resources/styles/img/portfolio-icon.png">
-                            <a href="managementCompte.jsp">Management du compte</a><!-- Cruuuud du compte utilisateur-->
+                            <a href="#">Profil Management</a>
                         </li>
                         <li>
                             <img src="${pageContext.request.contextPath}/resources/styles/img/followme-icon.png">
-                            <a href="#">Notification</a><!--notificaation-->
+                            <a href="#">Notification</a>
+                        </li>
+                        <li>
+                            <img src="${pageContext.request.contextPath}/resources/styles/img/followme-icon.png">
+                            <a href="#">Internship Agreement</a>
+                        </li>
+                        <li>
+                            <img src="${pageContext.request.contextPath}/resources/styles/img/portfolio-icon.png">
+                            <a href="#">Applications</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="span7 homeabout">
-        <div class="person">
-            <span class="name">John Donga</span>
-            <div class="font16">Co-founder at <span class="greentext"><a href="#">EGrappler.com</a></span></div>
-        </div>
-        <div class="desciption home">
-            <p>Known as Johny, I am a web designer and <span class="rotate greentext">WordPress Theme Designer, WordPress Theme Developer</span> living in Pakistan with my wife and two kids. I‘m an active author at Themeforest where I enjoy spending my day in Photoshop converting custom designs into fancy pants <span class="greentext">Custom WordPress Themes</span>.</p>
-        </div>
-        <div class="row">
-            <div class="span6">
-                <div class="bars">
-                    <div id="bar-1">
-                    </div>
-                    <div id="bar-2">
-                    </div>
-                    <div id="bar-3">
-                    </div>
-                    <div id="bar-4">
-                    </div>
 
+        <div class="span7 homeabout">
+            <div class="person">
+                <span class="name">AZZAM Chaimaa</span><!-- first name and last name -->
+                <div class="font16">Student at insa Toulouse <span class="greentext"><a href="#">insa.fr</a></span></div>
+            </div>
+            <div class="desciption home">
+
+                <p>Adress : <span class="rotate greentext">86 AVENUE SAINT EXUPERY</span></p>
+                <p>Telephone : <span class="rotate greentext">0788193060</span>
+                <p>Email : <span class="rotate greentext">c.azzam@uhp.ac.ma</span></p>
+                <p>Date d'inscription: <span class="rotate greentext">08/01/2017</span></p>
+                <p>Date de naissance : <span class="rotate greentext">17/12/1994</span></p>
+                <p>CV: </p><span class="rotate greentext"><a href="#">CV.pdf</a></span>
+                <p>Lettre de motivation: </p><span class="rotate greentext"><a href="#">LM.pdf</a></span>
+
+
+            </div>
+            <div class="row">
+                <div class="span6">
+                    <div class="bars">
+                        <div id="bar-1">
+                        </div>
+                        <div id="bar-2">
+                        </div>
+                        <div id="bar-3">
+                        </div>
+                        <div id="bar-4">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="user-tip"><img src="${pageContext.request.contextPath}/resources/styles/img/img-tip.png" alt="" /></div>
+                    <div id="bars-content">
+                        <div  class="content" id="content-1">No description</div>
+                    </div>
                 </div>
             </div>
-            <div class="span6">
-                <div class="user-tip"><img src="${pageContext.request.contextPath}/resources/styles/img/img-tip.png" alt="" /></div>
-                <div id="bars-content">
-                    <div  class="content" id="content-1">HTML5 is a markup language used for structuring and presenting content for the World Wide Web and a core technology of the Internet.</div>
-                </div>
-            </div>
+
         </div>
 
     </div>
-
-</div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/styles/js/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/styles/js/jqbar.js" type="text/javascript"></script>
@@ -91,6 +108,8 @@
         $('#bar-3').jqbar({ label: 'JavaScript', value: 85, barColor: '#21ba82' });
 
         $('#bar-4').jqbar({ label: 'WordPress', value: 75, barColor: '#21ba82' });
+
+
 
         $('#bars-content .content').css({'opacity':'0',display:'none'});
         $('#bars-content .content:eq(0)').css('display','block').animate({opacity:1},1000);
@@ -114,4 +133,4 @@
     });
 
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/styles/js/jquery.simple-text-rotator.min.js"></script>
+<script type="text/javascript" src="/${pageContext.request.contextPath}/resources/styles/js/jquery.simple-text-rotator.min.js"></script>

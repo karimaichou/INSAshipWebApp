@@ -46,6 +46,7 @@
                     <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value ="/register"/>">Register</a></li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
+                    <li><a href="<spring:url value ="/indexStudent"/>">Profil</a></li>
                     <li><a href="<spring:url value ="/logout"/>">Logout</a></li>
                 </security:authorize>
             </ul>
