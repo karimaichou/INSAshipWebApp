@@ -1,6 +1,8 @@
 package com.Service;
 
 import com.restful.Offer;
+import com.restful.RestfulCompany;
+import com.restful.RestfulCompanyOffers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,14 +17,25 @@ import java.util.Arrays;
 
 @Service
 public class OfferService {
-    private String url = "http://localhost:8088/enterprise1jobsofferws-0.0.1-SNAPSHOT/api/v1/offers";
+    private static final String urlAll = "http://localhost:8181/api/alloffers";
+    private static final String urlById = "http://localhost:8181/api/singleoffer?";
+    private static final String urlByKeyword = "http://localhost:8181/api/search?keyword=";
+
+    private List<Offer> receiveOffers(String url){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<RestfulCompanyOffers[]> responseEntity = restTemplate.getForEntity(url, RestfulCompanyOffers[].class);
+        List<Offer> offers = new ArrayList<Offer>();
+        for (RestfulCompanyOffers restfulCompanyOffers:responseEntity.getBody())
+        {
+            if (restfulCompanyOffers != null) offers.addAll(restfulCompanyOffers.getOffers());
+        }
+        return offers;
+    }
 
     public List<Offer> findAll()
     {
-        /* RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Offer[]> responseEntity = restTemplate.getForEntity(url, Offer[].class);
-        return new ArrayList<Offer>(Arrays.asList(responseEntity.getBody()));*/
-
+        return receiveOffers(this.urlAll);
+        /*
         ArrayList<Offer> simulated=new ArrayList<Offer>();
         Offer offer1=new Offer();
         offer1.setAvailable(true);
@@ -48,28 +61,17 @@ public class OfferService {
         simulated.add(offer2);
         return simulated;
         //
+        */
     }
-    public Offer findById(Integer id)
+    public Offer findById(Integer offerId,Integer companyId)
     {
-            List<Offer> offers = findAll();
-            for(Offer offer : offers) {
-                if(offer.getId().equals(id) ){
-                    return offer;
-                }
-            }
-        return null;
+        List<Offer> offers = receiveOffers(urlById + "cpnId=" + companyId + "offerId=" + offerId);
+        if (offers != null && !offers.isEmpty()) return offers.get(0);
+        else return null;
     }
 
-     public List<Offer> findByKeyword(String keyword)
-     {
-         List<Offer> offers = findAll();
-         List<Offer> matching = new ArrayList<Offer>();
-         String regex = "^.*(?i)" + keyword + ".*$";
-         for(Offer offer : offers) {
-             if(offer.getTitle().matches(regex) | offer.getDescription().matches(regex) ){
-                 matching.add(offer);
-             }
-         }
-         return matching;
-     }
+    public List<Offer> findByKeyword(String keyword)
+    {
+        return receiveOffers(urlByKeyword + keyword);
+    }
 }
