@@ -17,8 +17,10 @@ public class ApplicationService {
     @Autowired
     ApplicationRepository applicationRepository;
 
-    public List<Application> findAll(){
-        return applicationRepository.findAll();
+
+    public Application save(Application application)
+    {
+        return applicationRepository.save(application);
     }
 
     List<Application> findByStudentOrderByCreationDateAsc(Student student)

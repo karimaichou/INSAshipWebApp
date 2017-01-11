@@ -1,5 +1,8 @@
 package com.Service;
 
+import com.entities.Company;
+import com.repositories.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,4 +10,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CompanyService {
+
+    @Autowired
+    CompanyRepository companyRepository;
+
+    public Company findById(int id)
+    {
+        return companyRepository.findById(id);
+    }
 }

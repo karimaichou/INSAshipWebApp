@@ -14,7 +14,7 @@ public class DocumentService {
     @Autowired
     DocumentRepository documentRepository;
 
-    public void insert(Document document)
+    public void save(Document document)
     {
         documentRepository.save(document);
     }
