@@ -27,4 +27,8 @@ public class NotificationService {
         return notificationRepository.findByApplicationAndUserAndVisualizedOrderByEventDateDesc(application,user,visualized);
     }
 
+    public void save(Notification notification)
+    {
+         notificationRepository.save(notification);
+    }
 }

@@ -1,9 +1,6 @@
 package com.controllers;
 
-import com.Service.ApplicationService;
-import com.Service.CompanyService;
-import com.Service.DocumentService;
-import com.Service.OfferService;
+import com.Service.*;
 import com.View.ApplicationForm;
 import com.View.OfferForm;
 import com.View.StudentLoginForm;
@@ -47,6 +44,9 @@ public class OfferController {
 
     @Autowired
     CompanyService companyService;
+
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping(value = "/offers",method = RequestMethod.GET)
     public String offers(ModelMap model, HttpServletRequest req){
@@ -144,6 +144,8 @@ public class OfferController {
            student.getFirstName()+" "+student.getLastName()+"./n a confirmation was also sent to your mail.");
            notification.setUser(company);
            notification.setVisualized(false);
+           notificationService.save(notification);
+
 
            file1.setFileUrl("c:/insaship/"+ application.getId()+"Resume");
            file2.setFileUrl("c:/insaship/"+ application.getId()+"Cover");

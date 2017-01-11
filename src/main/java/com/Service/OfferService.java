@@ -34,8 +34,8 @@ public class OfferService {
 
     public List<Offer> findAll()
     {
-        return receiveOffers(this.urlAll);
-        /*
+        //return receiveOffers(this.urlAll);
+
         ArrayList<Offer> simulated=new ArrayList<Offer>();
         Offer offer1=new Offer();
         offer1.setAvailable(true);
@@ -61,7 +61,7 @@ public class OfferService {
         simulated.add(offer2);
         return simulated;
         //
-        */
+
     }
     public Offer findById(Integer offerId,Integer companyId)
     {
