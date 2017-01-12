@@ -25,6 +25,7 @@ public class Application {
 
     private boolean meetingRequest;
 
+    @Column(columnDefinition="tinyint(1) default 0")
     private boolean isFsd;
 
     private Integer offerId;
@@ -35,10 +36,10 @@ public class Application {
     @ManyToOne(optional = false)
     private Company company;
 
-    @OneToMany
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
     private Collection<Document> documents;
 
-    @OneToOne(mappedBy = "application")
+    @OneToOne(mappedBy = "application",cascade = CascadeType.REMOVE,optional = true)
     private FSDProcedure fsdProcedure;
 
     @OneToOne(mappedBy = "application")
@@ -47,7 +48,7 @@ public class Application {
     @OneToMany(mappedBy = "application")
     private Collection<Notification> notifications;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     private INSA insa;
 
     public INSA getInsa() {

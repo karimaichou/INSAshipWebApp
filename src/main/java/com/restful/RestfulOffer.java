@@ -1,36 +1,19 @@
 package com.restful;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Created by borik on 12/5/2016.
+ * Created by borik on 1/9/2017.
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Offer {
-
+public class RestfulOffer {
     private String title;
     private String description;
     private boolean available;
     private long startDate;
     private long expirationDate;
     private Integer id;
-    private Integer company;
 
-
-    public int getCompany_id() {
-        return company;
-    }
-
-    public void setCompany_id(int company) {
-        this.company = company;
-    }
-
-    public Offer(){}
-    public Offer(int id)
-    {
-        this.id=id;
-    }
+    public RestfulOffer(){}
 
     public String getTitle() {
         return title;
@@ -80,16 +63,20 @@ public class Offer {
         this.id = id;
     }
 
-    public Integer getCompany() {
-        return company;
+    @JsonProperty("titre")
+    public String getTitre() {
+        return title;
     }
-
-    public void setCompany(Integer company) {
-        this.company = company;
+    @JsonProperty("titre")
+    public void setTitre(String title) {
+        this.title = title;
     }
-
-    public boolean equals(Object offer)
-    {
-        return this.id==((Offer)offer).getId();
+    @JsonProperty("contenu")
+    public String getContenu() {
+        return description;
+    }
+    @JsonProperty("contenu")
+    public void setContenu(String description) {
+        this.description = description;
     }
 }

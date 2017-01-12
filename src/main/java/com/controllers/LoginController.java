@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.Service.StudentService;
 import com.Service.UserService;
+import com.View.ConfirmationForm;
 import com.View.StudentLoginForm;
 import com.View.StudentRegisterForm;
 import com.entities.Student;
@@ -31,13 +32,26 @@ public class LoginController {
     @Autowired
     StudentService studentService;
 
+
+
+    @RequestMapping(value = "/confirmation-compte")
+    public String confirmationCompte(){
+        return "confirmation-compte";
+    }
+
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public String registerStudent(@ModelAttribute("student") Student student)
     {
         studentService.save(student);
-        return "index";
+        return "confirmation-compte";
     }
 
+    @RequestMapping(value="/confirmation-compte",method = RequestMethod.POST)
+    public String registerconfirmation(@ModelAttribute("confirmation") ConfirmationForm confirmation)
+    {
+
+        return "sign-in";
+    }
 
 
     @RequestMapping(value="loginError")

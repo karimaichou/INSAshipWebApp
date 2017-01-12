@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <style>
     .btn-file {
         position: relative;
@@ -29,12 +30,13 @@
 
 </style>
 <div>
-    <form method="post" class="form-signin" action="/apply" enctype="multipart/form-data">
+    <form method="post" class="form-signin" action="/apply" modelAttribute="ApplicationForm" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="${offer.id}">
         <input type="email" name="email" value="${email}"  class="form-control" >
         <input type="text" name="prenom" value="${prenom}" class="form-control">
         <input type="text" name="nom" value="${nom}" class="form-control">
-        <input type="file"  class="form-control" name="resume">
-        <input type="file"  class="form-control" name="coverLetter">
+        <input type="file"  class="form-control" name="files[0]">
+        <input type="file"  class="form-control" name="files[1]">
         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Apply">
     </form>
 

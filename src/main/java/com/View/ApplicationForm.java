@@ -3,15 +3,13 @@ package com.View;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by karima on 09/01/2017.
  */
 public class ApplicationForm implements Serializable {
 
-   private MultipartFile resume;
-
-   private MultipartFile coverLetter;
 
     private String nom;
 
@@ -19,21 +17,26 @@ public class ApplicationForm implements Serializable {
 
     private String email;
 
-    public MultipartFile getResume() {
-        return resume;
+    private int id;
+
+    public int getId() {
+        return id;
     }
 
-    public void setResume(MultipartFile resume) {
-        this.resume = resume;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public MultipartFile getCoverLetter() {
-        return coverLetter;
+    private  List<MultipartFile> files;
+
+    public List<MultipartFile> getFiles() {
+        return files;
     }
 
-    public void setCoverLetter(MultipartFile coverLetter) {
-        this.coverLetter = coverLetter;
+    public void setFiles(List<MultipartFile> resume) {
+        this.files = resume;
     }
+
 
     public String getNom() {
         return nom;

@@ -27,6 +27,24 @@
                 <li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value ="/"/>">Home</a></li>
                 <li class="${current == 'example' ? 'active' : ''}"><a href="<spring:url value ="/example"/>">Example</a></li>
                 <li class="${current == 'offers' ? 'active' : ''}"><a href="<spring:url value ="/offers"/>">Offers</a></li>
+                <security:authorize access=" hasRole('ROLE_STUDENT')">
+                    <%@include file="menuStudent.jsp"%>
+                </security:authorize>
+                <security:authorize access=" hasRole('ROLE_COMPANY')">
+                    <%@include file="menuCompany.jsp"%>
+                </security:authorize>
+                <security:authorize access=" hasRole('ROLE_FSD')">
+                    <%@include file="menuFSD.jsp"%>
+                </security:authorize>
+                <security:authorize access=" hasRole('ROLE_INSA')">
+                    <%@include file="menuINSA.jsp"%>
+                </security:authorize>
+                <security:authorize access=" hasRole('ROLE_INSA_ADMIN')">
+                    <%@include file="menuINSAAdmin.jsp"%>
+                </security:authorize>
+                <security:authorize access=" hasRole('ROLE_ADMIN')">
+                    <%@include file="menuAdmin.jsp"%>
+                </security:authorize>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -46,6 +64,7 @@
                     <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value ="/register"/>">Register</a></li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
+                    <li><a href="<spring:url value ="/indexStudent"/>">Profil</a></li>
                     <li><a href="<spring:url value ="/logout"/>">Logout</a></li>
                 </security:authorize>
             </ul>

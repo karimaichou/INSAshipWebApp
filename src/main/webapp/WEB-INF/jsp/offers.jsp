@@ -9,7 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:if test="${not empty Error}">
+    <div class="alert alert-danger"> ${Error}</div>
+</c:if>
+<c:if test="${not empty success}">
+    <div class="alert alert-success"> ${success}</div>
+</c:if>
 <div>
     <form method="post" class="form-signin" action="/search-offers">
     <label class="sr-only" > internship keywords, or title</label><input type="text" name="keyword" placeholder="internship keywords, or title" class="form-control" autofocus/>
@@ -21,9 +26,6 @@
 </div>
 <c:if test="${not empty noOffer}">
     <div class="alert alert-danger"> ${noOffer}</div>
-</c:if>
-<c:if test="${not empty success}">
-    <div class="alert alert-success"> ${success}</div>
 </c:if>
 <h2> Neweast Offers:</h2>
 <div>
