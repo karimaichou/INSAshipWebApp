@@ -5,8 +5,7 @@ import com.Service.UserService;
 import com.View.ConfirmationForm;
 import com.View.StudentLoginForm;
 import com.View.StudentRegisterForm;
-import com.entities.Student;
-import com.entities.User;
+import com.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by karima on 04/12/2016.
@@ -68,6 +68,10 @@ public class LoginController {
 
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",logged);
+
+        if (logged instanceof Company) return "redirect:/company/index";
+        if (logged instanceof INSA) return "redirect:/insa/something"; //redirect to you controller methon in your controller
+        if (logged instanceof FSD) return "redirect:/fsd/something"; //redirect to you controller methon in your controller
         return "redirect:/offers";
     }
 

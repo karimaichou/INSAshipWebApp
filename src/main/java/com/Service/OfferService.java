@@ -34,7 +34,7 @@ public class OfferService {
 
     public List<Offer> findAll()
     {
-        //return receiveOffers(this.urlAll);
+        /*return receiveOffers(this.urlAll);*/
 
         ArrayList<Offer> simulated=new ArrayList<Offer>();
         Offer offer1=new Offer();

@@ -63,4 +63,12 @@
         <put-attribute name="body" value="/WEB-INF/jsp/confirmation-compte.jsp" />
         <put-attribute name="current" value="confirmation-compte" cascade="true" />
     </definition>
+
+
+    <definition name="company/index" extends="common">
+        <put-attribute name="title" value="Company index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/company/index.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
 </tiles-definitions>

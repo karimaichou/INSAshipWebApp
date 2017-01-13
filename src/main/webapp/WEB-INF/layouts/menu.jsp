@@ -24,10 +24,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <security:authorize access=" hasRole('ROLE_STUDENT')">
                 <li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value ="/"/>">Home</a></li>
                 <li class="${current == 'example' ? 'active' : ''}"><a href="<spring:url value ="/example"/>">Example</a></li>
                 <li class="${current == 'offers' ? 'active' : ''}"><a href="<spring:url value ="/offers"/>">Offers</a></li>
-                <security:authorize access=" hasRole('ROLE_STUDENT')">
+
                     <%@include file="menuStudent.jsp"%>
                 </security:authorize>
                 <security:authorize access=" hasRole('ROLE_COMPANY')">
