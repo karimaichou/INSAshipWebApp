@@ -13,6 +13,7 @@ public enum ApplicationState {
     Done,
     UnderFSD,
     UnderAgreement,
+    AcceptedByCompany,
     ValidatedByStudent,
     ValidatedByCompany,
     ValidatedByINSA,

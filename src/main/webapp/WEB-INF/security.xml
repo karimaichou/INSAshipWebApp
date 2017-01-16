@@ -12,6 +12,9 @@
         <csrf disabled="true"/>
         <intercept-url pattern="/register*" access="isAnonymous()" />
         <intercept-url pattern="/example**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/company/**" access="hasRole('ROLE_COMPANY')" />
+        <intercept-url pattern="/insa/**" access="hasRole('ROLE_INSA')" />
+        <intercept-url pattern="/fsd/**" access="hasRole('ROLE_FSD')" />
         <intercept-url pattern="/offers**" access="isAuthenticated()" />
         <intercept-url pattern="/apply**" access="hasRole('ROLE_STUDENT')" />
         <intercept-url pattern="/insa**" access="hasRole('ROLE_INSA')" />

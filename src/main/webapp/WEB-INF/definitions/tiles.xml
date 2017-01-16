@@ -70,6 +70,21 @@
         <put-attribute name="body" value="/WEB-INF/jsp/company/index.jsp" />
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
+    <definition name="company/offers" extends="common">
+        <put-attribute name="title" value="Company index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/company/offers.jsp" />
+        <put-attribute name="current" value="offers" cascade="true" />
+    </definition>
+    <definition name="company/applications" extends="common">
+        <put-attribute name="title" value="Company index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/company/applications.jsp" />
+        <put-attribute name="current" value="offers" cascade="true" />
+    </definition>
+    <definition name="company/detail" extends="common">
+        <put-attribute name="title" value="Company index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/company/detail.jsp" />
+        <put-attribute name="current" value="offers" cascade="true" />
+    </definition>
 
 
     <definition name="insa/home" extends="common">

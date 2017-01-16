@@ -43,4 +43,10 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     List<Application> findByStudentAndMeetingRequestOrderByCreationDateAsc(Student student, boolean meeting);
 
     Application findByStudentAndOfferIdAndMeetingRequestOrderByCreationDateAsc(Student student, int offer_id, boolean meeting);
+
+    List<Application> findByCompanyAndOfferId(Company company, int offer_id);
+
+    List<Application> findByCompanyAndOfferIdAndStateNot(Company company, int offer_id, ApplicationState state);
+
+    Application findById(int id);
 }

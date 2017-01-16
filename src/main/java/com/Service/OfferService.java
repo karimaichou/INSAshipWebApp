@@ -75,6 +75,18 @@ public class OfferService {
         return offers.get(offers.indexOf(new Offer(offerId)));
 
     }
+    public List<Offer> findByCompanyId(Integer company)
+    {
+        List<Offer> offers = findAll();
+        List<Offer> newOffers = new ArrayList<Offer>();
+        for (Offer offer:offers){
+            if (offer.getCompany() == company)
+            {
+                newOffers.add(offer);
+            }
+        }
+        return newOffers;
+    }
 
     public List<Offer> findByKeyword(String keyword)
     {
