@@ -65,9 +65,15 @@ public class OfferService {
     }
     public Offer findById(Integer offerId,Integer companyId)
     {
-        List<Offer> offers = receiveOffers(urlById + "cpnId=" + companyId + "offerId=" + offerId);
+        /*List<Offer> offers = receiveOffers(urlById + "cpnId=" + companyId + "offerId=" + offerId);
         if (offers != null && !offers.isEmpty()) return offers.get(0);
-        else return null;
+        else return null;*/
+
+        //karima's code : just to simulate search for ID: don't worry Borek :D
+
+        List<Offer> offers=findAll();
+        return offers.get(offers.indexOf(new Offer(offerId)));
+
     }
 
     public List<Offer> findByKeyword(String keyword)

@@ -71,4 +71,22 @@
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 
+
+    <definition name="insa/home" extends="common">
+        <put-attribute name="title" value="Insa home page" />
+        <put-attribute name="body" value="/WEB-INF/jsp/insa/home.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+    <definition name="insa/details" extends="common">
+        <put-attribute name="title" value="Application details page" />
+        <put-attribute name="body" value="/WEB-INF/jsp/insa/details.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
+    <definition name="insa/offers" extends="common">
+        <put-attribute name="title" value="Insa pending Applications page" />
+        <put-attribute name="body" value="/WEB-INF/jsp/insa/offers.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
 </tiles-definitions>

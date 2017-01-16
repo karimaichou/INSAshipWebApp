@@ -87,4 +87,10 @@ public class ApplicationService {
     {
         return applicationRepository.findDocumentById(id);
     }
+
+    public List<Application> findApplicationByYear(int year)
+    {
+        return applicationRepository.findApplicationByYear(year);
+
+    }
 }

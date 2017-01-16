@@ -1,5 +1,7 @@
 package com.entities;
 
+
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
@@ -50,6 +52,8 @@ public class Application {
 
     @ManyToOne(optional = true)
     private INSA insa;
+
+
 
     public INSA getInsa() {
         return insa;
@@ -170,5 +174,14 @@ public class Application {
 
     public void setNotifications(Collection<Notification> notifications) {
         this.notifications = notifications;
+    }
+
+    @Override
+    public  boolean equals( Object  application)
+    {
+        if (this == application) return true;
+        if (!(application instanceof Application)) return false;
+        Application book = (Application) application;
+        return getId().equals(((Application) application).getId());
     }
 }

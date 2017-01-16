@@ -13,6 +13,8 @@
         <intercept-url pattern="/register*" access="isAnonymous()" />
         <intercept-url pattern="/example**" access="hasRole('ADMIN')" />
         <intercept-url pattern="/offers**" access="isAuthenticated()" />
+        <intercept-url pattern="/apply**" access="hasRole('ROLE_STUDENT')" />
+        <intercept-url pattern="/insa**" access="hasRole('ROLE_INSA')" />
         <form-login login-page="/sign-in"
                     username-parameter="j_username"
                     password-parameter="j_password"
