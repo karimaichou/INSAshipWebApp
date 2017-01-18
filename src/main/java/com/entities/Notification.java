@@ -7,11 +7,12 @@ import java.util.Date;
  * Created by karima on 20/11/2016.
  */
 @Entity
+@Table(name = "notification")
 public class Notification {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private int id;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date eventDate;
@@ -27,7 +28,7 @@ public class Notification {
     private Application application;
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

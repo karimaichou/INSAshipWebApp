@@ -7,6 +7,7 @@ import java.util.List;
  * Created by karima on 20/11/2016.
  */
 @Entity
+@Table(name = "fsdprocedure")
 public class FSDProcedure {
 
     @Id

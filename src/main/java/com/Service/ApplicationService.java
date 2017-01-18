@@ -95,4 +95,22 @@ public class ApplicationService {
     public List<Application> findByIsFsdAndStateOrderByCreationDateAsc(boolean fsd, ApplicationState state){
         return applicationRepository.findByIsFsdAndStateOrderByCreationDateAsc(fsd, state);
     }
+
+    public List<Application> findApplicationByYear(int year)
+    {
+        return applicationRepository.findApplicationByYear(year);
+
+    }
+    public List<Application> findByCompanyAndOfferId(Company company, int offer_id)
+    {
+        return applicationRepository.findByCompanyAndOfferId(company, offer_id);
+    }
+
+    public List<Application> findByCompanyAndOfferIdAndStateNot(Company company, int offer_id, ApplicationState state){
+        return applicationRepository.findByCompanyAndOfferIdAndStateNot(company, offer_id, state);
+    }
+
+    public Application findById(int id){
+        return applicationRepository.findById(id);
+    }
 }

@@ -17,6 +17,9 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     @Query("SELECT c FROM Application o INNER JOIN o.agreement c WHERE o.id = ?1")
     Agreement findAgreement(int id);
 
+    @Query("Select o From Application  o where o.student.scholarYear=?1 and o.state=com.entities.ApplicationState.Sent")
+    List<Application> findApplicationByYear(int year);
+
     List<Application> findByStudentOrderByCreationDateAsc(Student student);
 
     List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id);
@@ -44,4 +47,10 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     List<Application> findByIsFsdOrderByCreationDateAsc(boolean fsd);
 
     List<Application> findByIsFsdAndStateOrderByCreationDateAsc(boolean fsd, ApplicationState state);
+
+    List<Application> findByCompanyAndOfferId(Company company, int offer_id);
+
+    List<Application> findByCompanyAndOfferIdAndStateNot(Company company, int offer_id, ApplicationState state);
+
+    Application findById(int id);
 }

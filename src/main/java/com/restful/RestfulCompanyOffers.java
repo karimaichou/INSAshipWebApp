@@ -42,8 +42,6 @@ public class RestfulCompanyOffers {
                     newOffer.setId(restfulOffer.getId());
                     newOffer.setTitle(restfulOffer.getTitle());
                     newOffer.setDescription(restfulOffer.getDescription());
-                    newOffer.setAvailable(restfulOffer.isAvailable());
-                    newOffer.setExpirationDate(restfulOffer.getExpirationDate());
                     newOffer.setStartDate(restfulOffer.getStartDate());
                     offers.add(newOffer);
                 }

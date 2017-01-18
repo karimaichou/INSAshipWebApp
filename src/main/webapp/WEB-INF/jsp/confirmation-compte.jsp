@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -8,7 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form class="confirmation" name='confirmation' action='/confirmation-compte' method='POST'>
+<form class="confirmation" name='confirmation' action="<spring:url value ="/confirmation-compte"/>" method='POST'>
     <!--<h4 class="confirmation-heading">Entrer le code de confirmation que vous avez reçu sur votre adresse email:</h4>-->
     <div class="form-group has-success has-feedback">
         <label class="control-label" for="token">Cle de verification</label>
