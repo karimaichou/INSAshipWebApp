@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: borik
@@ -8,12 +9,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
+<c:if test="${not empty errorRegister}">
+    <div class="alert alert-danger"> ${errorRegister}</div>
+</c:if>
 <form:form commandName="student" cssClass="form-horizontal">
     <div class="form-group">
         <label for="lastName" class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-6">
             <form:input path="lastName" cssClass="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">firstName</label>
+        <div class="col-sm-6">
+            <form:input path="firstName" cssClass="form-control"/>
         </div>
     </div>
     <div class="form-group">
@@ -53,21 +62,9 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="dateInscription" class="col-sm-2 control-label">dateInscription(jj/mm/aaaa)</label>
-        <div class="col-sm-6">
-            <form:input path="dateInscription" cssClass="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
         <label for="address" class="col-sm-2 control-label">address</label>
         <div class="col-sm-6">
             <form:textarea path="address" cssClass="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="firstName" class="col-sm-2 control-label">firstName</label>
-        <div class="col-sm-6">
-            <form:input path="firstName" cssClass="form-control"/>
         </div>
     </div>
     <div class="form-group">

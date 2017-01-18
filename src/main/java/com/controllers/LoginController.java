@@ -8,6 +8,7 @@ import com.View.StudentRegisterForm;
 import com.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,15 +34,38 @@ public class LoginController {
     StudentService studentService;
 
 
+    @ModelAttribute("student")
+    public Student construct(){
+        return new Student();
+    }
+
 
     @RequestMapping(value = "/confirmation-compte")
     public String confirmationCompte(){
         return "confirmation-compte";
     }
 
-    @RequestMapping(value="/register",method = RequestMethod.POST)
-    public String registerStudent(@ModelAttribute("student") Student student)
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register()
     {
+        return "register";
+    }
+    @RequestMapping(value="RegisterError")
+    public String RegisterError(ModelMap model)
+    {
+        model.addAttribute("errorRegister"," You should fill all the labels");
+        return "register";
+    }
+
+    @RequestMapping(value="/register",method = RequestMethod.POST)
+    public String registerStudent(@ModelAttribute("student") Student student,ModelMap model)
+    {
+        if(student.getLastName()=="" || student.getFirstName()=="" || student.getAddress()=="" || student.getDescription()=="" || student.getUsername()=="" || student.getPassword()==""
+                || student.getEmail()==""||student.getTelephone()==""|| student.getScholarYear() == 0 || student.getScholarYear() >2017 || student.getScholarYear()<2000 || student.getDateOfBirth() == null){
+
+            model.addAttribute("errorRegister"," You should fill all the labels");
+            return "register";
+        }
         studentService.save(student);
         return "confirmation-compte";
     }
@@ -55,7 +79,6 @@ public class LoginController {
 
 
     @RequestMapping(value="loginError")
-
     public String loginError(ModelMap model)
     {
         model.addAttribute("errorLogin","Error! Your email or password is wrong !");

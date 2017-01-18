@@ -1,6 +1,7 @@
 package com.Service;
 
 import com.entities.Student;
+import com.entities.User;
 import com.repositories.StudentRepository;
 import org.apache.commons.lang.RandomStringUtils;
 
@@ -111,5 +112,6 @@ public class StudentService {
         String result = BCrypt.hashpw(password, BCrypt.gensalt(12));
         return result;
     }
+
 
 }

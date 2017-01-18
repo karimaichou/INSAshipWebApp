@@ -7,130 +7,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - Responsive 'Flat Profile' HTML Portfolio Template</title>
-<link href="${pageContext.request.contextPath}/resources/styles/css/demo.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/bootstrap-responsive.css">
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/style.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/css/jquery.fancybox.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/font-awesome/css/font-awesome.min.css">
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
 
-<div class="container topbottom">
-    <div class="row-fluid">
+                <img src="http://images.google.fr/imgres?imgurl=https://vide-dressing.org/images/picture/traitementPhoto.png&imgrefurl=https://vide-dressing.org/33-Gironde/Bordeaux&h=240&w=320&tbnid=gY7EJqbpuNxanM:&vet=1&tbnh=123&tbnw=164&docid=i-OPqJuNM8KtBM&client=firefox-b-ab&usg=__7Ywo4IvQ8bn31eQDaOFQep4eiYc=&sa=X&ved=0ahUKEwjT6NWG9cbRAhUDthQKHXV0DIYQ9QEILjAI"  class="img-responsive">
+                <p>Last Name : <span>${studentlastname}</span></p>
+                <p>First Name : <span >${studentFirstName}</span></p>
+                <p>Gender: <span class="">${studentSex}</span></p>
+                <p>Date of birth : <span class="">${studentDateofbirth}</span></p>
+                <p>Adress: <span class="">${studentAdress}</span></p>
+                <p>Telephone : <span class="">${studenttelephone}</span></p>
+                <p>Email : <span class="">${studentEmail}</span></p>
+                <p>Inscription date: <span class="">${studentDateInscription}</span></p>
+                <p>Description : <span class="">${studentDescription}</span></p>
+                <p>Scolar Year: <span class="">${studentScolarYear}</span></p>
+    <a href="/offers" class="btn btn-primary btn-sm active" role="button">Show offers</a>
+    <a href="/manage" class="btn btn-success btn-sm active" role="button">Edit Profil</a>
+    <a href="/showApplications" class="btn btn-danger btn-sm active" role="button">Show Application</a>
 
-        <div class="span5">
-            <img src="${pageContext.request.contextPath}/resources/styles/img/avatar.jpg" alt="Profile Avatar" class="avatar">
-
-            <div class="navigation">
-                <div>
-                    <ul>
-                        <li>
-                            <img src="${pageContext.request.contextPath}/resources/styles/img/about-icon.png">
-                            <a href="#">About Me</a>
-                        </li>
-                        <li>
-                            <img src="${pageContext.request.contextPath}/resources/styles/img/portfolio-icon.png">
-                            <a href="#">Profil Management</a>
-                        </li>
-                        <li>
-                            <img src="${pageContext.request.contextPath}/resources/styles/img/followme-icon.png">
-                            <a href="#">Notification</a>
-                        </li>
-                        <li>
-                            <img src="${pageContext.request.contextPath}/resources/styles/img/followme-icon.png">
-                            <a href="#">Internship Agreement</a>
-                        </li>
-                        <li>
-                            <img src="${pageContext.request.contextPath}/resources/styles/img/portfolio-icon.png">
-                            <a href="#">Applications</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="span7 homeabout">
-            <div class="person">
-                <span class="name">AZZAM Chaimaa</span><!-- first name and last name -->
-                <div class="font16">Student at insa Toulouse <span class="greentext"><a href="#">insa.fr</a></span></div>
-            </div>
-            <div class="desciption home">
-
-                <p>Adress : <span class="rotate greentext">86 AVENUE SAINT EXUPERY</span></p>
-                <p>Telephone : <span class="rotate greentext">0788193060</span>
-                <p>Email : <span class="rotate greentext">c.azzam@uhp.ac.ma</span></p>
-                <p>Date d'inscription: <span class="rotate greentext">08/01/2017</span></p>
-                <p>Date de naissance : <span class="rotate greentext">17/12/1994</span></p>
-                <p>CV: </p><span class="rotate greentext"><a href="#">CV.pdf</a></span>
-                <p>Lettre de motivation: </p><span class="rotate greentext"><a href="#">LM.pdf</a></span>
-
-
-            </div>
-            <div class="row">
-                <div class="span6">
-                    <div class="bars">
-                        <div id="bar-1">
-                        </div>
-                        <div id="bar-2">
-                        </div>
-                        <div id="bar-3">
-                        </div>
-                        <div id="bar-4">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="span6">
-                    <div class="user-tip"><img src="${pageContext.request.contextPath}/resources/styles/img/img-tip.png" alt="" /></div>
-                    <div id="bars-content">
-                        <div  class="content" id="content-1">No description</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/styles/js/jquery-1.7.1.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/styles/js/jqbar.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#bar-1').jqbar({ label: 'HTML5', value: 80, barColor: '#21ba82' });
-
-        $('#bar-2').jqbar({ label: 'CSS', value: 99, barColor: '#21ba82' });
-
-        $('#bar-3').jqbar({ label: 'JavaScript', value: 85, barColor: '#21ba82' });
-
-        $('#bar-4').jqbar({ label: 'WordPress', value: 75, barColor: '#21ba82' });
-
-
-
-        $('#bars-content .content').css({'opacity':'0',display:'none'});
-        $('#bars-content .content:eq(0)').css('display','block').animate({opacity:1},1000);
-        $('.jqbar:first').addClass('active');
-        $('.jqbar').hover(function(){ $(this).addClass('hover');},function(){ $(this).removeClass('hover');});
-        $('.jqbar').click(function(){
-            $('.jqbar').removeClass('active');
-            var id = $(this).addClass('active').attr('id').replace('bar','content');
-            $('#bars-content .content').css({'opacity':'0',display:'none'});
-            $('#' + id).css('display','block').animate({opacity:1},1000);
-
-        });
-
-        $(".rotate").textrotator({
-            animation: "spin",
-            separator: ",",
-            speed: 2000
-        });
-
-
-    });
-
-</script>
-<script type="text/javascript" src="/${pageContext.request.contextPath}/resources/styles/js/jquery.simple-text-rotator.min.js"></script>
+</div>
