@@ -15,25 +15,15 @@
 <!-- Custom Theme Style -->
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
-<div class="row">
-    <form method="post" class="form-signin" action="/search-offers">
-        <div>
+<%--<div class="row">--%>
+    <form method="post" class="form-inline" action="/search-offers">
             <label class="sr-only" > internship keywords, or title</label><input type="text" name="keyword" placeholder="internship keywords, or title" class="form-control" autofocus/>
-        </div>
-        <div>
             <label class="sr-only">Company: </label><input type="text" name="comapny" class="form-control" placeholder="Company" >
-        </div>
-        <div>
             <label class="sr-only">Scholar year: </label><input type="text" name="year" class="form-control" placeholder="Scholar year" >
-        </div>
-        <div>
             <label class="sr-only">Location: </label><input type="text" name="location" class="form-control" placeholder="Location" >
-        </div>
-        <div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-        </div>
-</form>
-</div>
+            <button class="btn btn-primary" type="submit" style="margin-left: 30px">Search</button>
+    </form>
+<%--</div>--%>
 <c:if test="${not empty noOffer}">
     <div class="alert alert-danger"> ${noOffer}</div>
 </c:if>

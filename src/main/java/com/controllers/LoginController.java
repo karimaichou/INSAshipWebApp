@@ -71,7 +71,7 @@ public class LoginController {
 
         if (logged instanceof Company) return "redirect:/company/index";
         if (logged instanceof INSA) return "redirect:/insa/something"; //redirect to you controller methon in your controller
-        if (logged instanceof FSD) return "redirect:/fsd/something"; //redirect to you controller methon in your controller
+        if (logged instanceof FSD) return "redirect:/fsd/index"; //redirect to you controller methon in your controller
         return "redirect:/offers";
     }
 

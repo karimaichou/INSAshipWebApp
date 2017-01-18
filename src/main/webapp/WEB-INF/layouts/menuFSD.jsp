@@ -6,4 +6,4 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value ="/"/>">Home FSD</a></li>
+<li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value ="/fsd/index"/>">Home FSD</a></li>
