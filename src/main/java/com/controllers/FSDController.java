@@ -68,14 +68,14 @@ public class FSDController {
         String choix = req.getParameter("choix");
         String id = req.getParameter("id");
 
-        Application app = applicationService.findByOfferIdOrderByCreationDateAsc(Integer.valueOf(id));
+        Application app = (Application) applicationService.findByOfferIdOrderByCreationDateAsc(Integer.valueOf(id));
 
-        if(choix = "accepter"){
+        if(choix.equals("accepter")){
             app.getFsdProcedure().setResult(true);
-            if(app.getState()=ApplicationState.ValidatedByINSA){
+            if(app.getState()== ApplicationState.ValidatedByINSA){
                 // Karima's Code
             }
-        }else if(choix = "rejeter"){
+        }else if(choix.equals("rejeter")){
             app.getFsdProcedure().setResult(false);
 
         }
