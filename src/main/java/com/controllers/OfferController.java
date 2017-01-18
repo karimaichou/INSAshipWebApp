@@ -3,6 +3,7 @@ package com.controllers;
 import com.Service.*;
 import com.View.ApplicationForm;
 import com.View.OfferForm;
+import com.View.SearchForm;
 import com.View.StudentLoginForm;
 import com.entities.*;
 import com.restful.Offer;
@@ -60,19 +61,23 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/search-offers",method = RequestMethod.POST)
-    public String getOffers(@ModelAttribute("OfferForm")OfferForm form)
+    public String getOffers(@ModelAttribute("SearchForm")SearchForm form, HttpServletRequest req, ModelMap model)
     {
         //filter part
-
+        List<Offer> offerList = offerService.findByKeyword(form.getKeyword());
+        req.getSession().setAttribute("offers",offerList);
+        if(offerList==null)
+            model.addAttribute("noOffer","there is no available internship offer for the moment");
+        model.addAttribute("offers",offerList);
         return "offers";
     }
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
-    public String getDetails(HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id )
+    public String getDetails(HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id , @RequestParam(value="company", required=true) int company)
     {
         try{
             List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
-            Offer offer=offerList.get(offerList.indexOf(new Offer(id)));
+            Offer offer=offerList.get(offerList.indexOf(new Offer(id, company)));
             model.addAttribute("offer",offer);
         }catch(Exception e){
             model.addAttribute("errorDetails","Error occured while trying to show the offer, please try again later");
@@ -84,10 +89,10 @@ public class OfferController {
 
     @Secured("ROLE_STUDENT")
     @RequestMapping(value="/apply",method = RequestMethod.GET)
-    public  String ApplyOffer(HttpServletRequest request,ModelMap model,@RequestParam(value="id", required=true) int id)
+    public  String ApplyOffer(HttpServletRequest request,ModelMap model,@RequestParam(value="id", required=true) int id , @RequestParam(value="company", required=true) int company)
     {
         List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
-        Offer offer=offerList.get(offerList.indexOf(new Offer(id)));
+        Offer offer=offerList.get(offerList.indexOf(new Offer(id, company)));
         Student candidate=(Student) request.getSession().getAttribute("loggedUser");
         model.addAttribute("prenom",candidate.getFirstName());
         model.addAttribute("nom",candidate.getLastName());
@@ -105,7 +110,7 @@ public class OfferController {
            System.out.println("email : " + form.getEmail()+""+form.getId());
 
            List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
-           Offer offer=offerList.get(offerList.indexOf(new Offer(form.getId())));
+           Offer offer=offerList.get(offerList.indexOf(new Offer(form.getId(), form.getCompany())));
            System.out.println(offer.getTitle());
            Company company=companyService.findById(offer.getCompany_id());
            System.out.println(company.getUsername());

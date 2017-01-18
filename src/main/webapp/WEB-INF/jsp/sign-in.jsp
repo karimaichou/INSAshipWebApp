@@ -7,12 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:if test="${not empty errorLogin}">
     <div class="alert alert-danger"> ${errorLogin}</div>
 </c:if>
 
-<form class="form-signin" name='f' action="/j_spring_security_check" method='POST'>
+<form class="form-signin" name='f' action="<spring:url value ="/j_spring_security_check"/>" method='POST'>
     <h3 class="form-signin-heading">Please sign in:</h3>
     <input type="text" name="j_username" id="inputUsername" value="${username}" class="form-control" placeholder="User Name" required autofocus>
     <input type="password" name="j_password" id="inputPassword" value="${password}" class="form-control" placeholder="Password" required>

@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <html>
 <head>
     <title>${offer.title}</title>
@@ -19,7 +21,7 @@
     <h2>${offer.title}</h2>
     <div>
         ${offer.description}<br>
-            <input type="button" value="Apply Now" onclick="location.href='/apply?id=${offer.id}'" class="btn btn-success"/>
+            <input type="button" value="Apply Now" onclick="location.href='<spring:url value ="/apply?id=${offer.id}&company=${offer.company}"/>'" class="btn btn-success"/>
     </div>
 </c:if>
 

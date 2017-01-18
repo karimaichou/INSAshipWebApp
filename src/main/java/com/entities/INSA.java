@@ -2,12 +2,14 @@ package com.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Collection;
 
 /**
  * Created by karima on 20/11/2016.
  */
 @Entity
+@Table(name = "insa")
 public class INSA extends User {
 
     private Integer year;

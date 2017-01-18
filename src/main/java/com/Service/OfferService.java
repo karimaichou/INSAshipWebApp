@@ -20,6 +20,7 @@ public class OfferService {
     private static final String urlAll = "http://localhost:8181/api/alloffers";
     private static final String urlById = "http://localhost:8181/api/singleoffer?";
     private static final String urlByKeyword = "http://localhost:8181/api/search?keyword=";
+    private static final String urlByCompany = "http://localhost:8181/api/companyoffers?cpnId=";
 
     private List<Offer> receiveOffers(String url){
         RestTemplate restTemplate = new RestTemplate();
@@ -32,10 +33,20 @@ public class OfferService {
         return offers;
     }
 
+    private List<Offer> receiveSingleOffer(String url){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<RestfulCompanyOffers> responseEntity = restTemplate.getForEntity(url, RestfulCompanyOffers.class);
+        List<Offer> offers = new ArrayList<Offer>();
+        RestfulCompanyOffers restfulCompanyOffers = responseEntity.getBody();
+        if (restfulCompanyOffers != null) offers.addAll(restfulCompanyOffers.getOffers());
+
+        return offers;
+    }
+
     public List<Offer> findAll()
     {
-        /*return receiveOffers(this.urlAll);*/
-
+        return receiveOffers(this.urlAll);
+        /*
         ArrayList<Offer> simulated=new ArrayList<Offer>();
         Offer offer1=new Offer();
         offer1.setAvailable(true);
@@ -61,9 +72,9 @@ public class OfferService {
         simulated.add(offer2);
         return simulated;
         //
-
+        */
     }
-    public Offer findById(Integer offerId,Integer companyId)
+    public Offer findById(Integer offerId,Integer company)
     {
         /*List<Offer> offers = receiveOffers(urlById + "cpnId=" + companyId + "offerId=" + offerId);
         if (offers != null && !offers.isEmpty()) return offers.get(0);
@@ -72,20 +83,12 @@ public class OfferService {
         //karima's code : just to simulate search for ID: don't worry Borek :D
 
         List<Offer> offers=findAll();
-        return offers.get(offers.indexOf(new Offer(offerId)));
+        return offers.get(offers.indexOf(new Offer(offerId, company)));
 
     }
     public List<Offer> findByCompanyId(Integer company)
     {
-        List<Offer> offers = findAll();
-        List<Offer> newOffers = new ArrayList<Offer>();
-        for (Offer offer:offers){
-            if (offer.getCompany() == company)
-            {
-                newOffers.add(offer);
-            }
-        }
-        return newOffers;
+        return receiveSingleOffer(urlByCompany + company);
     }
 
     public List<Offer> findByKeyword(String keyword)

@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <style>
     .btn-file {
         position: relative;
@@ -30,8 +32,9 @@
 
 </style>
 <div>
-    <form method="post" class="form-signin" action="/apply" modelAttribute="ApplicationForm" enctype="multipart/form-data">
+    <form method="post" class="form-signin" action="<spring:url value ="/apply"/>" modelAttribute="ApplicationForm" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${offer.id}">
+        <input type="hidden" name="company" value="${offer.company}">
         <input type="email" name="email" value="${email}"  class="form-control" >
         <input type="text" name="prenom" value="${prenom}" class="form-control">
         <input type="text" name="nom" value="${nom}" class="form-control">

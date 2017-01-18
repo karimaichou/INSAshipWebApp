@@ -19,6 +19,8 @@ public class ApplicationForm implements Serializable {
 
     private int id;
 
+    private int company;
+
     public int getId() {
         return id;
     }
@@ -60,5 +62,13 @@ public class ApplicationForm implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getCompany() {
+        return company;
+    }
+
+    public void setCompany(int company) {
+        this.company = company;
     }
 }
