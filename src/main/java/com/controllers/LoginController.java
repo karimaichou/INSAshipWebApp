@@ -70,8 +70,8 @@ public class LoginController {
         req.getSession().setAttribute("loggedUser",logged);
 
         if (logged instanceof Company) return "redirect:/company/index";
-        if (logged instanceof INSA) return "redirect:/insa/offers"; //redirect to you controller methon in your controller
-        if (logged instanceof FSD) return "redirect:/fsd/something"; //redirect to you controller methon in your controller
+        if (logged instanceof INSA) return "redirect:/insa/offers"; //redirect to you controller method in your controller
+        if (logged instanceof FSD) return "redirect:/fsd/something"; //redirect to you controller method in your controller
         return "redirect:/offers";
     }
 
