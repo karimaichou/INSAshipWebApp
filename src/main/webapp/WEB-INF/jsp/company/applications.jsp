@@ -16,9 +16,6 @@
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
 
-<c:if test="${not empty success}">
-    <div class="alert alert-success"> ${success}</div>
-</c:if>
 <h2> Student applications:</h2>
 <c:if test="${not empty noApplication}">
     <div class="alert "> ${noApplication}</div>
@@ -42,7 +39,7 @@
                 <td style="vertical-align: middle">${application.student.firstName} ${application.student.lastName}</td>
                 <td style="vertical-align: middle">${application.creationDate}</td>
                 <td style="vertical-align: middle">${application.state == 'Sent' ? 'Waiting for evaluation' : 'Accepted'}</td>
-                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='/company/detail?id=${application.id}'">View Details</button></td>
+                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/company/detail?id=${application.id}"/>'">View Details</button></td>
             </tr>
         </c:forEach>
         </tbody>

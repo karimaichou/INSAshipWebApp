@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Created by karima on 20/11/2016.
  */
 
 @Entity
+@Table(name = "agreement")
 public class Agreement {
 
     @Id

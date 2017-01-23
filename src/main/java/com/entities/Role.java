@@ -7,6 +7,7 @@ import java.util.List;
  * Created by borik on 11/23/2016.
  */
 @Entity
+@Table(name = "role")
 public class Role {
 
     @Id

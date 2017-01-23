@@ -14,9 +14,7 @@
 <!-- Custom Theme Style -->
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
-<c:if test="${not empty success}">
-    <div class="alert alert-success"> ${success}</div>
-</c:if>
+
 <h2> Your Internship Offers:</h2>
 <c:if test="${not empty noOffer}">
     <div class="alert "> ${noOffer}</div>
@@ -45,7 +43,8 @@
                         <div class="x_content">
                             <p>${offer.description}</p>
                         </div>
-                        <button type="submit" class="btn btn-success" onclick="location.href='/company/applications?id=${offer.id}'" style="float:right">View Applications</button>
+                        <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value="/company/applications?id=${offer.id}"/>'" style="float:right">View Applications</button>
+
                     </div>
                 </div>
             </div>

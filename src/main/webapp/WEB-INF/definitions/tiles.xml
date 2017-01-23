@@ -113,4 +113,10 @@
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 
+    <definition name="fsd/index" extends="common">
+        <put-attribute name="title" value="FSD index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/fsd/index.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
 </tiles-definitions>

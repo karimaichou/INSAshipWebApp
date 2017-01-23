@@ -22,10 +22,11 @@ public class ApplicationService {
     {
         return applicationRepository.save(application);
     }
-    public  List<Application> findAll(){
-        return applicationRepository.findAll();
-    }
 
+    List<Application> findByStudentOrderByCreationDateAsc(Student student)
+    {
+        return applicationRepository.findByStudentOrderByCreationDateAsc(student);
+    }
 
     List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id)
     {
@@ -104,11 +105,4 @@ public class ApplicationService {
     public Application findById(int id){
         return applicationRepository.findById(id);
     }
-
-    public List<Application> findByStudentOrderByCreationDateAsc(Student student) {
-        return applicationRepository.findByStudentOrderByCreationDateAsc(student);
-    }
-
-
 }
-

@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class RestfulOffer {
     private String title;
     private String description;
-    private boolean available;
     private long startDate;
-    private long expirationDate;
     private Integer id;
 
     public RestfulOffer(){}
@@ -31,28 +29,12 @@ public class RestfulOffer {
         this.description = description;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
     public long getStartDate() {
         return startDate;
     }
 
     public void setStartDate(long startDate) {
         this.startDate = startDate;
-    }
-
-    public long getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(long expirationDate) {
-        this.expirationDate = expirationDate;
     }
 
     public Integer getId() {

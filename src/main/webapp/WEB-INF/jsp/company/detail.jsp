@@ -46,10 +46,31 @@
         <label class="col-sm-2 control-label"></label>
         <div class="col-sm-10">
 
-            <button type="button" class="btn btn-primary " onclick="location.href='/company/meeting'">Request meeting</button>
-            <button type="button" class="btn btn-danger ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='/company/reject'">Reject</button>
-            <button type="button" class="btn btn-success ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='/company/accept'">Accept</button>
+            <button type="button" class="btn btn-primary " onclick="location.href='<spring:url value="/company/meeting" />'">Request meeting</button>
+            <button type="button" class="btn btn-danger ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='<spring:url value="/company/reject"/>'">Reject</button>
+            <button type="button" class="btn btn-success ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='<spring:url value="/company/accept"/>'">Accept</button>
 
         </div>
     </div>
 </form>
+<!--
+<div class="row">
+    <div class="col-md-4">
+    <table class="table">
+        <tr>
+            <td>Title</td>
+            <td></td>
+        </tr>
+    </table>
+    </div>
+    <div class="col-md-4">
+        <h2>Student</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Action</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+</div>-->

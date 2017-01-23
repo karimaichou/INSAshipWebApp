@@ -8,6 +8,7 @@ import java.util.Date;
  */
 
 @Entity
+@Table(name = "document")
 public class Document {
 
     @Id
