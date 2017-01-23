@@ -63,9 +63,9 @@ public class LoginController {
             model.addAttribute("errorRegister"," You should fill all the labels");
             return "register";
         }
-
+            model.addAttribute("creationConfirmation","Please Check your email for confirmation");
             studentService.save(student);
-            return "sign-in";
+            return "register";
 
     }
     @RequestMapping(value = "/confirmation-compte")

@@ -13,6 +13,10 @@
     <div class="alert alert-danger"> ${errorRegister}</div>
 </c:if>
 
+<c:if test="${not empty creationConfirmation}">
+    <div class="alert alert-success"> ${creationConfirmation}</div>
+</c:if>
+
 <form:form commandName="student" cssClass="form-horizontal">
 
     <div class="row">
