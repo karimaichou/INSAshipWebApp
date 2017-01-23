@@ -26,9 +26,17 @@ public class NotificationService {
     {
         return notificationRepository.findByApplicationAndUserAndVisualizedOrderByEventDateDesc(application,user,visualized);
     }
+    public List<Notification> findByUser(User user){
+        return notificationRepository.findByUser(user);
 
+    }
     public void save(Notification notification)
     {
          notificationRepository.save(notification);
+    }
+
+    public List<Notification> findByUserAndVisualized(User user, boolean visualized){
+
+        return notificationRepository.findByUserAndVisualized(user,visualized);
     }
 }

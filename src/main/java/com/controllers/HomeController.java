@@ -1,7 +1,9 @@
 package com.controllers;
 
+import com.Service.NotificationService;
 import com.Service.StudentService;
 import com.Service.UserService;
+import com.entities.Notification;
 import com.entities.Student;
 import com.entities.User;
 import com.restful.Offer;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.client.RestTemplate;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by borik on 11/18/2016.
@@ -30,6 +33,13 @@ public class HomeController {
     private StudentService studentService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private NotificationService notificationService;
+
+    @ModelAttribute("studentupdate")
+    public Student construct(){
+        return new Student();
+    }
 
     @RequestMapping(value = "/")
     public String index(){
@@ -61,9 +71,12 @@ public class HomeController {
 
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",(Student)logged);
+        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
+        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
+        model.addAttribute("notifications",notifications.size());
         model.addAttribute("studentlastname",((Student) logged).getLastName());
         model.addAttribute("studentFirstName",((Student) logged).getFirstName());
-        model.addAttribute("studentSex",((Student) logged).getFirstName());
+        model.addAttribute("studentSex",((Student) logged).getSex());
         model.addAttribute("studentAdress",((Student) logged).getAddress());
         model.addAttribute("studenttelephone",((Student) logged).getTelephone());
         model.addAttribute("studentEmail",((Student) logged).getEmail());
@@ -73,6 +86,42 @@ public class HomeController {
         model.addAttribute("studentScolarYear",((Student) logged).getScholarYear());
         return "indexStudent";
     }
+
+    @RequestMapping(value="/manage",method=RequestMethod.POST)
+    public String updateProfile(@ModelAttribute("studentupdate") Student student,ModelMap model,Principal principal,HttpServletRequest request)
+    {
+
+        User student1=userService.findByEmail(principal.getName());
+        request.getSession().setAttribute("loggedUser",(Student)student1);
+
+        ((Student )student1).setLastName(student.getLastName());
+        ((Student )student1).setFirstName(student.getFirstName());
+        ((Student )student1).setDateOfBirth(student.getDateOfBirth());
+        ((Student )student1).setAddress(student.getAddress());
+        ((Student )student1).setTelephone(student.getTelephone());
+        ((Student )student1).setEmail(student.getEmail());
+        ((Student )student1).setScholarYear(student.getScholarYear());
+        studentService.update(((Student )student1));
+        return "sign-in";
+    }
+
+
+    @RequestMapping(value = "/manage")
+    public String showProfilUpdate(ModelMap model, Principal principal, HttpServletRequest req){
+
+        User logged=userService.findByEmail(principal.getName());
+        req.getSession().setAttribute("loggedUser",(Student)logged);
+        model.addAttribute("stlastname",((Student) logged).getLastName());
+        model.addAttribute("stFirstName",((Student) logged).getFirstName());
+        model.addAttribute("stAdress",((Student) logged).getAddress());
+        model.addAttribute("sttelephone",((Student) logged).getTelephone());
+        model.addAttribute("stEmail",((Student) logged).getEmail());
+        model.addAttribute("stDateofbirth",((Student) logged).getDateOfBirth());
+        model.addAttribute("stDescription",((Student) logged).getDescription());
+        model.addAttribute("stScolarYear",((Student) logged).getScholarYear());
+        return "manage";
+    }
+
 
 
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: borik
@@ -47,9 +48,8 @@
                     <%@include file="menuAdmin.jsp"%>
                 </security:authorize>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage profil <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Edit</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
@@ -65,8 +65,19 @@
                     <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value ="/register"/>">Register</a></li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
-                   <!-- <li><a href="<spring:url value ="/indexStudent"/>">Profil</a></li>-->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span style="color: #942a25">${notifications}</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/notifications">view all notifications</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <c:forEach items="${notifdetails}" var="notification">
+                                <li><a href="#">${notification.message}</a></li>
+                            </c:forEach>
+                        </ul>
+                    </li>
                     <li><a href="<spring:url value ="/logout"/>">Logout</a></li>
+
                 </security:authorize>
             </ul>
         </div><!--/.nav-collapse -->

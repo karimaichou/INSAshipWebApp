@@ -18,7 +18,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by karima on 04/12/2016.
@@ -39,43 +42,60 @@ public class LoginController {
         return new Student();
     }
 
-
-    @RequestMapping(value = "/confirmation-compte")
-    public String confirmationCompte(){
-        return "confirmation-compte";
+    @ModelAttribute("studenttoken")
+    public Student construct2(){
+        return new Student();
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/register")
     public String register()
     {
         return "register";
     }
-    @RequestMapping(value="RegisterError")
-    public String RegisterError(ModelMap model)
-    {
-        model.addAttribute("errorRegister"," You should fill all the labels");
-        return "register";
-    }
+
 
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public String registerStudent(@ModelAttribute("student") Student student,ModelMap model)
     {
         if(student.getLastName()=="" || student.getFirstName()=="" || student.getAddress()=="" || student.getDescription()=="" || student.getUsername()=="" || student.getPassword()==""
-                || student.getEmail()==""||student.getTelephone()==""|| student.getScholarYear() == 0 || student.getScholarYear() >2017 || student.getScholarYear()<2000 || student.getDateOfBirth() == null){
-
+                || student.getEmail()==""||student.getTelephone()==""|| student.getScholarYear() == 0 || student.getScholarYear() > 2017 || student.getScholarYear()<2000 || student.getDateOfBirth() == null){
             model.addAttribute("errorRegister"," You should fill all the labels");
             return "register";
         }
-        studentService.save(student);
+
+            studentService.save(student);
+            return "sign-in";
+
+    }
+    @RequestMapping(value = "/confirmation-compte")
+    public String confirmation() {
         return "confirmation-compte";
     }
 
-    @RequestMapping(value="/confirmation-compte",method = RequestMethod.POST)
-    public String registerconfirmation(@ModelAttribute("confirmation") ConfirmationForm confirmation)
-    {
-
-        return "sign-in";
+    @RequestMapping(value = "/confirmation-compte",method = RequestMethod.POST)
+    public String confirmationToken(@ModelAttribute("studenttoken") Student studentcon,Model model) {
+       // System.out.print(student.getToken());
+        Student student1 = studentService.findByToken(studentcon.getToken());
+        //System.out.print(student1.getFirstName());
+        if (studentcon != null && student1!=null && studentcon.getToken() != null ) {
+            if (studentcon.getToken().equals(student1.getToken())) {
+                student1.setVerified(true);
+                studentService.update(student1);
+                //System.out.print(student1.isVerified());
+                model.addAttribute("msg", "Registration success");
+                return "sign-in";
+            } else {
+                model.addAttribute("error", "Invalid code ");
+                return "confirmation-compte";
+            }
+        } else {
+            model.addAttribute("error", "Please Enter  your code");
+            return "confirmation-compte";
+        }
     }
+
+
 
 
     @RequestMapping(value="loginError")

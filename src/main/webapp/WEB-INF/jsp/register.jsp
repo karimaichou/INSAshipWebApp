@@ -12,73 +12,83 @@
 <c:if test="${not empty errorRegister}">
     <div class="alert alert-danger"> ${errorRegister}</div>
 </c:if>
+
 <form:form commandName="student" cssClass="form-horizontal">
+
+    <div class="row">
+    <div class="col-md-9 .col-md-push-3">
     <div class="form-group">
-        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+        <label for="lastName" class="col-sm-6 control-label">Last Name</label>
         <div class="col-sm-6">
             <form:input path="lastName" cssClass="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="firstName" class="col-sm-2 control-label">firstName</label>
+        <label for="firstName" class="col-sm-6 control-label">FirstName</label>
         <div class="col-sm-6">
             <form:input path="firstName" cssClass="form-control"/>
         </div>
     </div>
-    <div class="form-group">
-        <label for="username" class="col-sm-2 control-label">username</label>
-        <div class="col-sm-6">
-            <form:input path="username" cssClass="form-control"/>
+        <div class="form-group">
+            <label class="col-sm-6 control-label">Gender</label>
+            <div class="col-sm-6">
+                <form:radiobutton path="sex" value="Male" label="Male" />
+
+                <form:radiobutton path="sex" value="Female" label="Female" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="password" class="col-sm-2 control-label">password</label>
-        <div class="col-sm-6">
-            <form:password path="password" cssClass="form-control"/>
+        <div class="form-group">
+            <label for="dateOfBirth" class="col-sm-6 control-label">Date Of Birth (jj/mm/aaaa)</label>
+            <div class="col-sm-6">
+                <form:input path="dateOfBirth" cssClass="form-control"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">email</label>
-        <div class="col-sm-6">
-            <form:input path="email" cssClass="form-control"/>
+        <div class="form-group">
+            <label for="address" class="col-sm-6 control-label">Address</label>
+            <div class="col-sm-6">
+                <form:textarea path="address" cssClass="form-control"/>
+            </div>
         </div>
-    </div>
     <div class="form-group">
-        <label for="telephone" class="col-sm-2 control-label">téléphone</label>
+        <label for="telephone" class="col-sm-6 control-label">Telephone</label>
         <div class="col-sm-6">
             <form:input path="telephone" cssClass="form-control"/>
         </div>
     </div>
-    <div class="form-group">
-        <label for="description" class="col-sm-2 control-label">description</label>
-        <div class="col-sm-6">
-            <form:textarea path="description" cssClass="form-control"/>
+        <div class="form-group">
+            <label for="email" class="col-sm-6 control-label">Email</label>
+            <div class="col-sm-6">
+                <form:input path="email" cssClass="form-control"/>
+            </div>
         </div>
-    </div>
     <div class="form-group">
-        <label for="dateOfBirth" class="col-sm-2 control-label">dateOfBirth(jj/mm/aaaa)</label>
-        <div class="col-sm-6">
-            <form:input path="dateOfBirth" cssClass="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="address" class="col-sm-2 control-label">address</label>
-        <div class="col-sm-6">
-            <form:textarea path="address" cssClass="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="scholarYear" class="col-sm-2 control-label">scholarYear</label>
+        <label for="scholarYear" class="col-sm-6 control-label">ScholarYear</label>
         <div class="col-sm-6">
             <form:input path="scholarYear" cssClass="form-control"/>
         </div>
     </div>
-
-
-    <div class="form-group">
-        <div class="col-sm-10">
-            <input type="submit" value="save" class="btn btn-lg btn-primary"/>
+        <div class="form-group">
+            <label for="username" class="col-sm-6 control-label">Username</label>
+            <div class="col-sm-6">
+                <form:input path="username" cssClass="form-control"/>
+            </div>
         </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-6 control-label">Password</label>
+            <div class="col-sm-6">
+                <form:password path="password" cssClass="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-sm-6 control-label">Description</label>
+            <div class="col-sm-6">
+                <form:textarea path="description" cssClass="form-control"/>
+            </div>
+        </div>
+        <input type="submit" value="save" class="btn btn-primary btn-sm active"/>
+    </div>
     </div>
 </form:form>
+
 

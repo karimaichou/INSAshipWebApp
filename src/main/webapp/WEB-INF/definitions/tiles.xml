@@ -43,15 +43,20 @@
         <put-attribute name="body" value="/WEB-INF/jsp/sign-in.jsp" />
         <put-attribute name="current" value="sign-in" cascade="true" />
     </definition>
-    <definition name="studentApplication" extends="common">
-        <put-attribute name="title" value="studentApplicatio" />
-        <put-attribute name="body" value="/WEB-INF/jsp/studentApplication.jsp" />
-        <put-attribute name="current" value="studentApplication" cascade="true" />
+    <definition name="showApplications" extends="common">
+        <put-attribute name="title" value="showApplications" />
+        <put-attribute name="body" value="/WEB-INF/jsp/showApplications.jsp" />
+        <put-attribute name="current" value="showApplications" cascade="true" />
     </definition>
     <definition name="register" extends="common">
         <put-attribute name="title" value="Register" />
         <put-attribute name="body" value="/WEB-INF/jsp/register.jsp" />
         <put-attribute name="current" value="register" cascade="true" />
+    </definition>
+    <definition name="manage" extends="common">
+        <put-attribute name="title" value="manae" />
+        <put-attribute name="body" value="/WEB-INF/jsp/manage.jsp" />
+        <put-attribute name="current" value="manage" cascade="true" />
     </definition>
     <definition name="indexStudent" extends="common">
         <put-attribute name="title" value="StudentWelcomPage" />
@@ -64,7 +69,11 @@
         <put-attribute name="current" value="confirmation-compte" cascade="true" />
     </definition>
 
-
+    <definition name="notifications" extends="common">
+        <put-attribute name="title" value="notifications" />
+        <put-attribute name="body" value="/WEB-INF/jsp/notifications.jsp" />
+        <put-attribute name="current" value="notifications" cascade="true" />
+    </definition>
     <definition name="company/index" extends="common">
         <put-attribute name="title" value="Company index" />
         <put-attribute name="body" value="/WEB-INF/jsp/company/index.jsp" />

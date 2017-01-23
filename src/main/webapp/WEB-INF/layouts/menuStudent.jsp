@@ -8,3 +8,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value ="/indexStudent"/>">Home Student</a></li>
 
+
