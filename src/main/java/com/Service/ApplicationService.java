@@ -28,16 +28,19 @@ public class ApplicationService {
         return applicationRepository.findByStudentOrderByCreationDateAsc(student);
     }
 
-    List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id)
+    public Application findByOfferIdOrderByCreationDateAsc(int offer_id)
     {
         return applicationRepository.findByOfferIdOrderByCreationDateAsc(offer_id);
     }
 
-    List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id,String state)
+    public List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id,String state)
     {
         return applicationRepository.findByOfferIdAndStateOrderByCreationDateAsc(offer_id,state);
     }
-
+    public List<Application> findByStudentAndStateOrderByCreationDate(Student student,ApplicationState state)
+    {
+        return applicationRepository.findByStudentAndStateOrderByCreationDate(student,state);
+    }
     List<Application> findByCompanyOrderByCreationDateAsc(Company company)
     {
         return applicationRepository.findByCompanyOrderByCreationDateAsc(company);
@@ -57,7 +60,7 @@ public class ApplicationService {
         return applicationRepository.findByInsaAndStateOrderByCreationDateAsc(insa,state);
     }
 
-    List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state)
+    public List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state)
     {
         return applicationRepository.findByStudentAndStateOrderByCreationDateAsc(student,state);
     }
