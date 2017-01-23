@@ -23,7 +23,7 @@ public class ApplicationService {
         return applicationRepository.save(application);
     }
 
-    List<Application> findByStudentOrderByCreationDateAsc(Student student)
+    public List<Application> findByStudentOrderByCreationDateAsc(Student student)
     {
         return applicationRepository.findByStudentOrderByCreationDateAsc(student);
     }
@@ -52,7 +52,6 @@ public class ApplicationService {
     {
         return applicationRepository.findByInsaOrderByCreationDateAsc(insa);
     }
-
     List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa,String state)
     {
         return applicationRepository.findByInsaAndStateOrderByCreationDateAsc(insa,state);

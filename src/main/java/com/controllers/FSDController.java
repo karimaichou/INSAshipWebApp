@@ -40,7 +40,7 @@ public class FSDController {
 
     @RequestMapping(value = "/index")
     public String index(ModelMap model, HttpServletRequest req){
-        model.addAttribute("username",req.getSession().getAttribute("username"));
+       /* model.addAttribute("username",req.getSession().getAttribute("username"));
 
         List<Application> studentApplicationList = applicationService.findByIsFsdAndStateOrderByCreationDateAsc(true, ApplicationState.ValidatedByStudent);
         List<Application> insaApplicationList = applicationService.findByIsFsdAndStateOrderByCreationDateAsc(true, ApplicationState.ValidatedByINSA);
@@ -59,13 +59,13 @@ public class FSDController {
         req.getSession().setAttribute("applications",applicationList);
         if(applicationList.isEmpty())
             model.addAttribute("noApplication","there is no available internship application for the moment");
-        model.addAttribute("applications",applicationList);
+        model.addAttribute("applications",applicationList);*/
         return "fsd/index";
     }
 
     @RequestMapping(value = "/valider", method = RequestMethod.POST)
     public String valider(ModelMap model, HttpServletRequest req){
-        String choix = req.getParameter("choix");
+      /*  String choix = req.getParameter("choix");
         String id = req.getParameter("id");
 
         Application app = (Application) applicationService.findByOfferIdOrderByCreationDateAsc(Integer.valueOf(id));
@@ -79,7 +79,7 @@ public class FSDController {
             app.getFsdProcedure().setResult(false);
 
         }
-
+*/
         return "fsd/index";
     }
 }
