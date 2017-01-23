@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- Font Awesome -->
 <link href="${pageContext.request.contextPath}/resources/styles/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -14,53 +15,13 @@
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
 
-FSD welcome page !
-
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel" style="background-color: #f8f8f8;" >
-            <div class="x_title">
-                <%--<h2><input type="button"  onclick="location.href='/details?id=${offer.id}'" value="${offer.title}"/></h2>--%>
-                <h4>
-                    <%--<a onclick="location.href='/details?id=${offer.id}'"> ${offer.title}</a>--%>
-                    Titre
-                </h4>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <form method="post" action="/fsd/index">
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-10 col-sm-10 col-xs-10">
-                            <p>
-                                <%--${offer.description}--%>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-xs-2">
-                            <input type="radio" name="choix" value="accepter"> Accepter<br>
-                            <input type="radio" name="choix" value="rejeter"> Rejeter<br>
-                        </div>
-                    </div>
-                        <button type="submit" class="btn btn-success" onclick="location.href='/details?id=${offer.id}'" style="float:right">Valider</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <c:if test="${not empty noApplication}">
     <div class="alert alert-danger"> ${noApplication}</div>
 </c:if>
 
-<div>
+
+<div style="padding-left: 50px;padding-right: 50px">
     <c:if test="${not empty applications}">
         <c:forEach items="${applications}" var="app">
 
@@ -71,7 +32,7 @@ FSD welcome page !
                                 <%--<h2><input type="button"  onclick="location.href='/details?id=${offer.id}'" value="${offer.title}"/></h2>--%>
                             <h4>
                                     <%--<a onclick="location.href='/details?id=${offer.id}'"> ${offer.title}</a>--%>
-                                Titre: ${app.student.lastName} (${app.company.username})
+                                Application #${app.id}: ${app.student.lastName} -> (${app.company.username})
                             </h4>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -81,25 +42,40 @@ FSD welcome page !
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <form method="post" action="/fsd/valider?id=${app.offerId}">
+
                             <div class="x_content">
                                 <div class="row">
-                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <p>
-                                                ${app.message}
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        </p>
+                                     <div class="col-md-12 col-sm-12 col-xs-12">
+                                         <table class="table table-hover">
+                                             <tr>
+                                                 <th>#</th>
+                                                 <td style="vertical-align: middle">${app.id} </td>
+                                             </tr>
+                                             <tr>
+                                                 <th>Student</th>
+                                                 <td style="vertical-align: middle">${app.student.firstName} ${app.student.lastName}</td>                                             </tr>
+                                             <tr>
+                                                 <th>Company</th>
+                                                 <td style="vertical-align: middle">${app.company.username}</td>
+                                             </tr>
+                                             <tr>
+                                                 <th>Created</th>
+                                                 <td style="vertical-align: middle">${app.creationDate}</td>
+                                             </tr>
+                                             <tr>
+                                                 <th>State</th>
+                                                 <td style="vertical-align: middle">${app.state.toString() == 'ValidatedByStudent' ? 'Validated by student' : 'Validated by INSA'}</td>
+                                             </tr>
+                                         </table>
                                     </div>
-                                     <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <%-- <div class="col-md-2 col-sm-2 col-xs-2">
                                          <input type="radio" name="choix" value="accepter"> Accepter<br>
                                          <input type="radio" name="choix" value="rejeter"> Rejeter<br>
-                                     </div>
+                                     </div>--%>
                                 </div>
-                                <button type="submit" class="btn btn-success" style="float:right">Valider</button>
+                                <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value ="/fsd/details?id=${app.id}&offer_id=${app.offer_id}&company=${app.company.id}"/>'" style="float:right">Plus de détails</button>
                             </div>
-                        </form>
+
                     </div>
                 </div>
             </div>

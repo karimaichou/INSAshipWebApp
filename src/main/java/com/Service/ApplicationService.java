@@ -28,7 +28,7 @@ public class ApplicationService {
         return applicationRepository.findByStudentOrderByCreationDateAsc(student);
     }
 
-    List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id)
+    public List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id)
     {
         return applicationRepository.findByOfferIdOrderByCreationDateAsc(offer_id);
     }
@@ -85,6 +85,18 @@ public class ApplicationService {
     List<Document> findDocumentById(int id)
     {
         return applicationRepository.findDocumentById(id);
+    }
+
+    public List<Application> findByIsFsdOrderByCreationDateAsc(boolean fsd){
+        return applicationRepository.findByIsFsdOrderByCreationDateAsc(fsd);
+    }
+
+    public List<Application> findByIsFsdAndStateOrderByCreationDateAsc(boolean fsd, ApplicationState state){
+        return applicationRepository.findByIsFsdAndStateOrderByCreationDateAsc(fsd, state);
+    }
+
+    public List<Application> findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(boolean fsd, Boolean result, ApplicationState state){
+        return applicationRepository.findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(fsd,result,state);
     }
 
     public List<Application> findApplicationByYear(int year)

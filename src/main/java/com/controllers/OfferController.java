@@ -6,6 +6,7 @@ import com.View.OfferForm;
 import com.View.SearchForm;
 import com.View.StudentLoginForm;
 import com.entities.*;
+import com.repositories.FSDProcedureRepository;
 import com.restful.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by karima on 11/12/2016.
@@ -48,6 +46,9 @@ public class OfferController {
 
     @Autowired
     NotificationService notificationService;
+
+    @Autowired
+    FSDProcedureService fsdProcedureService;
 
     @RequestMapping(value = "/offers",method = RequestMethod.GET)
     public String offers(ModelMap model, HttpServletRequest req){
@@ -134,11 +135,11 @@ public class OfferController {
 
            Application application=new Application();
            application.setStudent(student);
-            application.setCompany(company);
+           application.setCompany(company);
            application.setCreationDate(new Date(System.currentTimeMillis()));
            application.setOffer_id(offer.getId());
-            application.setDocuments(files);
-           application.setFSDProcedure(false);
+           application.setDocuments(files);
+           application.setFSDProcedure(true);
            application.setState(ApplicationState.Sent);
          application=applicationService.save(application);
 
@@ -151,6 +152,11 @@ public class OfferController {
            notification.setVisualized(false);
            notificationService.save(notification);
 
+           FSDProcedure fsdProc = new FSDProcedure();
+           fsdProc.setApplication(application);
+           fsdProc.setDocuments(files);
+           fsdProc.setFsd(null);
+           fsdProcedureService.save(fsdProc);
 
            file1.setFileUrl("c:/insaship/"+ application.getId()+"Resume");
            file2.setFileUrl("c:/insaship/"+ application.getId()+"Cover");

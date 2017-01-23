@@ -17,17 +17,12 @@
 <!-- Custom Theme Style -->
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
-<div class="row">
-    <form method="post" class="form-signin" action="<spring:url value ="/search-offers"/>" modelAttribute="SearchForm">
-        <div>
+
+    <form method="post" class="form-inline" action="<spring:url value ="/search-offers"/>" modelAttribute="SearchForm" style="text-align: center">
             <label class="sr-only" > internship keywords, or title</label><input type="text" name="keyword" placeholder="internship keywords, or title" class="form-control" autofocus/>
-        </div>
-        <br>
-        <div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-        </div>
-</form>
-</div>
+            <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
 <c:if test="${not empty noOffer}">
     <div class="alert alert-danger"> ${noOffer}</div>
 </c:if>
@@ -56,7 +51,7 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="x_content" >
+                                <div class="x_content" style="display: none;">
                                     <p>${offer.description}</p>
                                 </div>
                                 <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'" style="float:right">Plus de détails</button>

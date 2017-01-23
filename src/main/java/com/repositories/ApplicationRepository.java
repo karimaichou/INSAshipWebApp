@@ -48,6 +48,8 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
 
     List<Application> findByIsFsdAndStateOrderByCreationDateAsc(boolean fsd, ApplicationState state);
 
+    List<Application> findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(boolean fsd, Boolean result, ApplicationState state);
+
     List<Application> findByCompanyAndOfferId(Company company, int offer_id);
 
     List<Application> findByCompanyAndOfferIdAndStateNot(Company company, int offer_id, ApplicationState state);
