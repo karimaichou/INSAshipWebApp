@@ -116,13 +116,51 @@ public class FSDController {
         }
 
         if(choix.equals("accepter")){
-            app.getFsdProcedure().setResult(true);
+            app.getFsdProcedure().setResult(Boolean.TRUE);
+            notificationComp.setMessage("The FSD procedure has approved the application to the offer : "+
+                    offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationComp.getEventDate()+" relating : " +
+                    student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
+
+            notificationStud.setMessage("The FSD procedure has approved the application to the offer : "+
+                    offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationStud.getEventDate()+" relating : " +
+                    student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
+
+            if(app.getInsa() != null) {
+                notificationInsa.setMessage("The FSD procedure has approved the application to the offer : "+
+                        offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationInsa.getEventDate()+" relating : " +
+                        student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
+            }
             if(app.getState()== ApplicationState.ValidatedByINSA){
                 // Karima's Code
             }
         }else if(choix.equals("rejeter")){
-            app.getFsdProcedure().setResult(false);
+            app.getFsdProcedure().setResult(Boolean.FALSE);
+            notificationComp.setMessage("The FSD procedure has refused the application to the offer : "+
+                    offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationComp.getEventDate()+" relating : " +
+                    student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
 
+            notificationStud.setMessage("The FSD procedure has refused the application to the offer : "+
+                    offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationStud.getEventDate()+" relating : " +
+                    student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
+
+            if(app.getInsa() != null) {
+                notificationInsa.setMessage("The FSD procedure has refused the application to the offer : "+
+                        offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationInsa.getEventDate()+" relating : " +
+                        student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
+            }
+        }
+
+        FSDProcedureService.save(app.getFsdProcedure());
+        notificationService.save(notificationComp);
+        notificationService.save(notificationStud);
+        if(app.getInsa() != null) {
+            notificationService.save(notificationInsa);
+        }
+
+        try {
+            res.sendRedirect("/fsd/index");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return "fsd/index";
