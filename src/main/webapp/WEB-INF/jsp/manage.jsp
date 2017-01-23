@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -45,15 +46,14 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Date of birth:</label>
                     <div class="col-lg-8">
-
-                        <form:input path="dateOfBirth" cssClass="form-control" value="${stDateofbirth}"/>
+                        <fmt:formatDate pattern="MM/dd/yyyy" value="${stDateofbirth}" var="parsedDate" />
+                        <form:input path="dateOfBirth" cssClass="form-control" value="${parsedDate}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Adress:</label>
                     <div class="col-lg-8">
-
-                        <form:textarea path="address" cssClass="form-control" value="${stAdress}"/>
+                        <form:input path="address" cssClass="form-control" value="${stAdress}" />
                     </div>
                 </div>
                 <div class="form-group">

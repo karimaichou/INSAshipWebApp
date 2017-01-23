@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -49,17 +48,9 @@ public class OfferController {
 
     @Autowired
     NotificationService notificationService;
-    @Autowired
-    UserService userService;
 
     @RequestMapping(value = "/offers",method = RequestMethod.GET)
-    public String offers(ModelMap model, HttpServletRequest req, Principal principal){
-
-        User logged=userService.findByEmail(principal.getName());
-        req.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
+    public String offers(ModelMap model, HttpServletRequest req){
         model.addAttribute("username",req.getSession().getAttribute("username"));
         List<Offer> offerList = offerService.findAll();
         req.getSession().setAttribute("offers",offerList);
@@ -70,14 +61,9 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/search-offers",method = RequestMethod.POST)
-    public String getOffers(@ModelAttribute("SearchForm")SearchForm form, HttpServletRequest req, ModelMap model,Principal principal)
+    public String getOffers(@ModelAttribute("SearchForm")SearchForm form, HttpServletRequest req, ModelMap model)
     {
         //filter part
-        User logged=userService.findByEmail(principal.getName());
-        req.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
         List<Offer> offerList = offerService.findByKeyword(form.getKeyword());
         req.getSession().setAttribute("offers",offerList);
         if(offerList==null)
@@ -87,14 +73,9 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
-    public String getDetails(HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id , @RequestParam(value="company", required=true) int company,Principal principal)
+    public String getDetails(HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id , @RequestParam(value="company", required=true) int company)
     {
         try{
-            User logged=userService.findByEmail(principal.getName());
-            request.getSession().setAttribute("loggedUser",(Student)logged);
-            List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-            model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-            model.addAttribute("notifications",notifications.size());
             List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
             Offer offer=offerList.get(offerList.indexOf(new Offer(id, company)));
             model.addAttribute("offer",offer);
@@ -123,15 +104,11 @@ public class OfferController {
 
     @Secured("ROLE_STUDENT")
     @RequestMapping(value="/apply",method = RequestMethod.POST)
-    public  String Apply(@ModelAttribute("ApplicationForm")ApplicationForm form, HttpServletRequest request, ModelMap model,Principal principal)
+    public  String Apply(@ModelAttribute("ApplicationForm")ApplicationForm form, HttpServletRequest request, ModelMap model)
     {
        try {
            System.out.println("email : " + form.getEmail()+""+form.getId());
-           User logged=userService.findByEmail(principal.getName());
-           request.getSession().setAttribute("loggedUser",(Student)logged);
-           List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-           model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-           model.addAttribute("notifications",notifications.size());
+
            List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
            Offer offer=offerList.get(offerList.indexOf(new Offer(form.getId(), form.getCompany())));
            System.out.println(offer.getTitle());

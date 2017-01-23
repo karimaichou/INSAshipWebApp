@@ -17,24 +17,19 @@
 <!-- Custom Theme Style -->
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
-<div class="row">
-    <form method="post" class="form-signin" action="<spring:url value ="/search-offers"/>" modelAttribute="SearchForm">
-        <div>
+
+    <form method="post" class="form-inline" action="<spring:url value ="/search-offers"/>" modelAttribute="SearchForm" style="text-align: center">
             <label class="sr-only" > internship keywords, or title</label><input type="text" name="keyword" placeholder="internship keywords, or title" class="form-control" autofocus/>
-        </div>
-        <br>
-        <div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-        </div>
-</form>
-</div>
+            <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
 <c:if test="${not empty noOffer}">
     <div class="alert alert-danger"> ${noOffer}</div>
 </c:if>
 <c:if test="${not empty success}">
     <div class="alert alert-success"> ${success}</div>
 </c:if>
-<h2> Newest Offers:</h2>
+<h2> Newest Offers (${offers.size()}):</h2>
 <div>
                 <c:if test="${not empty offers}">
                 <c:forEach items="${offers}" var="offer">
@@ -47,7 +42,7 @@
                             <div class="x_panel" style="background-color: #f8f8f8;" >
                                 <div class="x_title">
                                     <%--<h2><input type="button"  onclick="location.href='/details?id=${offer.id}'" value="${offer.title}"/></h2>--%>
-                                    <h4><a onclick="location.href='<spring:url value ="/details?id=${offer.id}"/>'">${offer.title}</a></h4>
+                                    <h4><a onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'"><img src="${offer.companyLogoUrl}" height="40px" /> ${offer.title}</a></h4>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -56,7 +51,7 @@
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="x_content">
+                                <div class="x_content" style="display: none;">
                                     <p>${offer.description}</p>
                                 </div>
                                 <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'" style="float:right">Plus de détails</button>

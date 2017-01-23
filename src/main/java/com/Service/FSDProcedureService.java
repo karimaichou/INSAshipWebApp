@@ -1,5 +1,8 @@
 package com.Service;
 
+import com.entities.FSDProcedure;
+import com.repositories.FSDProcedureRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,4 +10,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FSDProcedureService {
+
+    @Autowired
+    FSDProcedureRepository fsdProcedureRepository;
+
+    public void save(FSDProcedure fsdProcedure){fsdProcedureRepository.save(fsdProcedure);}
+
 }

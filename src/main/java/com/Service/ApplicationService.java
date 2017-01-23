@@ -27,16 +27,8 @@ public class ApplicationService {
     {
         return applicationRepository.findByStudentOrderByCreationDateAsc(student);
     }
-    public  List<Application> findByStudentAndStateOrderByCreationDate(Student student,ApplicationState state){
 
-        return applicationRepository.findByStudentAndStateOrderByCreationDate(student,state);
-    }
-    public List<Application> findByStudentAndOfferIdAndState(Student student,int offre_id,ApplicationState state){
-
-        return applicationRepository .findByStudentAndOfferIdAndState(student,offre_id,state);
-    }
-
-    public Application findByOfferIdOrderByCreationDateAsc(int offer_id)
+    List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id)
     {
         return applicationRepository.findByOfferIdOrderByCreationDateAsc(offer_id);
     }
@@ -111,10 +103,5 @@ public class ApplicationService {
 
     public Application findById(int id){
         return applicationRepository.findById(id);
-    }
-
-    public void update(Application Application)
-    {
-        applicationRepository.save(Application);
     }
 }

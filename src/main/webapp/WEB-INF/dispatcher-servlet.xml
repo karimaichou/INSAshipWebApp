@@ -28,8 +28,7 @@
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
     <mvc:resources mapping="/resources/styles/**" location="/resources/styles/" />
-    <mvc:resources mapping="/resources/js/**" location="/resources/js/" />
-    <mvc:resources mapping="/resources/images/**" location="/resources/images/" />
+    <mvc:resources mapping="/resources/js/**" location="/resources/styles/js/" />
     <mvc:annotation-driven />
 
 </beans>
