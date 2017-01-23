@@ -14,6 +14,8 @@ public class Offer {
     private long startDate;
     private Integer id;
     private Integer company;
+    private String companyName;
+    private String companyLogoUrl;
 
     public int getCompany_id() {
         return company;
@@ -68,6 +70,22 @@ public class Offer {
 
     public void setCompany(Integer company) {
         this.company = company;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyLogoUrl() {
+        return companyLogoUrl;
+    }
+
+    public void setCompanyLogoUrl(String companyLogoUrl) {
+        this.companyLogoUrl = companyLogoUrl;
     }
 
     public boolean equals(Object offer)
