@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -12,7 +13,13 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 
-                <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive">
+                      <c:if test="${studentSex == 'female'}">
+                                 <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive">
+                      </c:if>
+                      <c:if test="${studentSex == 'male'}">
+                          <img alt="User Pic" src="http://etre-un-homme.fr/wp-content/uploads/2011/11/profil.gif" class="img-circle img-responsive">
+                      </c:if>
+
                 </br>
                 <p><strong>Last Name :</strong> <span style="color:blue">${studentlastname}</span></p>
                 <p><strong>First Name :</strong> <span style="color:blue">${studentFirstName}</span></p>

@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "application")
 public class Application {
-
     @Id
     @GeneratedValue
     private Integer id;
@@ -36,7 +35,7 @@ public class Application {
     @ManyToOne(optional = false)
     private Student student;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade=CascadeType.ALL)
     private Company company;
 
     @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REMOVE})

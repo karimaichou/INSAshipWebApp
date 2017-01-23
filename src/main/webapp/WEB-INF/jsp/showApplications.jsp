@@ -51,6 +51,7 @@
 
            </c:forEach>
        </tbody>
-
     </table>
+    <a href="/appliAcceCompany" class="btn btn-primary btn-sm active" role="button">Accepted by company</a>
+    <a href="/appliAcceInsa" class="btn btn-primary btn-sm active" role="button">Accepted by Insa</a>
 </div>

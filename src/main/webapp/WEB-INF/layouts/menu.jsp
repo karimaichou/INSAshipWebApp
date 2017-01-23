@@ -30,6 +30,7 @@
                 <li class="${current == 'example' ? 'active' : ''}"><a href="<spring:url value ="/example"/>">Example</a></li>
                 <li class="${current == 'offers' ? 'active' : ''}"><a href="<spring:url value ="/offers"/>">Offers</a></li>
 
+
                     <%@include file="menuStudent.jsp"%>
                 </security:authorize>
                 <security:authorize access=" hasRole('ROLE_COMPANY')">

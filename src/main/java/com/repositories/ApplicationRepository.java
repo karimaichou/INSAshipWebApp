@@ -20,15 +20,18 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     @Query("Select o From Application  o where o.student.scholarYear=?1 and o.state=com.entities.ApplicationState.Sent")
     List<Application> findApplicationByYear(int year);
 
-    List<Application> findByStudentOrderByCreationDateAsc(Student student);
 
-    List<Application> findByOfferIdOrderByCreationDateAsc(int offer_id);
+    List<Application> findByStudentOrderByCreationDateAsc(Student student);
+    List<Application> findByStudentAndOfferIdAndState(Student student,int offre_id,ApplicationState state);
+
+    Application findByOfferIdOrderByCreationDateAsc(int offer_id);
 
     List<Application> findByOfferIdAndStateOrderByCreationDateAsc(int offer_id, String state);
 
     List<Application> findByCompanyOrderByCreationDateAsc(Company company);
 
     List<Application> findByCompanyAndStateOrderByCreationDateAsc(Company company, String state);
+    List<Application> findByStudentAndStateOrderByCreationDate(Student student,ApplicationState state);
 
     List<Application> findByInsaOrderByCreationDateAsc(INSA insa);
 

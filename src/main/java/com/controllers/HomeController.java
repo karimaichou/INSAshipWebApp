@@ -93,6 +93,11 @@ public class HomeController {
 
         User student1=userService.findByEmail(principal.getName());
         request.getSession().setAttribute("loggedUser",(Student)student1);
+        User logged=userService.findByEmail(principal.getName());
+        request.getSession().setAttribute("loggedUser",(Student)logged);
+        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
+        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
+        model.addAttribute("notifications",notifications.size());
 
         ((Student )student1).setLastName(student.getLastName());
         ((Student )student1).setFirstName(student.getFirstName());
@@ -109,8 +114,12 @@ public class HomeController {
     @RequestMapping(value = "/manage")
     public String showProfilUpdate(ModelMap model, Principal principal, HttpServletRequest req){
 
+
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",(Student)logged);
+        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
+        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
+        model.addAttribute("notifications",notifications.size());
         model.addAttribute("stlastname",((Student) logged).getLastName());
         model.addAttribute("stFirstName",((Student) logged).getFirstName());
         model.addAttribute("stAdress",((Student) logged).getAddress());
