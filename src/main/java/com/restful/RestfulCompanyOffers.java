@@ -43,6 +43,8 @@ public class RestfulCompanyOffers {
                     newOffer.setTitle(restfulOffer.getTitle());
                     newOffer.setDescription(restfulOffer.getDescription());
                     newOffer.setStartDate(restfulOffer.getStartDate());
+                    newOffer.setCompanyName(restfulCompany.getName());
+                    newOffer.setCompanyLogoUrl(restfulCompany.getLogoUrl());
                     offers.add(newOffer);
                 }
             }

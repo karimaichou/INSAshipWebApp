@@ -1,6 +1,9 @@
 package com.Service;
 
+import com.entities.Role;
 import com.entities.Student;
+import com.entities.User;
+import com.repositories.RoleRepository;
 import com.repositories.StudentRepository;
 import org.apache.commons.lang.RandomStringUtils;
 
@@ -8,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import  java.util.List;
-import java.util.Properties;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -23,6 +26,9 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+
     public void sendmail(String destinataire,String cle) {
 
         final String username = "insaship@gmail.com";
@@ -50,6 +56,7 @@ public class StudentService {
             message.setSubject("Confirmation de création de compte");
             message.setText("Bonjour,"
                     + "\n\n Vous trouvez ci-joint la clé de confirmation de votre compte!"
+                    +"le lien pour l'activation de votre compte http://localhost:5050/confirmation-compte "
                     +"\n\n"+cle);
 
             Transport.send(message);
@@ -73,11 +80,19 @@ public class StudentService {
 
     public void save(Student student)
     {
-        student.setPassword(hashPassword(student.getPassword()));
+        //student.setPassword(hashPassword(student.getPassword()));
+        Role role = roleRepository.findByName("ROLE_STUDENT");
+        System.out.print(role.getName());
+        List<Role> roles = new  ArrayList();
+        roles.add(role);
+        student.setRoles(roles);
+        Date date = new Date();
         String cle = RandomStringUtils.randomAlphanumeric(20).toUpperCase();
         student.setToken(cle);
+        student.setDateInscription(date);
         try {
             sendmail(student.getEmail(),student.getToken());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,6 +106,7 @@ public class StudentService {
 
     public void update(Student student)
     {
+
         studentRepository.save(student);
     }
 

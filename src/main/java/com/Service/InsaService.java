@@ -24,7 +24,7 @@ public class InsaService {
     }
 
     //responsable d'une candidature
-    INSA findByApplications(Application application)
+    public INSA findByApplications(Application application)
     {
         return insaRepository.findByApplications(application);
     }

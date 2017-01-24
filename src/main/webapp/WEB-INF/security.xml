@@ -25,6 +25,7 @@
                     default-target-url="/welcomePage"
                     authentication-failure-url="/loginError"/>
         <logout logout-url="/logout"/>
+
     </http>
 
     <authentication-manager>

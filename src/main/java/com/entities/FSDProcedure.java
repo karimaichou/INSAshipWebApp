@@ -15,7 +15,7 @@ public class FSDProcedure implements Serializable{
     @GeneratedValue
     private Integer id;
 
-    private boolean result;
+    private Boolean result;
 
     @OneToOne(optional = false)
     private Application application;
@@ -44,11 +44,11 @@ public class FSDProcedure implements Serializable{
         this.id = id;
     }
 
-    public boolean isResult() {
+    public Boolean isResult() {
         return result;
     }
 
-    public void setResult(boolean result) {
+    public void setResult(Boolean result) {
         this.result = result;
     }
 

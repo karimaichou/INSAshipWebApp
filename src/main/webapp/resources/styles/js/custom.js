@@ -146,7 +146,8 @@ $(document).ready(function() {
             });
         } else {
             $BOX_CONTENT.slideToggle(200); 
-            $BOX_PANEL.css('height', 'auto');  
+            $BOX_PANEL.css('height', 'auto');
+            $BOX_PANEL.css('background-color', '#f8f8f8');
         }
 
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');

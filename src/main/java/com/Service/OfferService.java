@@ -45,8 +45,8 @@ public class OfferService {
 
     public List<Offer> findAll()
     {
-        /*return receiveOffers(urlAll);
-        */
+        //return receiveOffers(urlAll);
+
         ArrayList<Offer> simulated=new ArrayList<Offer>();
         Offer offer1=new Offer();
 
@@ -55,6 +55,8 @@ public class OfferService {
         offer1.setCompany_id(3);
         offer1.setStartDate(01012017);
         offer1.setTitle("internship Bac+2: computer science student in database administration team");
+        offer1.setCompanyName("Toto industries");
+        offer1.setCompanyLogoUrl("https://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/052010/TOTO.png?itok=835riHQj");
 
 
         Offer offer2=new Offer();
@@ -67,10 +69,14 @@ public class OfferService {
         offer2.setStartDate(03052017);
         offer2.setTitle("Stage Assistant(e) Commercial(e) en centre d'affaires (H/F) chez BRED Banque Populaire\n" +
                 "Paris 75001, Île-De-France France");
+        offer2.setCompanyName("Titi industries");
+        offer2.setCompanyLogoUrl("https://mark.trademarkia.com/logo-images/titi-co/titi-79146901.jpg");
+
 
         simulated.add(offer1);
         simulated.add(offer2);
         return simulated;
+
         //
 
     }
@@ -88,7 +94,7 @@ public class OfferService {
     }
     public List<Offer> findByCompanyId(Integer company)
     {
-        /*return receiveSingleOffer(urlByCompany + company);*/
+        //return receiveSingleOffer(urlByCompany + company);
         List<Offer> offers=findAll();
         List<Offer> newOffers = new ArrayList<Offer>();
         for(Offer offer:offers)
