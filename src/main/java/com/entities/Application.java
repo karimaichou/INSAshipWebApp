@@ -35,7 +35,7 @@ public class Application {
     @ManyToOne(optional = false)
     private Student student;
 
-    @ManyToOne(optional = false,cascade=CascadeType.ALL)
+    @ManyToOne(optional = false,cascade=CascadeType.MERGE)
     private Company company;
 
     @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
