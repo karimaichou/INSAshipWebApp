@@ -2,7 +2,6 @@ package com.Service;
 
 import com.entities.Role;
 import com.entities.Student;
-import com.entities.User;
 import com.repositories.RoleRepository;
 import com.repositories.StudentRepository;
 import org.apache.commons.lang.RandomStringUtils;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -28,6 +25,9 @@ public class StudentService {
     private StudentRepository studentRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private MessageService messageService;
 
     public void sendmail(String destinataire,String cle) {
 
@@ -91,6 +91,9 @@ public class StudentService {
         student.setToken(cle);
         student.setDateInscription(date);
         try {
+            // Send mail through ESB
+            //messageService.sendCodeConfirmMessage(student);
+
             sendmail(student.getEmail(),student.getToken());
 
         } catch (Exception e) {

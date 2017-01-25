@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`DTYPE`, `id`, `email`, `firstName`, `lastName`, `password`, `username`, `address`, `dateInscription`, `dateOfBirth`, `description`, `sex`, `year`, `telephone`, `scholarYear`, `token`, `verified`) VALUES
 ('Student', 1, 'karima.ichou@gmail.com', 'karima', 'ichou', 'oma', 'karima.ichou@gmai.com', '15 avenue colonel Roche 31400 toulouse', '2016-11-23 00:00:00', '1994-02-01 00:00:00', 'final year software engineering student at insa Toulouse', 'female', NULL, '0669541224', 5, NULL, 1),
-('Company', 2, 'contact@gapgemini.fr', NULL, NULL, 'capgeminiToulouse', 'capgeminiRh', '109 Avenue du Général Eisenhower, 31000 Toulouse', '2017-01-06 00:00:00', NULL, NULL, NULL, NULL, '0567483948', NULL, NULL, 1),
-('Company', 3, 'contact@sogetti.fr', NULL, NULL, 'sogettinatalie', 'dogettiToulouse', 'AEROPARK,, 3 Chemin de Laporte, 31300 Toulouse', '2017-01-05 00:00:00', NULL, NULL, NULL, NULL, '05 34 46 90 00', NULL, NULL, 1),
+('Company', 2, 'contact@orange-test.fr', NULL, NULL, 'orange', 'Orange', '109 Avenue du Général Eisenhower, 31000 Toulouse', '2017-01-06 00:00:00', NULL, NULL, NULL, NULL, '0567483948', NULL, NULL, 1),
+('Company', 3, 'contact@airbus-test.fr', NULL, NULL, 'airbus', 'Airbus', 'AEROPARK,, 3 Chemin de Laporte, 31300 Toulouse', '2017-01-05 00:00:00', NULL, NULL, NULL, NULL, '05 34 46 90 00', NULL, NULL, 1),
 ('Company', 4, 'ssi-toulouse@ssi.fr', NULL, NULL, 'rhssitoulouse', 'ssiEtudiant', '116 Route Espagne', '2017-01-01 00:00:00', NULL, NULL, NULL, NULL, '05 61 16 20 57', NULL, NULL, 1),
 ('INSA', 5, 'contact@insa-toulouse.fr', NULL, NULL, 'toulouseinsa', 'insatoulouse', NULL, '2017-01-06 00:00:00', NULL, NULL, NULL, 5, '0547382910', NULL, NULL, 1),
 ('INSA', 6, 'contact-emmanuel@insa-toulouse.fr', NULL, NULL, 'emmanuelnsa', 'emmanuel', NULL, '2017-01-05 00:00:00', NULL, NULL, NULL, 4, '0656435687', NULL, NULL, 1),
