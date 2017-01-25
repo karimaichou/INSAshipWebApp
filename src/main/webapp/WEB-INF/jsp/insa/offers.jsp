@@ -12,6 +12,12 @@
 <c:if test="${not empty error}">
     <div class="alert alert"> ${error}</div>
 </c:if>
+<c:if test="${not empty success}">
+    <div class="alert alert-success"> ${success}</div>
+</c:if>
+<c:if test="${not empty emptyApp}">
+    <div class="alert alert-success"> ${emptyApp}</div>
+</c:if>
 <c:if test="${not empty applications}">
     <table class="table table-hover">
 

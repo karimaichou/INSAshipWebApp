@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -38,7 +39,8 @@ public class InsaController {
     {
         return "insa/home";
     }
-    @RequestMapping(value="/offers")
+
+    @RequestMapping(value="/offers")//pending offers to be accepted
     public String getOffers(ModelMap model, HttpServletRequest request)
     {
         try
@@ -48,6 +50,8 @@ public class InsaController {
             List<Application> applications=applicationService.findApplicationByYear(year);
             request.getSession().setAttribute("applications",applications);
             model.addAttribute("applications",applications);
+            if(applications==null || applications.size()==0 )
+                model.addAttribute("emptyApp","You have no assigned applications for the moment.Enjoy");
 
         }catch(Exception e)
         {
@@ -95,7 +99,7 @@ public class InsaController {
             foundApp.setId(id);
             Application application = applications.get(applications.indexOf(foundApp));
             application.setInsa(teacher);
-            application.setState(ApplicationState.RejectedByInsa);
+            application.setState(ApplicationState.Rejected);
             applicationService.save(application);
             applications.remove(application);
 
@@ -125,7 +129,7 @@ public class InsaController {
     }
 
     @RequestMapping(value="/approve")
-    public String approveOffer(ModelMap model, HttpServletRequest request, @ModelAttribute("id") int id)
+    public String approveOffer(ModelMap model, HttpServletRequest request, @ModelAttribute("id") int id,RedirectAttributes redirectAttributes)
     {
         // here you have to set applicatoin's insa attribute and send a notification to the student and company and delete current application from applications
        try {
@@ -156,12 +160,12 @@ public class InsaController {
            notification2.setVisualized(false);
            notificationService.save(notification2);
 
-           model.addAttribute("success","the Application has been successfully approved");
+           //model.addAttribute("success","the Application has been successfully approved");
 
-           if(! application.isFSDProcedure() || application.getFsdProcedure().isResult()==true)
+           if(! application.isFSDProcedure() || application.getFsdProcedure().isResult())
            {
-               request.setAttribute("application",application);
-               return "/agreement";
+               redirectAttributes.addFlashAttribute("application", application);
+               return "redirect:/agreementByInsa";
            }
 
        }catch(Exception e)
@@ -171,5 +175,93 @@ public class InsaController {
         return "insa/offers";
     }
 
+    //get application which agreement still on false
+    @RequestMapping(value="/applications")
+    public String getApplications(ModelMap model, HttpServletRequest request)
+    {
+        try
+        {
+            INSA teacher=(INSA) request.getSession().getAttribute("loggedUser");
+            int year=teacher.getYear();
+            List<Application> applications=applicationService.findByStatesAndInsa(teacher.getId());
+            request.getSession().setAttribute("suppervisedApplications",applications);
+            model.addAttribute("applications",applications);
+            if(applications==null || applications.size()==0 )
+                model.addAttribute("emptyApp","You have no assigned applications for the moment.Enjoy");
+
+        }catch(Exception e)
+        {
+            model.addAttribute("error","an error occured while retrieving applications list. please try again");
+        }
+
+        return "insa/applications";//suppervisedApplications
+    }
+
+
+    @RequestMapping(value="/suppervisedDetails")
+    public String getSuppervisedDetails(ModelMap model, HttpServletRequest request, @ModelAttribute("id") int id)
+    {
+        try{
+            List<Application> applications=(List<Application>)request.getSession().getAttribute("suppervisedApplications");
+
+            //show info about the student and offer
+            Application foundApp=new Application();
+            foundApp.setId(id);
+            Application application=applications.get(applications.indexOf(foundApp));
+            Student student=application.getStudent();
+            Company company=application.getCompany();
+            model.addAttribute("student",student);
+            model.addAttribute("company",company);
+            model.addAttribute("application",application);
+
+        }catch (Exception e)
+        {
+            model.addAttribute("error","an error occured while retrieving offer's details. please try again");
+        }
+
+        return "insa/suppervisedDetails";
+    }
+
+    @RequestMapping(value="/viewAgreement")
+    public String agreementDetails(ModelMap model, HttpServletRequest request, @ModelAttribute("id") int id) {
+        try
+        {
+            List<Application> applications=(List<Application>)request.getSession().getAttribute("suppervisedApplications");
+
+            //show info about the student and offer
+            Application foundApp=new Application();
+            foundApp.setId(id);
+            Application application=applications.get(applications.indexOf(foundApp));
+            Agreement agreement=application.getAgreement();
+            Document agreementDoc=agreement.getAgreementDoc();
+
+            //then open it and view its content
+            model.addAttribute("agreementName",agreementDoc.getName());
+
+        } catch (Exception e) {
+            model.addAttribute("error","an error occured while retrieving agreement document. please try again");
+        }
+
+        return "agreementView";
+    }
+
+    @RequestMapping(value="signAgreement")
+    public String signAgreement(ModelMap model, HttpServletRequest request, @ModelAttribute("id") int id)
+    {
+        try
+        {
+            List<Application> applications = (List<Application>) request.getSession().getAttribute("suppervisedApplications");
+            Application foundApp = new Application();
+            foundApp.setId(id);
+            Application application = applications.get(applications.indexOf(foundApp));
+            model.addAttribute("agreement",application.getAgreement().getId());
+
+        }catch (Exception e)
+        {
+            model.addAttribute("error","an error occured while retrieving agreement document. please try again");
+        }
+
+        return "signing";
+    }
 
 }

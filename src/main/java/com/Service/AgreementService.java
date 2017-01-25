@@ -1,5 +1,6 @@
 package com.Service;
 
+import com.entities.Agreement;
 import com.entities.Document;
 import com.repositories.AgreementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,15 @@ public class AgreementService {
     public Document findAgreementDocument(long id)
     {
         return agreementRepository.findAgreementDocument(id);
+    }
+
+    public Agreement save(Agreement agreement)
+    {
+        return agreementRepository.save(agreement);
+    }
+
+    public Agreement findById(long id)
+    {
+        return agreementRepository.findById(id);
     }
 }

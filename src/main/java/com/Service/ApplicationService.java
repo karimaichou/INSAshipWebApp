@@ -55,6 +55,9 @@ public class ApplicationService {
     {
         return applicationRepository.findByInsaOrderByCreationDateAsc(insa);
     }
+
+    /*
+    List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state)
     List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa,String state)
     {
         return applicationRepository.findByInsaAndStateOrderByCreationDateAsc(insa,state);
@@ -63,7 +66,7 @@ public class ApplicationService {
     public List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state)
     {
         return applicationRepository.findByStudentAndStateOrderByCreationDateAsc(student,state);
-    }
+    }*/
 
     List<Application> findByStudentAndIsFsdOrderByCreationDateAsc(Student student,boolean fsd)
     {
@@ -106,6 +109,22 @@ public class ApplicationService {
     {
         return applicationRepository.findApplicationByYear(year);
 
+    }
+
+    public List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa,ApplicationState state)
+    {
+        return applicationRepository.findByInsaAndStateOrderByCreationDateAsc(insa,state);
+    }
+
+    public Application findByAgreement(Agreement agreement)
+    {
+        return applicationRepository.findByAgreement(agreement);
+    }
+
+
+    public List<Application> findByStatesAndInsa(Integer insa)
+    {
+        return applicationRepository.findByStatesAndInsa(insa);
     }
     public List<Application> findByCompanyAndOfferId(Company company, int offer_id)
     {

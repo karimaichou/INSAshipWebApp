@@ -17,8 +17,15 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     @Query("SELECT c FROM Application o INNER JOIN o.agreement c WHERE o.id = ?1")
     Agreement findAgreement(int id);
 
-    @Query("Select o From Application  o where o.student.scholarYear=?1 and o.state=com.entities.ApplicationState.Sent")
+    @Query("Select o From Application  o where o.student.scholarYear=?1 and o.state=com.entities.ApplicationState.ValidatedByStudent")
     List<Application> findApplicationByYear(int year);
+
+    @Query("Select o From Application  o where o.insa.id=?1 and (o.state=com.entities.ApplicationState.ValidatedByINSA or o.state=com.entities.ApplicationState.UnderAgreement or o.state=com.entities.ApplicationState.Done) ")
+    List<Application> findByStatesAndInsa(Integer insa);
+
+    Application findByAgreement(Agreement agreement);
+
+    Application findById(int id);
 
 
     List<Application> findByStudentOrderByCreationDateAsc(Student student);
@@ -35,7 +42,7 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
 
     List<Application> findByInsaOrderByCreationDateAsc(INSA insa);
 
-    List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa, String state);
+    List<Application> findByInsaAndStateOrderByCreationDateAsc(INSA insa, ApplicationState state);
 
     List<Application> findByStudentAndStateOrderByCreationDateAsc(Student student, String state);
 
@@ -58,8 +65,6 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     List<Application> findByCompanyAndOfferIdAndStateNot(Company company, int offer_id, ApplicationState state);
 
     List<Application> findByCompany(Company company);
-
-    Application findById(int id);
 
     List<Application> findAll();
 }

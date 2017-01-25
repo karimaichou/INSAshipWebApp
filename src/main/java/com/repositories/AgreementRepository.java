@@ -12,4 +12,7 @@ public interface AgreementRepository extends JpaRepository<Agreement,Long> {
 
     @Query("SELECT c FROM Agreement o INNER JOIN o.agreementDoc c WHERE o.id = ?1")
     public Document findAgreementDocument(long id);
+
+
+    public Agreement findById(long id);
 }

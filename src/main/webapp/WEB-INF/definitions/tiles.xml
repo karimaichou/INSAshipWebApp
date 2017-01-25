@@ -160,4 +160,28 @@
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 
+    <definition name="insa/applications" extends="common">
+        <put-attribute name="title" value="My suppervised applications" />
+        <put-attribute name="body" value="/WEB-INF/jsp/insa/suppervisedApplication.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
+    <definition name="insa/suppervisedDetails" extends="common">
+        <put-attribute name="title" value="My suppervised applications" />
+        <put-attribute name="body" value="/WEB-INF/jsp/insa/suppervisedDetails.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
+    <definition name="agreementView" extends="common">
+        <put-attribute name="title" value="Internship Agreement page" />
+        <put-attribute name="body" value="/WEB-INF/jsp/agreement.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
+    <definition name="signing" extends="common">
+        <put-attribute name="title" value="Internship Agreement page" />
+        <put-attribute name="body" value="/WEB-INF/jsp/signing.jsp" />
+        <put-attribute name="current" value="index" cascade="true" />
+    </definition>
+
 </tiles-definitions>

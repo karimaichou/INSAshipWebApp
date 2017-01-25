@@ -19,7 +19,4 @@ public enum ApplicationState {
     ValidatedByINSA,
     Rejected,
     RejectedByInsa,
-    RejectedByCompany,
-    RejectedByStudent,
-    RejectedByFsd
 }
