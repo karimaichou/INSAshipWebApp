@@ -128,6 +128,7 @@ public class CompanyController {
                     FSDProcedure fsdProcedure = new FSDProcedure();
                     fsdProcedure.setFsd(fsd);
                     fsdProcedure.setApplication(application);
+                    fsdProcedure.setResult(false);
                     application.setFSDProcedure(true);
                     fsdProcedureService.save(fsdProcedure);
                 }
@@ -179,6 +180,21 @@ public class CompanyController {
         }
         catch (Exception e){}
         return "company/accepted";
+    }
+
+    @RequestMapping(value = "/detailAccepted",method = RequestMethod.GET)
+    public String detailAccepted (HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id ) {
+        try {
+            //get application and offer and save application to session
+            Company company = (Company)request.getSession().getAttribute("loggedUser");
+            Application application = applicationService.findById(id);
+            Offer offer = offerService.findById(application.getOffer_id(),company.getId());
+            request.getSession().setAttribute("application", application);
+            //save application and offer to model
+            model.addAttribute("application", application);
+            model.addAttribute("offer", offer);
+        }catch (Exception e){}
+        return "company/detailAccepted";
     }
 
     private Offer filterOffers(List<Offer> offers,Integer id)

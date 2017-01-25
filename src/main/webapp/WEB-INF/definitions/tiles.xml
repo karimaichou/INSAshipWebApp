@@ -17,19 +17,19 @@
     <definition name="offers" extends="common">
         <put-attribute name="title" value="Student index" />
         <put-attribute name="body" value="/WEB-INF/jsp/offers.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="offers" cascade="true" />
     </definition>
 
     <definition name="offerDetails" extends="common">
         <put-attribute name="title" value="Offer details | InsaShip" />
         <put-attribute name="body" value="/WEB-INF/jsp/offerDetails.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="offers" cascade="true" />
     </definition>
 
     <definition name="apply" extends="common">
         <put-attribute name="title" value="apply for the offer | InsaShip" />
         <put-attribute name="body" value="/WEB-INF/jsp/apply.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="offers" cascade="true" />
     </definition>
 
     <definition name="example" extends="common">
@@ -119,23 +119,29 @@
         <put-attribute name="body" value="/WEB-INF/jsp/company/accepted.jsp" />
         <put-attribute name="current" value="accepted" cascade="true" />
     </definition>
+    <definition name="company/detailAccepted" extends="common">
+        <put-attribute name="title" value="Company index" />
+        <put-attribute name="body" value="/WEB-INF/jsp/company/detailAccepted.jsp" />
+        <put-attribute name="current" value="accepted" cascade="true" />
+    </definition>
 
 
     <definition name="insa/home" extends="common">
         <put-attribute name="title" value="Insa home page" />
         <put-attribute name="body" value="/WEB-INF/jsp/insa/home.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="home" cascade="true" />
     </definition>
+
     <definition name="insa/details" extends="common">
         <put-attribute name="title" value="Application details page" />
         <put-attribute name="body" value="/WEB-INF/jsp/insa/details.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="offers" cascade="true" />
     </definition>
 
     <definition name="insa/offers" extends="common">
         <put-attribute name="title" value="Insa pending Applications page" />
         <put-attribute name="body" value="/WEB-INF/jsp/insa/offers.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="offers" cascade="true" />
     </definition>
 
     <definition name="fsd/index" extends="common">

@@ -38,8 +38,8 @@
                 <td style="vertical-align: middle">${application.id} </td>
                 <td style="vertical-align: middle">${application.student.firstName} ${application.student.lastName}</td>
                 <td style="vertical-align: middle">${application.creationDate}</td>
-                <td style="vertical-align: middle">${application.state == 'Sent' ? 'Waiting for evaluation' : 'Accepted'}</td>
-                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/company/detail?id=${application.id}"/>'">View Details</button></td>
+                <td style="vertical-align: middle">${application.state}</td>
+                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/company/detailAccepted?id=${application.id}"/>'">View Details</button></td>
             </tr>
         </c:forEach>
         </tbody>
