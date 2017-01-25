@@ -104,6 +104,10 @@ public class ApplicationService {
         return applicationRepository.findByCompanyAndOfferIdAndStateNot(company, offer_id, state);
     }
 
+    public List<Application> findByCompany(Company company){
+        return applicationRepository.findByCompany(company);
+    }
+
     public Application findById(int id){
         return applicationRepository.findById(id);
     }

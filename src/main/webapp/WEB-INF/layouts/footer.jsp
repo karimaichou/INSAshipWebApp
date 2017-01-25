@@ -9,6 +9,6 @@
 
 <footer class="footer">
     <div>
-        <p class="text-muted">FOOTER &copy; INSA</p>
+        <p class="text-muted">All rights resererved &copy; INSA</p>
     </div>
 </footer>

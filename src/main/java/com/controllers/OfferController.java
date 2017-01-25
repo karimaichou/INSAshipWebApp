@@ -93,6 +93,7 @@ public class OfferController {
     {
         List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
         Offer offer=offerList.get(offerList.indexOf(new Offer(id, company)));
+        System.out.println(offer.getTitle());
         Student candidate=(Student) request.getSession().getAttribute("loggedUser");
         model.addAttribute("prenom",candidate.getFirstName());
         model.addAttribute("nom",candidate.getLastName());
@@ -113,6 +114,7 @@ public class OfferController {
            Offer offer=offerList.get(offerList.indexOf(new Offer(form.getId(), form.getCompany())));
            System.out.println(offer.getTitle());
            Company company=companyService.findById(offer.getCompany_id());
+
            System.out.println(company.getUsername());
            Student student=(Student)request.getSession().getAttribute("loggedUser");
 
@@ -140,8 +142,9 @@ public class OfferController {
             application.setDocuments(files);
            application.setFSDProcedure(false);
            application.setState(ApplicationState.Sent);
+           System.out.println("semtutaky");
          application=applicationService.save(application);
-
+           System.out.println("Semtu");
            Notification notification=new Notification();
            notification.setApplication(application);
            notification.setEventDate(new Date(System.currentTimeMillis()));
@@ -151,19 +154,20 @@ public class OfferController {
            notification.setVisualized(false);
            notificationService.save(notification);
 
-
+            /*
            file1.setFileUrl("c:/insaship/"+ application.getId()+"Resume");
            file2.setFileUrl("c:/insaship/"+ application.getId()+"Cover");
            documentService.save(file1);
            documentService.save(file2);
            resume.transferTo(new File("c:/insaship/"+ application.getId()+"Resume"));
            cover.transferTo(new File("c:/insaship/"+ application.getId()+"Cover"));
-
+            */
            // and last but not least : add Franck's service to send an email to student + company
 
            model.addAttribute("success", "your application was sent successfully, you'll receive a confirmation email sooner");
        }catch(Exception e)
        {
+           e.printStackTrace();
            model.addAttribute("Error", "your application wasn't sent, please try again later");
        }
         return "offers";

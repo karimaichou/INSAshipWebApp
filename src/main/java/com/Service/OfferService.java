@@ -45,9 +45,9 @@ public class OfferService {
 
     public List<Offer> findAll()
     {
-        //return receiveOffers(urlAll);
+        return receiveOffers(urlAll);
 
-        ArrayList<Offer> simulated=new ArrayList<Offer>();
+        /*ArrayList<Offer> simulated=new ArrayList<Offer>();
         Offer offer1=new Offer();
 
         offer1.setDescription("De formation Bac +2 minimum, en informatique de préférence, vous avez 7 à 10 années d'expérience dans le domaine de l'assistance clients, idéalement en support applicatifs métiers et technique. Vous avez démontré vos qualités de manager et votre capacité à analyser et gérer les priorités. Vous avez le souci d'améliorer la satisfaction clientèle, la qualité du service rendu et avez la volonté de comprendre les métiers des clients. Vous avez envie de vous investir dans une entreprise à taille humaine qui fait de la satisfaction client son objectif principal. La connaissance du monde du spectacle vivant ou de la billetterie serait un plus.");
@@ -76,6 +76,7 @@ public class OfferService {
         simulated.add(offer1);
         simulated.add(offer2);
         return simulated;
+        */
 
         //
 
@@ -94,14 +95,15 @@ public class OfferService {
     }
     public List<Offer> findByCompanyId(Integer company)
     {
-        //return receiveSingleOffer(urlByCompany + company);
-        List<Offer> offers=findAll();
+        return receiveSingleOffer(urlByCompany + company);
+
+        /*List<Offer> offers=findAll();
         List<Offer> newOffers = new ArrayList<Offer>();
         for(Offer offer:offers)
         {
             if (offer.getCompany() == company) newOffers.add(offer);
         }
-        return newOffers;
+        return newOffers;*/
     }
 
     public List<Offer> findByKeyword(String keyword)

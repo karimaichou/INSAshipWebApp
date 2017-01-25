@@ -26,9 +26,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <security:authorize access=" hasRole('ROLE_STUDENT')">
-               <!-- <li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value ="/"/>">Home</a></li>-->
-                <li class="${current == 'example' ? 'active' : ''}"><a href="<spring:url value ="/example"/>">Example</a></li>
-                <li class="${current == 'offers' ? 'active' : ''}"><a href="<spring:url value ="/offers"/>">Offers</a></li>
+
+                <li class="${current == 'offers' ? 'active' : ''}"><a href="<spring:url value ="/offers"/>">Search Offers</a></li>
 
 
                     <%@include file="menuStudent.jsp"%>
@@ -48,17 +47,6 @@
                 <security:authorize access=" hasRole('ROLE_ADMIN')">
                     <%@include file="menuAdmin.jsp"%>
                 </security:authorize>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <security:authorize access="! isAuthenticated()">

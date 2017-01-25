@@ -1,6 +1,7 @@
 package com.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "fsdprocedure")
-public class FSDProcedure {
+public class FSDProcedure implements Serializable{
 
     @Id
     @GeneratedValue
@@ -35,7 +36,7 @@ public class FSDProcedure {
 
     public FSDProcedure(){}
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 

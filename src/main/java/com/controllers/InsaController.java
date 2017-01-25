@@ -33,7 +33,7 @@ public class InsaController {
     @Autowired
     NotificationService notificationService;
 
-    @RequestMapping(value="/welcome")
+    @RequestMapping(value="/home")
     public String getIndex()
     {
         return "insa/home";

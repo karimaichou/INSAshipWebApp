@@ -14,6 +14,7 @@
     <div class="alert alert-danger"> ${success}</div>
 </c:if>
 <c:if test="${empty error}">
+<!--
     <div >
         <div style="float: left;">
             <h3>Student : </h3>
@@ -40,7 +41,55 @@
         <div><label><c:if test="${!fsd}"> this Offer does not require an FSD procedure</c:if>
             <c:if test="${fsd}"> this Offer does  require an FSD procedure</c:if></label></div>
     </div>
-    <div><input type="button" value="Refuse the Application" class="btn btn-danger" onclick="location.href='/insa/refuse?id=${application.id}'">
-        <input type="button" value="approve the application" class="btn btn-success" onclick="location.href='/insa/approve?id=${application.id}'">
-    </div>
+-->
 </c:if>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <h2>Student</h2>
+        <table class="table">
+            <tr>
+                <td>Name:</td><td style="vertical-align: middle">${application.student.firstName} ${application.student.lastName}</td>
+            </tr>
+            <tr>
+                <td>Year:</td><td style="vertical-align: middle">${application.student.scholarYear}</td>
+            </tr>
+            <tr>
+                <td>E-mail:</td><td style="vertical-align: middle">${application.student.email}</td>
+            </tr>
+            <tr>
+            <tr>
+                <td>Date applied:</td><td style="vertical-align: middle">${application.creationDate}</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h2>Company</h2>
+        <table class="table">
+            <tr>
+                <td>Name:</td><td style="vertical-align: middle">${company.username} ${application.student.lastName}</td>
+            </tr>
+            <tr>
+                <td>E-mail:</td><td style="vertical-align: middle">${company.email}</td>
+            </tr>
+            <tr>
+                <td>Telephone:</td><td style="vertical-align: middle">${company.telephone}</td>
+            </tr>
+            <tr>
+            <tr>
+                <td>Address:</td><td style="vertical-align: middle">${company.address}</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h2>Internship</h2>
+        <p>${offer.title}</p>
+        <div>
+            <input type="button" value="Accept application" class="btn btn-success" onclick="location.href='/insa/approve?id=${application.id}'">
+            <input type="button" value="Refuse" class="btn btn-danger" onclick="location.href='/insa/refuse?id=${application.id}'">
+        </div>
+    </div>
+</div>
