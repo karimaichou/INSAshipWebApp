@@ -30,6 +30,35 @@ public class Agreement {
     @OneToOne
     private Document agreementDoc;
 
+    boolean signedByInsa;
+    boolean isSignedByStudent;
+    boolean signedByCompany;
+
+
+    public boolean isSignedByInsa() {
+        return signedByInsa;
+    }
+
+    public void setSignedByInsa(boolean signedByInsa) {
+        this.signedByInsa = signedByInsa;
+    }
+
+    public boolean isSignedByStudent() {
+        return isSignedByStudent;
+    }
+
+    public void setSignedByStudent(boolean signedByStudent) {
+        isSignedByStudent = signedByStudent;
+    }
+
+    public boolean isSignedByCompany() {
+        return signedByCompany;
+    }
+
+    public void setSignedByCompany(boolean signedByCompany) {
+        this.signedByCompany = signedByCompany;
+    }
+
     public Document getAgreementDoc() {
         return agreementDoc;
     }

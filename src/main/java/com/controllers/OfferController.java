@@ -122,7 +122,6 @@ public class OfferController {
     public  String Apply(@ModelAttribute("ApplicationForm")ApplicationForm form, HttpServletRequest request, ModelMap model)
     {
        try {
-           System.out.println("email : " + form.getEmail()+""+form.getId());
 
            List<Offer> offerList =(List<Offer>)request.getSession().getAttribute("offers");
            Offer offer=offerList.get(offerList.indexOf(new Offer(form.getId(), form.getCompany())));
@@ -138,8 +137,8 @@ public class OfferController {
            MultipartFile cover = form.getFiles().get(1);
            Document file1=new Document();
            Document file2=new Document();
-           file1.setFileType(resume.getContentType());
-           file2.setFileType(cover.getContentType());
+           file1.setFileType("resume");
+           file2.setFileType("coverLetter");
            file1.setCreationDate(new Date(System.currentTimeMillis()));
            file2.setCreationDate(new Date(System.currentTimeMillis()));
            file1.setName("resume");
@@ -156,9 +155,8 @@ public class OfferController {
             application.setDocuments(files);
            application.setFSDProcedure(false);
            application.setState(ApplicationState.Sent);
-           System.out.println("semtutaky");
          application=applicationService.save(application);
-           System.out.println("Semtu");
+
            Notification notification=new Notification();
            notification.setApplication(application);
            notification.setEventDate(new Date(System.currentTimeMillis()));
@@ -168,14 +166,14 @@ public class OfferController {
            notification.setVisualized(false);
            notificationService.save(notification);
 
-            /*
-           file1.setFileUrl("c:/insaship/"+ application.getId()+"Resume");
-           file2.setFileUrl("c:/insaship/"+ application.getId()+"Cover");
+
+           file1.setFileUrl(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Resume");
+           file2.setFileUrl(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Cover");
            documentService.save(file1);
            documentService.save(file2);
-           resume.transferTo(new File("c:/insaship/"+ application.getId()+"Resume"));
-           cover.transferTo(new File("c:/insaship/"+ application.getId()+"Cover"));
-            */
+           resume.transferTo(new File(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Resume"));
+           cover.transferTo(new File(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Cover"));
+
            // and last but not least : add Franck's service to send an email to student + company
 
            model.addAttribute("success", "your application was sent successfully, you'll receive a confirmation email sooner");
