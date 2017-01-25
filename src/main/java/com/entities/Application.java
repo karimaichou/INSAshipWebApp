@@ -35,13 +35,13 @@ public class Application {
     @ManyToOne(optional = false)
     private Student student;
 
-    @ManyToOne(optional = false,cascade=CascadeType.MERGE)
+    @ManyToOne(optional = false)
     private Company company;
 
     @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
     private Collection<Document> documents;
 
-    @OneToOne(mappedBy = "application",cascade = CascadeType.REMOVE,optional = true)
+    @OneToOne(mappedBy = "application",optional = true)
     private FSDProcedure fsdProcedure;
 
     @OneToOne(mappedBy = "application")

@@ -152,16 +152,21 @@ public class OfferController {
             application.setCompany(company);
            application.setCreationDate(new Date(System.currentTimeMillis()));
            application.setOffer_id(offer.getId());
-            application.setDocuments(files);
+           application.setDocuments(files);
            application.setFSDProcedure(false);
            application.setState(ApplicationState.Sent);
-         application=applicationService.save(application);
+           application=applicationService.save(application);
 
            Notification notification=new Notification();
            notification.setApplication(application);
            notification.setEventDate(new Date(System.currentTimeMillis()));
-           notification.setMessage("new Application to the offer :"+ offer.getTitle()+" on :"+notification.getEventDate()+"from : "+
+           notification.setMessage("New application to the offer :"+ offer.getTitle()+" on :"+notification.getEventDate()+"from : "+
            student.getFirstName()+" "+student.getLastName()+"./n a confirmation was also sent to your mail.");
+           notification.setMessage(student.getFirstName() + " " + student.getLastName() + " has applied to your application "
+           + offer.getTitle());
+
+
+           System.out.println(notification.getMessage());
            notification.setUser(company);
            notification.setVisualized(false);
            notificationService.save(notification);
@@ -176,11 +181,11 @@ public class OfferController {
 
            // and last but not least : add Franck's service to send an email to student + company
 
-           model.addAttribute("success", "your application was sent successfully, you'll receive a confirmation email sooner");
+           model.addAttribute("success", "Your application was sent successfully, you'll receive a confirmation email soon");
        }catch(Exception e)
        {
            e.printStackTrace();
-           model.addAttribute("Error", "your application wasn't sent, please try again later");
+           model.addAttribute("Error", "There was an error with you application, please try again later");
        }
         return "offers";
     }

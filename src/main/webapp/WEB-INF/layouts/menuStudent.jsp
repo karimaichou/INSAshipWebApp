@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<li class="${current == 'indexStudent' ? 'active' : ''}"><a href="<spring:url value ="/indexStudent"/>">Home Student</a></li>
+
+<li class="${current == 'showApplications' ? 'active' : ''}"><a href="<spring:url value ="/showApplications"/>">My applications</a></li>
+<li class="${current == 'indexStudent' ? 'active' : ''}"><a href="<spring:url value ="/indexStudent"/>">Profile</a></li>
 
 

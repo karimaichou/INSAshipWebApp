@@ -9,10 +9,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<h4><span style="color:blue">Applications details : </span></h4>
-<div class="table-responsive">
+<h2>All applications : </h2>
+<c:if test="${applications.size() <= 0}">
+    <div class="alert "> You don't have any applilcations.</div>
+</c:if>
+<c:if test="${applications.size() > 0}">
+    <a href="/appliAcceCompany" class="btn btn-primary btn-sm active" role="button">Accepted by company</a>
+    <a href="/appliAcceInsa" class="btn btn-primary btn-sm active" role="button">Accepted by Insa</a>
+    <a href="/validatedBystudent" class="btn btn-primary btn-sm active" role="button">Validated Applications</a>
+
     <table class="table">
-        <th>
+        <thead>
         <tr>
             <td>Offer Id </td>
             <td>Details </td>
@@ -22,7 +29,7 @@
             <td>State </td>
             <td>Company Id</td>
             </tr>
-        </th>
+        </thead>
        <tbody>
            <c:forEach items="${applications}" var="application">
                <tr>
@@ -52,7 +59,5 @@
            </c:forEach>
        </tbody>
     </table>
-    <a href="/appliAcceCompany" class="btn btn-primary btn-sm active" role="button">Accepted by company</a>
-    <a href="/appliAcceInsa" class="btn btn-primary btn-sm active" role="button">Accepted by Insa</a>
-    <a href="/validatedBystudent" class="btn btn-primary btn-sm active" role="button">Validated Applications</a>
-</div>
+
+</c:if>

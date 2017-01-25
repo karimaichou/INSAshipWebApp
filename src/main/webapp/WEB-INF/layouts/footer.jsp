@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <footer class="footer">
-    <div>
+    <div >
         <p class="text-muted">All rights resererved &copy; INSA</p>
     </div>
 </footer>

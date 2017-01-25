@@ -29,7 +29,7 @@
 <c:if test="${not empty success}">
     <div class="alert alert-success"> ${success}</div>
 </c:if>
-<h2> Newest Offers (${offers.size()}):</h2>
+<h2> Available offers (${offers.size()}):</h2>
 <div>
                 <c:if test="${not empty offers}">
                 <c:forEach items="${offers}" var="offer">

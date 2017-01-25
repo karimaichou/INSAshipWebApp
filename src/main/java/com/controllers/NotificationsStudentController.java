@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,14 +36,15 @@ public class NotificationsStudentController {
         req.getSession().setAttribute("loggedUser",logged);
         List<Notification> notifications = (List<Notification>) req.getSession().getAttribute("notifications");
 
+        List<Notification> history = notificationService.findTop15ByUserOrderByEventDateDesc(logged);
         for(int i=0;i<notifications.size();i++){
 
             Notification notif =  notifications.get(i);
             notif.setVisualized(true);
             notificationService.save(notif);
         }
-
-        model.addAttribute("notifications", notifications);
+        model.addAttribute("history",history);
+        model.addAttribute("notifications", new ArrayList<Notification>());
         return "notifications";
     }
 }

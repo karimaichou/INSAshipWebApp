@@ -40,7 +40,7 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content">
+                        <div class="x_content" style="display: none;">
                             <p>${offer.description}</p>
                         </div>
                         <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value="/company/applications?id=${offer.id}"/>'" style="float:right">View Applications</button>

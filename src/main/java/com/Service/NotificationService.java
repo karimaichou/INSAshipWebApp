@@ -39,4 +39,8 @@ public class NotificationService {
 
         return notificationRepository.findByUserAndVisualized(user,visualized);
     }
+
+    public List<Notification> findTop15ByUserOrderByEventDateDesc(User user){
+        return notificationRepository.findTop15ByUserOrderByEventDateDesc(user);
+    }
 }

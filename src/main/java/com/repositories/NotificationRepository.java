@@ -17,4 +17,5 @@ public interface NotificationRepository extends JpaRepository<Notification,Integ
     List<Notification> findByUser(User user);
     List<Notification> findByUserAndVisualized(User user, boolean visualized);
     List<Notification> findByApplicationAndUserAndVisualizedOrderByEventDateDesc(Application application, User user, boolean visualized);
+    List<Notification> findTop15ByUserOrderByEventDateDesc(User user);
 }

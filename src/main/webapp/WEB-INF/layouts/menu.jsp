@@ -57,15 +57,14 @@
                 <security:authorize access="isAuthenticated()">
                     <li class="dropdown">
                         <c:if test="${notifications.size() > 0}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span style="color: #942a25">${notifications.size()}</span><span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span style="color: #942a25">New notifications ${notifications.size()}</span><span class="caret"></span></a>
                         </c:if>
                         <c:if test="${notifications.size() == 0}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications history</a>
                         </c:if>
                         <ul class="dropdown-menu">
-                            <li><a href="/notifications">view all notifications</a></li>
+                            <li><a href="/notifications">View all notifications</a></li>
                             <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
                             <c:forEach items="${notifications}" var="notification">
                                 <li><a href="#">${fn:substring(notification.message, 0, 25)} ...</a></li>
                             </c:forEach>

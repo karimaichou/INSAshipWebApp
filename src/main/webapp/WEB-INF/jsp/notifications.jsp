@@ -7,27 +7,30 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<h4><span style="color:blue">notifications details : </span></h4>
-<div class="table-responsive">
+<h2>Notification history : </h2>
+<c:if test="${history.size() <= 0}">
+    <div class="alert "> You don't have any notifications.</div>
+</c:if>
+<c:if test="${history.size() > 0}">
     <table class="table">
-        <th>
+        <thead>
             <tr>
                 <td>Date </td>
                 <td>Message </td>
                 <td>From</td>
             </tr>
-        </th>
+        </thead>
         <tbody>
-        <c:forEach items="${notifications}" var="notification">
+        <c:forEach items="${history}" var="history">
             <tr>
                 <td>
-                        ${notification.eventDate}
+                        ${history.eventDate}
                 </td>
                 <td>
-                        ${notification.message}
+                        ${history.message}
                 </td>
                 <td>
-                        ${notification.application.company.username}
+                        ${history.application.company.username}
                 </td>
 
             </tr>
@@ -36,4 +39,4 @@
         </tbody>
 
     </table>
-</div>
+</c:if>
