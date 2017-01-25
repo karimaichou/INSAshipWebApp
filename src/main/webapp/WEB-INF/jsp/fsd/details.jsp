@@ -57,12 +57,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Documents:</label>
-            <div class="col-sm-10">
-                <p class="form-control-static">TODO </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
 

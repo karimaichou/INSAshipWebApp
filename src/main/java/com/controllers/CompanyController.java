@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,8 +36,8 @@ public class CompanyController {
     FSDProcedureService fsdProcedureService;
 
     @RequestMapping(value = "/index")
-    public String index(){
-
+    public String index(ModelMap model,HttpServletRequest request){
+        model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
         return "company/index";
     }
 
@@ -44,6 +45,8 @@ public class CompanyController {
     public String offers(HttpServletRequest request, ModelMap model){
         try {
             Company company = (Company) request.getSession().getAttribute("loggedUser");
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
             List<Offer> offers = offerService.findByCompanyId(company.getId());
             if (offers == null || offers.isEmpty()) {
                 model.addAttribute("noOffer", "You don't offer any internship at the moment");
@@ -60,6 +63,8 @@ public class CompanyController {
     public String applications(HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id ){
         try{
             Company company = (Company)request.getSession().getAttribute("loggedUser");
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
             List<Application> applications = applicationService.findByCompanyAndOfferIdAndStateNot(company,id, ApplicationState.Rejected);
             if(applications==null || applications.isEmpty()) {
                 model.addAttribute("noApplication", "There are no applications for your offer at the moment");
@@ -81,6 +86,8 @@ public class CompanyController {
             Application application = applicationService.findById(id);
             Offer offer = filterOffers((List<Offer>) request.getSession().getAttribute("offers"),application.getOffer_id());
             request.getSession().setAttribute("application",application);
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
             //save application and offer to model
             model.addAttribute("application",application);
             model.addAttribute("offer",offer);
@@ -128,7 +135,7 @@ public class CompanyController {
                     FSDProcedure fsdProcedure = new FSDProcedure();
                     fsdProcedure.setFsd(fsd);
                     fsdProcedure.setApplication(application);
-                    fsdProcedure.setResult(false);
+                    fsdProcedure.setResult(null);
                     application.setFSDProcedure(true);
                     fsdProcedureService.save(fsdProcedure);
                 }
@@ -177,6 +184,8 @@ public class CompanyController {
             List<Application> applications = applicationService.findByCompany(company);
             applications = filterApplications(applications);
             model.addAttribute("applications",applications);
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
         }
         catch (Exception e){}
         return "company/accepted";
@@ -190,6 +199,8 @@ public class CompanyController {
             Application application = applicationService.findById(id);
             Offer offer = offerService.findById(application.getOffer_id(),company.getId());
             request.getSession().setAttribute("application", application);
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
             //save application and offer to model
             model.addAttribute("application", application);
             model.addAttribute("offer", offer);

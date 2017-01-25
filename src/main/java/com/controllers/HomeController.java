@@ -71,9 +71,7 @@ public class HomeController {
 
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
         model.addAttribute("studentlastname",((Student) logged).getLastName());
         model.addAttribute("studentFirstName",((Student) logged).getFirstName());
         model.addAttribute("studentSex",((Student) logged).getSex());
@@ -95,9 +93,8 @@ public class HomeController {
         request.getSession().setAttribute("loggedUser",(Student)student1);
         User logged=userService.findByEmail(principal.getName());
         request.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
+        model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
 
         ((Student )student1).setLastName(student.getLastName());
         ((Student )student1).setFirstName(student.getFirstName());
@@ -117,9 +114,8 @@ public class HomeController {
 
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
+
         model.addAttribute("stlastname",((Student) logged).getLastName());
         model.addAttribute("stFirstName",((Student) logged).getFirstName());
         model.addAttribute("stAdress",((Student) logged).getAddress());

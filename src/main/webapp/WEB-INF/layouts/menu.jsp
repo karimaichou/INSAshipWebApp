@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="taglibs.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <tilesx:useAttribute name="current" />
 
 <!-- Static navbar -->
@@ -55,13 +56,18 @@
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span style="color: #942a25">${notifications}</span><span class="caret"></span></a>
+                        <c:if test="${notifications.size() > 0}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span style="color: #942a25">${notifications.size()}</span><span class="caret"></span></a>
+                        </c:if>
+                        <c:if test="${notifications.size() == 0}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications</a>
+                        </c:if>
                         <ul class="dropdown-menu">
                             <li><a href="/notifications">view all notifications</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">Nav header</li>
-                            <c:forEach items="${notifdetails}" var="notification">
-                                <li><a href="#">${notification.message}</a></li>
+                            <c:forEach items="${notifications}" var="notification">
+                                <li><a href="#">${fn:substring(notification.message, 0, 25)} ...</a></li>
                             </c:forEach>
                         </ul>
                     </li>

@@ -39,7 +39,7 @@
                 </td>
                 <td>
                 <td>
-                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/detail?id=${application.offer_id}"/>'">Validate</button></td>
+                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/detail?id=${application.id}"/>'">Validate</button></td>
                 </td>
 
                 </tr>

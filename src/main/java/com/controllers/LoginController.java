@@ -1,5 +1,6 @@
 package com.controllers;
 
+import com.Service.NotificationService;
 import com.Service.StudentService;
 import com.Service.UserService;
 import com.View.ConfirmationForm;
@@ -36,6 +37,8 @@ public class LoginController {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    private NotificationService notificationService;
 
     @ModelAttribute("student")
     public Student construct(){
@@ -96,8 +99,6 @@ public class LoginController {
     }
 
 
-
-
     @RequestMapping(value="loginError")
     public String loginError(ModelMap model)
     {
@@ -112,10 +113,12 @@ public class LoginController {
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",logged);
 
+        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
+        req.getSession().setAttribute("notifications",notifications);
+
         if (logged instanceof Company) return "redirect:/company/index";
         if (logged instanceof FSD) return "redirect:/fsd/index"; //redirect to you controller methon in your controller
         if (logged instanceof INSA) return "redirect:/insa/home"; //redirect to you controller method in your controller
         return "redirect:/offers";
     }
-
 }

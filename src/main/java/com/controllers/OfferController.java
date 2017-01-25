@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -49,8 +50,16 @@ public class OfferController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/offers",method = RequestMethod.GET)
-    public String offers(ModelMap model, HttpServletRequest req){
+    public String offers(ModelMap model, HttpServletRequest req, Principal principal){
+
+        User logged=userService.findByEmail(principal.getName());
+        req.getSession().setAttribute("loggedUser",(Student)logged);
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
+
         model.addAttribute("username",req.getSession().getAttribute("username"));
         List<Offer> offerList = offerService.findAll();
         req.getSession().setAttribute("offers",offerList);
@@ -61,8 +70,13 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/search-offers",method = RequestMethod.POST)
-    public String getOffers(@ModelAttribute("SearchForm")SearchForm form, HttpServletRequest req, ModelMap model)
+    public String getOffers(@ModelAttribute("SearchForm")SearchForm form, HttpServletRequest req, ModelMap model, Principal principal)
     {
+        User logged=userService.findByEmail(principal.getName());
+        req.getSession().setAttribute("loggedUser",(Student)logged);
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
+
+
         //filter part
         List<Offer> offerList = offerService.findByKeyword(form.getKeyword());
         req.getSession().setAttribute("offers",offerList);

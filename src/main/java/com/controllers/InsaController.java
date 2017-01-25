@@ -47,6 +47,8 @@ public class InsaController {
             int year=teacher.getYear();
             List<Application> applications=applicationService.findApplicationByYear(year);
             request.getSession().setAttribute("applications",applications);
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
             model.addAttribute("applications",applications);
 
         }catch(Exception e)
@@ -71,6 +73,8 @@ public class InsaController {
             Company company=application.getCompany();
             Offer offer=offerService.findById(application.getOffer_id(),company.getId());
             boolean fsdRequired=application.isFSDProcedure();
+            model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
             model.addAttribute("student",student);
             model.addAttribute("company",company);
             model.addAttribute("offer",offer);// get the corresponding offer to the application and return its details
@@ -135,7 +139,7 @@ public class InsaController {
            foundApp.setId(id);
            Application application = applications.get(applications.indexOf(foundApp));
            application.setInsa(teacher);
-           application.setState(ApplicationState.ValidatedByINSA);
+           application.setState(ApplicationState.AcceptedByINSA);
            applicationService.save(application);
            applications.remove(application);
 

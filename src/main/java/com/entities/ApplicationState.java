@@ -14,12 +14,8 @@ public enum ApplicationState {
     UnderFSD,
     UnderAgreement,
     AcceptedByCompany,
-    ValidatedByStudent,
-    ValidatedByCompany,
-    ValidatedByINSA,
+    AcceptedByStudent,
+    AcceptedByINSA,
     Rejected,
-    RejectedByInsa,
-    RejectedByCompany,
-    RejectedByStudent,
-    RejectedByFsd
+    RejectedByInsa
 }

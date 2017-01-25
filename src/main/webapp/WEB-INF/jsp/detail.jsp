@@ -9,6 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <form class="form-horizontal" >
 <h4>${application.student.firstName}</h4> <p>Are you sure you want to validate this application</p>
-<button type="button" class="btn btn-danger"  onclick="location.href='<spring:url value="/showApplication"/>'">Return</button>
+<button type="button" class="btn btn-danger"  onclick="location.href='<spring:url value="/showApplications"/>'">Return</button>
 <button type="button" class="btn btn-success"  onclick="location.href='<spring:url value="/accept"/>'">Accept</button>
 </form>

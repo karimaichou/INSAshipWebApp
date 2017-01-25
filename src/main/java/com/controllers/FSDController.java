@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -46,9 +45,10 @@ public class FSDController {
     @RequestMapping(value = "/index")
     public String index(ModelMap model, HttpServletRequest req){
         model.addAttribute("username",req.getSession().getAttribute("username"));
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
 
-        List<Application> studentApplicationList = applicationService.findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(true,null, ApplicationState.ValidatedByStudent);
-        List<Application> insaApplicationList = applicationService.findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(true,null, ApplicationState.ValidatedByINSA);
+        List<Application> studentApplicationList = applicationService.findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(true,null, ApplicationState.AcceptedByStudent);
+        List<Application> insaApplicationList = applicationService.findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(true,null, ApplicationState.AcceptedByINSA);
 
         List<Application> applicationList = new ArrayList<Application>();
         applicationList.addAll(studentApplicationList);
@@ -129,7 +129,7 @@ public class FSDController {
                         offerService.findById(app.getOffer_id(),company.getId()).getTitle()+" on :"+notificationInsa.getEventDate()+" relating : " +
                         student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
             }
-            if(app.getState()== ApplicationState.ValidatedByINSA){
+            if(app.getState()== ApplicationState.AcceptedByINSA){
                 // Karima's Code
             }
         }else if(choix.equals("rejeter")){

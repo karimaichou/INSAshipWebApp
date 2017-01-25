@@ -2,7 +2,6 @@ package com.controllers;
 
 import com.Service.*;
 import com.entities.*;
-import com.restful.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,9 +44,7 @@ public class ApplicationController {
     public String showApplications(Model model, Principal principal, HttpServletRequest req){
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
 
         model.addAttribute("applications",applicationService.findByStudentOrderByCreationDateAsc((Student)logged));
         return "showApplications";
@@ -58,9 +55,8 @@ public class ApplicationController {
         try{
             User logged=userService.findByEmail(principal.getName());
             req.getSession().setAttribute("loggedUser",(Student)logged);
-            List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-            model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-            model.addAttribute("notifications",notifications.size());
+            model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
+
             List<Application> applications = applicationService.findByStudentAndStateOrderByCreationDate((Student)logged,ApplicationState.AcceptedByCompany);
 
             if(applications==null || applications.isEmpty()) {
@@ -79,10 +75,9 @@ public class ApplicationController {
         try{
             User logged=userService.findByEmail(principal.getName());
             req.getSession().setAttribute("loggedUser",(Student)logged);
-            List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-            model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-            model.addAttribute("notifications",notifications.size());
-            List<Application> applications = applicationService.findByStudentAndStateOrderByCreationDate((Student)logged,ApplicationState.ValidatedByStudent);
+            model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
+
+            List<Application> applications = applicationService.findByStudentAndStateOrderByCreationDate((Student)logged,ApplicationState.AcceptedByStudent);
 
             if(applications==null || applications.isEmpty()) {
                 model.addAttribute("noApplication", "There are no applications at the moment");
@@ -99,10 +94,9 @@ public class ApplicationController {
     public String detail (HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id,Principal principal ){
         User logged=userService.findByEmail(principal.getName());
         request.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
-        Application application = applicationService.findByOfferIdOrderByCreationDateAsc(id);
+        model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
+
+        Application application = applicationService.findById(id);
         request.getSession().setAttribute("application",application);
         model.addAttribute("application",application);
         return "detail";
@@ -113,10 +107,9 @@ public class ApplicationController {
 
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",(Student)logged);
-        List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
-        model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
-        model.addAttribute("notifications",notifications.size());
-        model.addAttribute("applicationsAccepted",applicationService.findByStudentAndStateOrderByCreationDate((Student)logged,ApplicationState.ValidatedByINSA));
+        model.addAttribute("notifications",req.getSession().getAttribute("notifications"));
+
+        model.addAttribute("applicationsAccepted",applicationService.findByStudentAndStateOrderByCreationDate((Student)logged,ApplicationState.AcceptedByINSA));
         return "appliAcceInsa";
     }
     @RequestMapping(value = "/accept",method = RequestMethod.GET)
@@ -127,7 +120,7 @@ public class ApplicationController {
             User logged=userService.findByEmail(principal.getName());
             req.getSession().setAttribute("loggedUser",logged);
             Application application = (Application) req.getSession().getAttribute("application");
-            application.setState(ApplicationState.ValidatedByStudent);
+            application.setState(ApplicationState.AcceptedByStudent);
             applicationService.save(application);
             Notification notification=new Notification();
             notification.setApplication(application);

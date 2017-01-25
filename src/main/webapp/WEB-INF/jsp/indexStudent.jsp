@@ -13,12 +13,12 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 
-                      <c:if test="${studentSex == 'female'}">
-                                 <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive">
-                      </c:if>
-                      <c:if test="${studentSex == 'male'}">
-                          <img alt="User Pic" src="http://etre-un-homme.fr/wp-content/uploads/2011/11/profil.gif" class="img-circle img-responsive">
-                      </c:if>
+                  <c:if test="${studentSex == 'female'}">
+                             <img alt="User Pic" src="https://pickaface.net/gallery/avatar/aparna0015296f059126bb.png" class="img-circle img-responsive">
+                  </c:if>
+                  <c:if test="${studentSex == 'Male'}">
+                      <img alt="User Pic" src="https://pickaface.net/gallery/avatar/20110418_045300_4057_si_enthon9.png" class="img-circle img-responsive">
+                  </c:if>
 
                 </br>
                 <p><strong>Last Name :</strong> <span style="color:blue">${studentlastname}</span></p>
