@@ -9,6 +9,6 @@
 
 <div class="container-fluid">
     <div class="row">
-        <img src="https://stormideaswus.blob.core.windows.net/headerjunction/2014/91/ea10bfd1-e69c-44c3-98b6-f2d97027da89.jpg" class="img-responsive">
+        <img src="${pageContext.request.contextPath}/resources/styles/banner.png" class="img-responsive">
     </div>
 </div>
