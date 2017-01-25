@@ -17,10 +17,10 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     @Query("SELECT c FROM Application o INNER JOIN o.agreement c WHERE o.id = ?1")
     Agreement findAgreement(int id);
 
-    @Query("Select o From Application  o where o.student.scholarYear=?1 and o.state=com.entities.ApplicationState.ValidatedByStudent")
+    @Query("Select o From Application  o where o.student.scholarYear=?1 and o.state=com.entities.ApplicationState.AcceptedByStudent")
     List<Application> findApplicationByYear(int year);
 
-    @Query("Select o From Application  o where o.insa.id=?1 and (o.state=com.entities.ApplicationState.ValidatedByINSA or o.state=com.entities.ApplicationState.UnderAgreement or o.state=com.entities.ApplicationState.Done) ")
+    @Query("Select o From Application  o where o.insa.id=?1 and (o.state=com.entities.ApplicationState.AcceptedByINSA or o.state=com.entities.ApplicationState.UnderAgreement or o.state=com.entities.ApplicationState.Done) ")
     List<Application> findByStatesAndInsa(Integer insa);
 
     Application findByAgreement(Agreement agreement);

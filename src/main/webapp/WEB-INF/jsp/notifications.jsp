@@ -18,7 +18,7 @@
             </tr>
         </th>
         <tbody>
-        <c:forEach items="${notifdetails}" var="notification">
+        <c:forEach items="${notifications}" var="notification">
             <tr>
                 <td>
                         ${notification.eventDate}

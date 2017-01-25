@@ -33,8 +33,7 @@ public class NotificationsStudentController {
 
         User logged=userService.findByEmail(principal.getName());
         req.getSession().setAttribute("loggedUser",logged);
-        List<Notification> notifications= notificationService.findByUser(logged);
-        model.addAttribute("notifdetails",notifications);
+        List<Notification> notifications = (List<Notification>) req.getSession().getAttribute("notifications");
 
         for(int i=0;i<notifications.size();i++){
 
@@ -43,6 +42,7 @@ public class NotificationsStudentController {
             notificationService.save(notif);
         }
 
+        model.addAttribute("notifications", notifications);
         return "notifications";
     }
 }
