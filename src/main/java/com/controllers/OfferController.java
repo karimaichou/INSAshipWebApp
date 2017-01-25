@@ -133,55 +133,62 @@ public class OfferController {
 
            System.out.println(student.getFirstName()+company.getUsername()+offer.getTitle());
 
-           MultipartFile resume = form.getFiles().get(0);
-           MultipartFile cover = form.getFiles().get(1);
-           Document file1=new Document();
-           Document file2=new Document();
-           file1.setFileType("resume");
-           file2.setFileType("coverLetter");
-           file1.setCreationDate(new Date(System.currentTimeMillis()));
-           file2.setCreationDate(new Date(System.currentTimeMillis()));
-           file1.setName("resume");
-           file2.setName("Cover Letter");
-           List<Document> files=new ArrayList<Document>();
-           files.add(file1);
-           files.add(file2);
+           //test if the student has already applied
+           List<Application> old = applicationService.findByStudentAndCompanyAndOfferIdAndStateNot(student,company,offer.getId(),ApplicationState.Rejected);
+           if (!(old == null || old.size() == 0) ) {
+               model.addAttribute("Error", "You are already applied to that internship offer.");
+           }else {
 
-           Application application=new Application();
-           application.setStudent(student);
-            application.setCompany(company);
-           application.setCreationDate(new Date(System.currentTimeMillis()));
-           application.setOffer_id(offer.getId());
-           application.setDocuments(files);
-           application.setFSDProcedure(false);
-           application.setState(ApplicationState.Sent);
-           application=applicationService.save(application);
+               MultipartFile resume = form.getFiles().get(0);
+               MultipartFile cover = form.getFiles().get(1);
+               Document file1 = new Document();
+               Document file2 = new Document();
+               file1.setFileType("resume");
+               file2.setFileType("coverLetter");
+               file1.setCreationDate(new Date(System.currentTimeMillis()));
+               file2.setCreationDate(new Date(System.currentTimeMillis()));
+               file1.setName("resume");
+               file2.setName("Cover Letter");
+               List<Document> files = new ArrayList<Document>();
+               files.add(file1);
+               files.add(file2);
 
-           Notification notification=new Notification();
-           notification.setApplication(application);
-           notification.setEventDate(new Date(System.currentTimeMillis()));
-           notification.setMessage("New application to the offer :"+ offer.getTitle()+" on :"+notification.getEventDate()+"from : "+
-           student.getFirstName()+" "+student.getLastName()+"./n a confirmation was also sent to your mail.");
-           notification.setMessage(student.getFirstName() + " " + student.getLastName() + " has applied to your application "
-           + offer.getTitle());
+               Application application = new Application();
+               application.setStudent(student);
+               application.setCompany(company);
+               application.setCreationDate(new Date(System.currentTimeMillis()));
+               application.setOffer_id(offer.getId());
+               application.setDocuments(files);
+               application.setFSDProcedure(false);
+               application.setState(ApplicationState.Sent);
+               application = applicationService.save(application);
+
+               Notification notification = new Notification();
+               notification.setApplication(application);
+               notification.setEventDate(new Date(System.currentTimeMillis()));
+               notification.setMessage("New application to the offer :" + offer.getTitle() + " on :" + notification.getEventDate() + "from : " +
+                       student.getFirstName() + " " + student.getLastName() + "./n a confirmation was also sent to your mail.");
+               notification.setMessage("Student " + student.getFirstName() + " " + student.getLastName() + " has applied to your offer: "
+                       + offer.getTitle() + ".");
 
 
-           System.out.println(notification.getMessage());
-           notification.setUser(company);
-           notification.setVisualized(false);
-           notificationService.save(notification);
+               System.out.println(notification.getMessage());
+               notification.setUser(company);
+               notification.setVisualized(false);
+               notificationService.save(notification);
 
 
-           file1.setFileUrl(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Resume");
-           file2.setFileUrl(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Cover");
-           documentService.save(file1);
-           documentService.save(file2);
-           resume.transferTo(new File(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Resume"));
-           cover.transferTo(new File(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Cover"));
+               file1.setFileUrl(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Resume");
+               file2.setFileUrl(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Cover");
+               documentService.save(file1);
+               documentService.save(file2);
+               resume.transferTo(new File(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Resume"));
+               cover.transferTo(new File(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Cover"));
 
-           // and last but not least : add Franck's service to send an email to student + company
+               // and last but not least : add Franck's service to send an email to student + company
 
-           model.addAttribute("success", "Your application was sent successfully, you'll receive a confirmation email soon");
+               model.addAttribute("success", "Your application was sent successfully, you will soon receive a confirmation email.");
+           }
        }catch(Exception e)
        {
            e.printStackTrace();

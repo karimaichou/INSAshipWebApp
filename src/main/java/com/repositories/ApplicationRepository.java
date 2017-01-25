@@ -67,4 +67,6 @@ public interface ApplicationRepository extends JpaRepository<Application,Integer
     List<Application> findByCompany(Company company);
 
     List<Application> findAll();
+
+    List<Application> findByStudentAndCompanyAndOfferIdAndStateNot(Student student,Company company,Integer offer_id,ApplicationState state);
 }

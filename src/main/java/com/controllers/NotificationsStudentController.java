@@ -45,6 +45,8 @@ public class NotificationsStudentController {
         }
         model.addAttribute("history",history);
         model.addAttribute("notifications", new ArrayList<Notification>());
+        req.getSession().setAttribute("notifications",new ArrayList<Notification>());
         return "notifications";
+
     }
 }

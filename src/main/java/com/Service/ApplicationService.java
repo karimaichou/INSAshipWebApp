@@ -142,4 +142,8 @@ public class ApplicationService {
     public Application findById(int id){
         return applicationRepository.findById(id);
     }
+
+    public List<Application> findByStudentAndCompanyAndOfferIdAndStateNot(Student student,Company company,Integer offer_id,ApplicationState state){
+        return applicationRepository.findByStudentAndCompanyAndOfferIdAndStateNot(student,company,offer_id,state);
+    }
 }

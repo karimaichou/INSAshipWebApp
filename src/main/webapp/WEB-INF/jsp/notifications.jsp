@@ -17,7 +17,7 @@
             <tr>
                 <td>Date </td>
                 <td>Message </td>
-                <td>From</td>
+
             </tr>
         </thead>
         <tbody>
@@ -28,9 +28,6 @@
                 </td>
                 <td>
                         ${history.message}
-                </td>
-                <td>
-                        ${history.application.company.username}
                 </td>
 
             </tr>

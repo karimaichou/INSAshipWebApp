@@ -34,6 +34,9 @@ public class ApplicationController {
     private UserService userService;
 
     @Autowired
+    private InsaService insaService;
+
+    @Autowired
     private StudentService studentService;
     @Autowired
     private OfferService offerService;
@@ -126,19 +129,43 @@ public class ApplicationController {
             notification.setApplication(application);
             notification.setUser(application.getCompany());
             Student student = (Student) logged;
-            notification.setMessage(student.getFirstName()+""+student.getLastName()+"has validated his application");
+            notification.setMessage(student.getFirstName()+" "+student.getLastName()+" has validated his application.");
             notification.setVisualized(false);
             notification.setEventDate(date);
-
-            Notification notification2=new Notification();
-            notification2.setApplication(application);
-            Student student2 = (Student) logged;
-            notification2.setUser(student2);
-            notification2.setMessage("you validate an application");
-            notification2.setVisualized(false);
-            notification2.setEventDate(date);
             notificationService.save(notification);
-            notificationService.save(notification2);
+
+            if(application.isFSDProcedure()) {
+                FSD fsd = application.getFsdProcedure().getFsd();
+                notification = new Notification();
+                notification.setEventDate(new Date(System.currentTimeMillis()));
+                notification.setUser(fsd);
+                notification.setApplication(application);
+                notification.setVisualized(false);
+                notification.setMessage("Company " + application.getCompany().getUsername() + " has requested security procedure.");
+                notificationService.save(notification);
+
+
+                notification = new Notification();
+                notification.setEventDate(new Date(System.currentTimeMillis()));
+                notification.setUser(student);
+                notification.setApplication(application);
+                notification.setVisualized(false);
+                notification.setMessage("Company " + application.getCompany().getUsername() + " has requested security procedure. Please" +
+                        " wait for email with further instructions");
+                notificationService.save(notification);
+            }
+
+            List<INSA> insaList = insaService.findByYear(student.getScholarYear());
+            for(INSA insa:insaList)
+            {
+                notification = new Notification();
+                notification.setEventDate(new Date(System.currentTimeMillis()));
+                notification.setUser(insa);
+                notification.setApplication(application);
+                notification.setVisualized(false);
+                notification.setMessage("Student " + student.getFirstName()+" "+student.getLastName() + " has confirmed his internship.");
+                notificationService.save(notification);
+            }
 
         }
         catch (Exception e){}

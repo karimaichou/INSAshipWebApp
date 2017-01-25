@@ -18,7 +18,7 @@ public class InsaService {
     @Autowired
     INSARepository insaRepository;
 
-    List<INSA> findByYear(int year)
+    public List<INSA> findByYear(int year)
     {
         return insaRepository.findByYear(year);
     }

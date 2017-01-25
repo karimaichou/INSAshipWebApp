@@ -10,7 +10,7 @@
     </definition>
     <definition name="index" extends="common">
         <put-attribute name="title" value="Student index" />
-        <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/sign-in.jsp" />
         <put-attribute name="current" value="index" cascade="true" />
     </definition>
 

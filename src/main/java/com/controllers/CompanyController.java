@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class CompanyController {
     FSDService fsdService;
     @Autowired
     FSDProcedureService fsdProcedureService;
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping(value = "/index")
     public String index(ModelMap model,HttpServletRequest request){
@@ -138,11 +141,19 @@ public class CompanyController {
                     fsdProcedure.setResult(null);
                     application.setFSDProcedure(true);
                     fsdProcedureService.save(fsdProcedure);
+
                 }
                 applicationService.save(application);
-                model.addAttribute("application",null);
                 model.addAttribute("message","You have accepted application:");
                 model.addAttribute("result","Success");
+
+                Notification notification = new Notification();
+                notification.setEventDate(new Date(System.currentTimeMillis()));
+                notification.setUser(application.getStudent());
+                notification.setApplication(application);
+                notification.setVisualized(false);
+                notification.setMessage("Company " + application.getCompany().getUsername() + " has accepted your application.");
+                notificationService.save(notification);
             }
             catch (Exception e){
                 model.addAttribute("message","An error occurred during acceptation, please try again later.");
@@ -154,14 +165,28 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "/meeting",method = RequestMethod.GET)
-    public String meeting(HttpServletRequest request){
+    public String meeting(HttpServletRequest request,ModelMap model){
         try {
             Application application = (Application) request.getSession().getAttribute("application");
             application.setMeetingRequest(true);
             applicationService.save(application);
+
+            Notification notification = new Notification();
+            notification.setEventDate(new Date(System.currentTimeMillis()));
+            notification.setUser(application.getStudent());
+            notification.setApplication(application);
+            notification.setVisualized(false);
+            notification.setMessage("Company " + application.getCompany().getUsername() + " has requested a meeting for your application.");
+            notificationService.save(notification);
+
+            model.addAttribute("message","You have sent meeting request to:");
+            model.addAttribute("result","Success");
         }
-        catch (Exception e){}
-        return "redirect:/company/offers";
+        catch (Exception e){
+            model.addAttribute("message","An error occurred, please try again later.");
+            model.addAttribute("result","Error");
+        }
+        return "company/result";
     }
 
     @RequestMapping(value = "/reject",method = RequestMethod.GET)
@@ -172,6 +197,14 @@ public class CompanyController {
             model.addAttribute("message","You have rejected application:");
             model.addAttribute("result","Success");
             applicationService.save(application);
+
+            Notification notification = new Notification();
+            notification.setEventDate(new Date(System.currentTimeMillis()));
+            notification.setUser(application.getStudent());
+            notification.setApplication(application);
+            notification.setVisualized(false);
+            notification.setMessage("Company " + application.getCompany().getUsername() + " has refused your application.");
+            notificationService.save(notification);
         }
         catch (Exception e){}
         return "company/result";
@@ -185,7 +218,6 @@ public class CompanyController {
             applications = filterApplications(applications);
             model.addAttribute("applications",applications);
             model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
-
         }
         catch (Exception e){}
         return "company/accepted";

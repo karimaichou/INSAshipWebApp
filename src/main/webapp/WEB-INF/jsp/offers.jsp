@@ -26,6 +26,9 @@
 <c:if test="${not empty noOffer}">
     <div class="alert alert-danger"> ${noOffer}</div>
 </c:if>
+<c:if test="${not empty Error}">
+    <div class="alert alert-danger"> ${Error}</div>
+</c:if>
 <c:if test="${not empty success}">
     <div class="alert alert-success"> ${success}</div>
 </c:if>

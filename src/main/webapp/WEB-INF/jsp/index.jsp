@@ -11,4 +11,4 @@
 <c:if test="${not empty signed}">
     <div class="alert alert-success"> ${error}</div>
 </c:if>
-<h2>Welcome to INSAship application</h2>
+<p>Welcome to INSAship application</p>
