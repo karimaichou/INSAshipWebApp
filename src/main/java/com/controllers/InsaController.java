@@ -87,6 +87,7 @@ public class InsaController {
 
         }catch (Exception e)
         {
+            e.printStackTrace();
             model.addAttribute("error","an error occured while retrieving offer's details. please try again");
         }
 

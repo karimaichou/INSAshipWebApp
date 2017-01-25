@@ -5,8 +5,11 @@ import com.View.SignAgreementForm;
 import com.entities.*;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.restful.Offer;
 import org.apache.commons.io.IOUtils;
@@ -78,6 +81,10 @@ public class AgreementController {
 
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("c:/insaship/"+application.getId()+"agreement.pdf"));
             document.open();
+            Image image1 = Image.getInstance("c:/insaship/header.jpg");
+            image1.scaleAbsolute(585, 260);
+            //Add to document
+            document.add(image1);
             document.add(new Paragraph("\tcompany\n"+
                     "name: "+company.getUsername()+
                     "\n"+"adress: "+company.getAddress()+"\n telephone: "+company.getTelephone()));
@@ -94,6 +101,7 @@ public class AgreementController {
                     "Name: "+insa.getUsername()+"\nTelephone:"+insa.getTelephone()+"\nEmail: "+insa.getEmail()));
 
             document.addTitle("Internship agreement of "+student.getLastName()+" "+student.getFirstName());
+            document.add(new Paragraph("Signatures:\n"));
             document.close();
             writer.close();
 
@@ -183,6 +191,18 @@ public class AgreementController {
                 }
                 else if (logged instanceof INSA)
                 {
+                    PdfReader pdfReader = new PdfReader(agreement.getAgreementDoc().getFileUrl());
+
+
+                    //Modify file using PdfReader
+                    PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileOutputStream("c:/insaship/modified.pdf"));
+                    Image image = Image.getInstance("c:/insaship/"+"insa.jpg");
+                    image.setAbsolutePosition(0, 842 - image.getScaledHeight());
+                    PdfContentByte content = pdfStamper.getUnderContent(1);
+                    content.addImage(image);
+
+                    pdfStamper.close();
+
                     agreement.setSignedByInsa(true);
                     List<Application> applications = (List<Application>) request.getSession().getAttribute("suppervisedApplications");
                     applications.set(applications.indexOf(application), application);

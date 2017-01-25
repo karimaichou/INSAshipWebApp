@@ -178,14 +178,14 @@ public class OfferController {
                notificationService.save(notification);
 
 
-               file1.setFileUrl(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Resume");
-               file2.setFileUrl(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Cover");
-               documentService.save(file1);
-               documentService.save(file2);
-               resume.transferTo(new File(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Resume"));
-               cover.transferTo(new File(request.getServletContext().getRealPath("/") + "resources\\" + application.getId() + "Cover"));
+           file1.setFileUrl(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Resume");
+           file2.setFileUrl(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Cover");
+           documentService.save(file1);
+           documentService.save(file2);
+           resume.transferTo(new File(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Resume"));
+           cover.transferTo(new File(request.getServletContext().getRealPath("/")+"resources\\"+ application.getId()+"Cover"));
 
-               // and last but not least : add Franck's service to send an email to student + company
+           // and last but not least : add Franck's service to send an email to student + company
 
                model.addAttribute("success", "Your application was sent successfully, you will soon receive a confirmation email.");
            }
