@@ -82,7 +82,7 @@ public class AgreementController {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("c:/insaship/"+application.getId()+"agreement.pdf"));
             document.open();
             Image image1 = Image.getInstance("c:/insaship/header.jpg");
-            image1.scaleAbsolute(585, 260);
+            image1.scaleAbsolute(585, 200);
             //Add to document
             document.add(image1);
             document.add(new Paragraph("\tcompany\n"+
@@ -165,10 +165,10 @@ public class AgreementController {
             model.addAttribute("error","there has been an error while generating the application agreement, please try again");
         }
 
-        model.addAttribute("success","Congratulations! the application has been safely approved and the internship agreement has been generated");
+        model.addAttribute("success","Congratulations! the application has been safely approved.");
 
 
-        return "index";
+        return "fsd/index";
     }
 
 
@@ -187,22 +187,10 @@ public class AgreementController {
             {
                 if (logged instanceof Company)
                 {
-                    agreement.setSignedByCompany(true);
+                    
                 }
                 else if (logged instanceof INSA)
                 {
-                    PdfReader pdfReader = new PdfReader(agreement.getAgreementDoc().getFileUrl());
-
-
-                    //Modify file using PdfReader
-                    PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileOutputStream("c:/insaship/modified.pdf"));
-                    Image image = Image.getInstance("c:/insaship/"+"insa.jpg");
-                    image.setAbsolutePosition(0, 842 - image.getScaledHeight());
-                    PdfContentByte content = pdfStamper.getUnderContent(1);
-                    content.addImage(image);
-
-                    pdfStamper.close();
-
                     agreement.setSignedByInsa(true);
                     List<Application> applications = (List<Application>) request.getSession().getAttribute("suppervisedApplications");
                     applications.set(applications.indexOf(application), application);

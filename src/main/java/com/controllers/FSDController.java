@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,7 +84,9 @@ public class FSDController {
     }
 
     @RequestMapping(value = "/valider", method = RequestMethod.GET)
-    public String valider(ModelMap model, HttpServletRequest req, HttpServletResponse res){
+    public String valider(ModelMap model, HttpServletRequest req, HttpServletResponse res,RedirectAttributes redirectAttributes){
+
+        boolean agreement=false;
         String choix = req.getParameter("choix");
         //String id = req.getParameter("id");
 
@@ -130,7 +133,8 @@ public class FSDController {
                         student.getFirstName()+" "+student.getLastName()+" to "+ company.getUsername()+".");
             }
             if(app.getState()== ApplicationState.AcceptedByINSA){
-                // Karima's Code
+
+                agreement=true;
             }
         }else if(choix.equals("rejeter")){
             app.getFsdProcedure().setResult(Boolean.FALSE);
@@ -160,6 +164,12 @@ public class FSDController {
             res.sendRedirect("/fsd/index");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if(agreement)
+        {
+            redirectAttributes.addFlashAttribute("application", app);
+            return "redirect:/generateAgreement";
         }
 
         return "fsd/index";
