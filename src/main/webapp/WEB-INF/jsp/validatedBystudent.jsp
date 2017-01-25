@@ -1,19 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
-  Date: 23/01/2017
-  Time: 18:43
+  Date: 24/01/2017
+  Time: 17:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:if test="${not empty noApplication}">
-    <div class="alert "> ${noApplication}</div>
-</c:if>
-
-<h4><span style="color:blue">Accepted Applications : </span></h4>
+<h4><span style="color:blue">Validated Applications : </span></h4>
 
 <div class="table-responsive">
     <table class="table">
@@ -39,12 +34,13 @@
                 </td>
                 <td>
                 <td>
-                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/detail?id=${application.offer_id}"/>'">Validate</button></td>
+                <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/#?id=${application.offer_id}"/>'">Agrement</button></td>
                 </td>
 
-                </tr>
+            </tr>
 
         </c:forEach>
         </tbody>
     </table>
-    </div>
+</div>
+

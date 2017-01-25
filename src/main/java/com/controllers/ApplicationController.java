@@ -74,7 +74,27 @@ public class ApplicationController {
         }
         return "appliAcceCompany";
     }
+    @RequestMapping(value = "/validatedBystudent",method = RequestMethod.GET)
+    public String applicationsvalidated(HttpServletRequest req,ModelMap model,Principal principal){
+        try{
+            User logged=userService.findByEmail(principal.getName());
+            req.getSession().setAttribute("loggedUser",(Student)logged);
+            List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
+            model.addAttribute("notifdetails",notificationService.findByUserAndVisualized(logged,false));
+            model.addAttribute("notifications",notifications.size());
+            List<Application> applications = applicationService.findByStudentAndStateOrderByCreationDate((Student)logged,ApplicationState.ValidatedByStudent);
 
+            if(applications==null || applications.isEmpty()) {
+                model.addAttribute("noApplication", "There are no applications at the moment");
+            }
+            else {
+                model.addAttribute("applications", applications);
+            }
+        }catch(Exception e){
+            model.addAttribute("errorDetails","Error occured while trying to show the applications, please try again later");
+        }
+        return "validatedBystudent";
+    }
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public String detail (HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id,Principal principal ){
         User logged=userService.findByEmail(principal.getName());

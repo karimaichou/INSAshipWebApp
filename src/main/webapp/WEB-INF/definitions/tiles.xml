@@ -58,6 +58,11 @@
         <put-attribute name="body" value="/WEB-INF/jsp/manage.jsp" />
         <put-attribute name="current" value="manage" cascade="true" />
     </definition>
+    <definition name="validatedBystudent" extends="common">
+        <put-attribute name="title" value="validatedBystudent" />
+        <put-attribute name="body" value="/WEB-INF/jsp/validatedBystudent.jsp" />
+        <put-attribute name="current" value="validatedBystudent" cascade="true" />
+    </definition>
     <definition name="appliAcceCompany" extends="common">
         <put-attribute name="title" value="appliAcceCompany" />
         <put-attribute name="body" value="/WEB-INF/jsp/appliAcceCompany.jsp" />
