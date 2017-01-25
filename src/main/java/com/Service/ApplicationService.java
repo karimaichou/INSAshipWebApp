@@ -90,6 +90,18 @@ public class ApplicationService {
         return applicationRepository.findDocumentById(id);
     }
 
+    public List<Application> findByIsFsdOrderByCreationDateAsc(boolean fsd){
+        return applicationRepository.findByIsFsdOrderByCreationDateAsc(fsd);
+    }
+
+    public List<Application> findByIsFsdAndStateOrderByCreationDateAsc(boolean fsd, ApplicationState state){
+        return applicationRepository.findByIsFsdAndStateOrderByCreationDateAsc(fsd, state);
+    }
+
+    public List<Application> findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(boolean fsd, Boolean result, ApplicationState state){
+        return applicationRepository.findByIsFsdAndFsdProcedure_ResultAndStateOrderByCreationDateAsc(fsd,result,state);
+    }
+
     public List<Application> findApplicationByYear(int year)
     {
         return applicationRepository.findApplicationByYear(year);

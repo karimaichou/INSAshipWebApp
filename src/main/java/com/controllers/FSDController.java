@@ -43,7 +43,7 @@ public class FSDController {
     @Autowired
     NotificationService notificationService;
 
-   /* @RequestMapping(value = "/index")
+    @RequestMapping(value = "/index")
     public String index(ModelMap model, HttpServletRequest req){
         model.addAttribute("username",req.getSession().getAttribute("username"));
 
@@ -66,7 +66,7 @@ public class FSDController {
             model.addAttribute("noApplication","there is no available internship application for the moment");
         model.addAttribute("applications",applicationList);
         return "fsd/index";
-    }*/
+    }
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public String getDetails(HttpServletRequest request, ModelMap model, @RequestParam(value="id", required=true) int id ,@RequestParam(value="offer_id", required=true) int offer_id, @RequestParam(value="company", required=true) int company)
     {
