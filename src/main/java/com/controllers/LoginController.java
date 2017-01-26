@@ -62,7 +62,7 @@ public class LoginController {
     public String registerStudent(@ModelAttribute("student") Student student,ModelMap model)
     {
         if(student.getLastName()=="" || student.getFirstName()=="" || student.getAddress()=="" || student.getDescription()=="" || student.getUsername()=="" || student.getPassword()==""
-                || student.getEmail()==""||student.getTelephone()==""|| student.getScholarYear() == 0 || student.getScholarYear() > 2017 || student.getScholarYear()<2000 || student.getDateOfBirth() == null){
+                || student.getEmail()==""||student.getTelephone()=="" || student.getDateOfBirth() == null){
             model.addAttribute("errorRegister"," You should fill all the labels");
             return "register";
         }

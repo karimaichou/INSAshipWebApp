@@ -56,7 +56,7 @@ public class StudentService {
             message.setSubject("Confirmation de création de compte");
             message.setText("Bonjour,"
                     + "\n\n Vous trouvez ci-joint la clé de confirmation de votre compte!"
-                    +"le lien pour l'activation de votre compte http://localhost:5050/confirmation-compte "
+                    +"le lien pour l'activation de votre compte http://localhost:8080/confirmation-compte "
                     +"\n\n"+cle);
 
             Transport.send(message);
