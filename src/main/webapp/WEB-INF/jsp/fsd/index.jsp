@@ -17,7 +17,7 @@
 
 
 <c:if test="${not empty noApplication}">
-    <div class="alert alert-danger"> ${noApplication}</div>
+    <div class="alert alert"> ${noApplication}</div>
 </c:if>
 <c:if test="${not empty success}">
     <div class="alert alert-success"> ${success}</div>

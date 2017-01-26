@@ -9,6 +9,6 @@
 
 <div class="container-fluid">
     <div class="row">
-        <img src="${pageContext.request.contextPath}/resources/styles/banner.png" class="img-responsive">
+        <img src="${pageContext.request.contextPath}/resources/styles/banner2.png" class="img-responsive">
     </div>
 </div>

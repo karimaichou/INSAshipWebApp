@@ -16,7 +16,7 @@
     <div class="alert alert-success"> ${success}</div>
 </c:if>
 <c:if test="${not empty emptyApp}">
-    <div class="alert alert-success"> ${emptyApp}</div>
+    <div class="alert alert"> ${emptyApp}</div>
 </c:if>
 <c:if test="${not empty applications}">
     <table class="table table-hover">

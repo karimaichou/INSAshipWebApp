@@ -45,7 +45,7 @@
                             <div class="x_panel" style="background-color: #f8f8f8;" >
                                 <div class="x_title">
                                     <%--<h2><input type="button"  onclick="location.href='/details?id=${offer.id}'" value="${offer.title}"/></h2>--%>
-                                    <h4><a onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'"><img src="${offer.companyLogoUrl}" height="40px" /> ${offer.title}</a></h4>
+                                    <a class="lead" onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'"><img src="${offer.companyLogoUrl}" height="40px" /> ${offer.title}</a>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -57,7 +57,7 @@
                                 <div class="x_content" style="display: none;">
                                     <p>${offer.description}</p>
                                 </div>
-                                <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'" style="float:right">Plus de détails</button>
+                                <button type="submit" class="btn btn-success" onclick="location.href='<spring:url value ="/details?id=${offer.id}&company=${offer.company}"/>'" style="float:right">View Details</button>
                             </div>
                         </div>
                     </div>

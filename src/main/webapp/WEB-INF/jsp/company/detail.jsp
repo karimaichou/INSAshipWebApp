@@ -12,50 +12,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<!--<form class="form-horizontal" >
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Student:</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">${application.student.firstName} ${application.student.lastName}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Year:</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">${application.student.scholarYear}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">E-mail:</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">${application.student.email}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Created:</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">${application.creationDate} </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Documents:</label>
-        <div class="col-sm-10">
-            <p class="form-control-static">TODO </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"></label>
-        <div class="col-sm-10">
-
-            <button type="button" class="btn btn-primary " onclick="location.href='<spring:url value="/company/meeting" />'">Request meeting</button>
-            <button type="button" class="btn btn-danger ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='<spring:url value="/company/reject"/>'">Reject</button>
-            <button type="button" class="btn btn-success ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='<spring:url value="/company/accept"/>'">Accept</button>
-
-        </div>
-    </div>
-
--->
-
+<c:if test="${not empty error}">
+    <div class="alert alert-danger"> ${error}</div>
+</c:if>
+<c:if test="${not empty success}">
+    <div class="alert alert-success"> ${success}</div>
+</c:if>
 
 
 <div class="row">
@@ -81,15 +43,13 @@
             <tr>
                 <td>Date applied:</td><td style="vertical-align: middle">${application.creationDate}</td>
             </tr>
-            <tr>
-                <td>Documents:</td><td>TODO</td>
-            </tr>
 
         </table>
     </div>
+    <c:if test="${application.state == 'Sent'}">
     <div class="col-md-4">
         <h2>FSD</h2>
-        <p style="${error == 1 ? 'color:red': ''}" >Before acceptation, please choose the apropriate security procedure:</p>
+        <p style="${select == 1 ? 'color:red': ''}" >Before acceptation, please choose the apropriate security procedure:</p>
         <form:form action="/company/accept" method="post" commandName="fsd" cssClass="form-signin" data-toggle="validator">
             <form:select path="id" cssClass="form-control">
                 <form:options items="${mapFSDs}" />
@@ -99,4 +59,30 @@
             <button type="button" class="btn btn-danger ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='<spring:url value="/company/reject"/>'">Reject</button>
         </form:form>
     </div>
+    </c:if>
+    <c:if test="${application.state  == 'AcceptedByCompany' || application.state  == 'AcceptedByStudent' || application.state  == 'AcceptedByINSA' }">
+    <div class="col-md-4">
+        <h2>In progress</h2>
+        <p>The application is in the process of acceptation, you will be notified of further development.</p>
+    </div>
+    </c:if>
+    <c:if test="${application.state  == 'UnderAgreement' }">
+        <div class="col-md-4">
+            <h2>Agreement</h2>
+
+            <c:if test="${application.agreement !=null}">
+
+                <c:if test="${ ! application.agreement.signedByCompany}">
+                    <p>Your are now requested to review application and sign the agreement documenet.</p>
+                    <input type="button" value="Sign agreement" class="btn btn-success" onclick="location.href='/company/signAgreement?id=${application.id}'">
+                </c:if>
+                <c:if test="${application.agreement.signedByCompany}">
+                    <p>You have already signed the agreement.</p>
+
+                </c:if>
+                <input type="button" value="View agreement" class="btn btn-primary" onclick="location.href='/download?id=${application.id}'">
+
+            </c:if>
+        </div>
+    </c:if>
 </div>

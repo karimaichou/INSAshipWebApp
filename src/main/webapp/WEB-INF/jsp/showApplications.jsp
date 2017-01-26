@@ -16,7 +16,7 @@
 <link href="${pageContext.request.contextPath}/resources/styles/custom.css" rel="stylesheet">
 
 
-<h2> Student applications:</h2>
+<h2> Your applications:</h2>
 <c:if test="${applications.size() <= 0}">
     <div class="alert "> You don't have any applilcations.</div>
 </c:if>
@@ -27,20 +27,18 @@
             <tr>
                 <td>#</td>
                 <td>Creation Date</td>
-                <td>Meeting request</td>
-                <td>State </td>
                 <td>Company </td>
+                <td>State </td>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${applications}" var="application">
                 <tr>
-                    <td>${application.offer_id}</td>
+                    <td>${application.id}</td>
                     <td>${application.creationDate}</td>
-                    <td>${application.meetingRequest}</td>
-                    <td>${application.state}</td>
                     <td>${application.company.username}</td>
-                    <td class="text-right"><button class="btn btn-primary btn-sm active" type="submit" onclick="location.href='<spring:url value="/detail?id=${application.id}"/>'"/></td>
+                    <td>${application.state}</td>
+                    <td class="text-right"><button class="btn btn-success" type="submit" onclick="location.href='<spring:url value="/detail?id=${application.id}"/>'"/>View Details</td>
                 </tr>
             </c:forEach>
             </tbody>

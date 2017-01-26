@@ -53,7 +53,7 @@ public class InsaController {
 
             model.addAttribute("applications",applications);
             if(applications==null || applications.size()==0 )
-                model.addAttribute("emptyApp","You have no assigned applications for the moment.Enjoy");
+                model.addAttribute("emptyApp","You have no assigned applications for the moment.");
 
         }catch(Exception e)
         {
@@ -165,9 +165,10 @@ public class InsaController {
            notification2.setVisualized(false);
            notificationService.save(notification2);
 
+           System.out.println("semtu");
            //model.addAttribute("success","the Application has been successfully approved");
 
-           if(! application.isFSDProcedure() || application.getFsdProcedure().isResult())
+           if(!application.isFSDProcedure() || (application.getFsdProcedure().isResult() != null && application.getFsdProcedure().isResult()) )
            {
                redirectAttributes.addFlashAttribute("application", application);
                return "redirect:/agreementByInsa";
@@ -175,6 +176,7 @@ public class InsaController {
 
        }catch(Exception e)
        {
+           e.printStackTrace();
            model.addAttribute("error","an error occured while trying to approve the application. please try again");
        }
         return "insa/offers";

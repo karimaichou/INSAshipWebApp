@@ -60,8 +60,8 @@
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
 
-                <button type="button" class="btn btn-danger" onclick="location.href='<spring:url value="/fsd/valider?choix=accepter"/>'">Reject</button>
-                <button type="button" class="btn btn-success" onclick="location.href='<spring:url value="/fsd/valider?choix=rejeter"/>'">Accept</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='<spring:url value="/fsd/valider?choix=rejeter"/>'">Reject</button>
+                <button type="button" class="btn btn-success" onclick="location.href='<spring:url value="/fsd/valider?choix=accepter"/>'">Accept</button>
 
             </div>
         </div>

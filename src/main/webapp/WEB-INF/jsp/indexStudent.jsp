@@ -31,9 +31,7 @@
                 <p><strong>Inscription date:</strong><span class="">${studentDateInscription}</span></p>
                 <p><strong>Description : </strong><span class="">${studentDescription}</span></p>
                 <p><strong>Scolar Year:</strong> <span class="">${studentScolarYear}</span></p>
-    <a href="/offers" class="btn btn-primary btn-sm active" role="button">Apply</a>
-    <a href="/manage" class="btn btn-success btn-sm active" role="button">Edit Profil</a>
-    <a href="/showApplications" class="btn btn-danger btn-sm active" role="button">Show Application</a>
+    <a href="/manage" class="btn btn-success btn-sm active" role="button">Edit profile</a>
 
 </div>
 </div>

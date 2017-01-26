@@ -15,11 +15,18 @@
 </c:if>
 
 <c:if test="${not empty applications}">
-    <table border>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Student</td>
+            <td>Company</td>
+            <td>Applied the</td>
+        </tr>
+        </thead>
         <c:forEach items="${applications}" var="application">
-            <tr><td>from :${application.student.firstName} ${application.student.lastName}</td> </tr>
-            <tr><td>Internship From: ${application.company.username}</td><td>, Applied the: ${application.creationDate}</td></tr>
-            <tr><td><input type="button" value="more details" class="btn btn-success" onclick="location.href='/insa/suppervisedDetails?id=${application.id}'"></td></tr>
+            <tr><td>${application.student.firstName} ${application.student.lastName}</td>
+            <td> ${application.company.username}</td><td>${application.creationDate}</td>
+            <td class="text-right"><input type="button" value="View details" class="btn btn-success" onclick="location.href='/insa/suppervisedDetails?id=${application.id}'"></td></tr>
         </c:forEach>
     </table>
 

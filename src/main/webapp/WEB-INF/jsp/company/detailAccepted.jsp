@@ -47,6 +47,14 @@
     </div>
     <div class="col-md-4">
         <h2>Agreement</h2>
-            <button type="button" class="btn btn-danger ${application.state != 'Sent' ? 'disabled':''}" onclick="location.href='<spring:url value="/company/reject"/>'">Reject</button>
+        <c:if test="${application.agreement !=null}">
+            <input type="button" value="view the agreement" class="btn btn-danger" onclick="location.href='/download?id=${application.id}'">
+            <c:if test="${ ! application.agreement.signedByCompany}">
+                <input type="button" value="sign the agreement" class="btn btn-success" onclick="location.href='/company/signAgreement?id=${application.id}'">
+            </c:if>
+            <c:if test="${application.agreement.signedByCompany}">
+                <label>You already Signed The application</label>
+            </c:if>
+        </c:if>
     </div>
 </div>

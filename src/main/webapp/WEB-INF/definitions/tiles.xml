@@ -81,7 +81,7 @@
     <definition name="detail" extends="common">
         <put-attribute name="title" value="detail" />
         <put-attribute name="body" value="/WEB-INF/jsp/detail.jsp" />
-        <put-attribute name="current" value="detail" cascade="true" />
+        <put-attribute name="current" value="showApplications" cascade="true" />
     </definition>
     <definition name="confirmation-compte" extends="common">
         <put-attribute name="title" value="Confirmation de création de compte" />
@@ -126,7 +126,7 @@
     </definition>
     <definition name="company/detailAccepted" extends="common">
         <put-attribute name="title" value="Company index" />
-        <put-attribute name="body" value="/WEB-INF/jsp/company/detailAccepted.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/company/detail.jsp" />
         <put-attribute name="current" value="accepted" cascade="true" />
     </definition>
 
@@ -163,13 +163,13 @@
     <definition name="insa/applications" extends="common">
         <put-attribute name="title" value="My suppervised applications" />
         <put-attribute name="body" value="/WEB-INF/jsp/insa/suppervisedApplication.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="applications" cascade="true" />
     </definition>
 
     <definition name="insa/suppervisedDetails" extends="common">
         <put-attribute name="title" value="My suppervised applications" />
         <put-attribute name="body" value="/WEB-INF/jsp/insa/suppervisedDetails.jsp" />
-        <put-attribute name="current" value="index" cascade="true" />
+        <put-attribute name="current" value="applications" cascade="true" />
     </definition>
 
     <definition name="agreementView" extends="common">

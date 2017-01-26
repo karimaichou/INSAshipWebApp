@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.Service.*;
 import com.entities.*;
+import com.restful.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,14 +96,14 @@ public class ApplicationController {
     }*/
     @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public String detail (HttpServletRequest request,ModelMap model, @RequestParam(value="id", required=true) int id,Principal principal ){
-        User logged=userService.findByEmail(principal.getName());
-        request.getSession().setAttribute("loggedUser",(Student)logged);
         model.addAttribute("notifications",request.getSession().getAttribute("notifications"));
-
         Application application = applicationService.findById(id);
-
+        Offer offer = offerService.findById(application.getOffer_id(),application.getCompany().getId());
         request.getSession().setAttribute("application",application);
         model.addAttribute("application",application);
+        model.addAttribute("offer",offer);
+        model.addAttribute("success",request.getSession().getAttribute("success"));
+        request.getSession().setAttribute("success",null);
         return "detail";
 
      }
@@ -118,19 +119,18 @@ public class ApplicationController {
         return "appliAcceInsa";
     }*/
     @RequestMapping(value = "/accept",method = RequestMethod.GET)
-    public String accept(HttpServletRequest req,Principal principal){
+    public String accept(HttpServletRequest req,Principal principal,@RequestParam(value="id", required=true) int id){
+
+        Application application = applicationService.findById(id);
         try {
 
             Date date=new Date();
-            User logged=userService.findByEmail(principal.getName());
-            req.getSession().setAttribute("loggedUser",logged);
-            Application application = (Application) req.getSession().getAttribute("application");
             application.setState(ApplicationState.AcceptedByStudent);
             applicationService.save(application);
             Notification notification=new Notification();
             notification.setApplication(application);
             notification.setUser(application.getCompany());
-            Student student = (Student) logged;
+            Student student = (Student) req.getSession().getAttribute("loggedUser");
             notification.setMessage(student.getFirstName()+" "+student.getLastName()+" has validated his application.");
             notification.setVisualized(false);
             notification.setEventDate(date);
@@ -171,7 +171,9 @@ public class ApplicationController {
 
         }
         catch (Exception e){}
-        return "redirect:/indexStudent";
+
+        req.getSession().setAttribute("success","You have cofirmed your internship.");
+        return "redirect:/detail?id=" + application.getId();
     }
 
     @RequestMapping(value = "/detail")
@@ -179,4 +181,21 @@ public class ApplicationController {
         return "detail";
     }
 
+
+    @RequestMapping(value="signAgreement")
+    public String signAgreement(ModelMap model, HttpServletRequest request, @ModelAttribute("id") int id)
+    {
+        try
+        {
+
+            Application application = applicationService.findById(id);
+            model.addAttribute("agreement",application.getAgreement().getId());
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return "signing";
+    }
 }

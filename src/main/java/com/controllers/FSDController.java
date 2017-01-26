@@ -64,7 +64,7 @@ public class FSDController {
 
         req.getSession().setAttribute("applications",applicationList);
         if(applicationList.isEmpty())
-            model.addAttribute("noApplication","there is no available internship application for the moment");
+            model.addAttribute("noApplication","There are no pending security procedures for the moment.");
         model.addAttribute("applications",applicationList);
         return "fsd/index";
     }
@@ -88,6 +88,7 @@ public class FSDController {
 
         boolean agreement=false;
         String choix = req.getParameter("choix");
+        System.out.println(choix);
         //String id = req.getParameter("id");
 
 //        Application app = applicationService.findById(Integer.valueOf(id));
@@ -160,16 +161,19 @@ public class FSDController {
             notificationService.save(notificationInsa);
         }
 
-        try {
-            res.sendRedirect("/fsd/index");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         if(agreement)
         {
             redirectAttributes.addFlashAttribute("application", app);
             return "redirect:/generateAgreement";
+        }
+        else {
+            try {
+                res.sendRedirect("/fsd/index");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return "fsd/index";

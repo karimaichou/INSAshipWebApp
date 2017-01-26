@@ -116,7 +116,7 @@ public class LoginController {
         List<Notification> notifications = notificationService.findByUserAndVisualized(logged,false);
         req.getSession().setAttribute("notifications",notifications);
 
-        if (logged instanceof Company) return "redirect:/company/index";
+        if (logged instanceof Company) return "redirect:/company/offers";
         if (logged instanceof FSD) return "redirect:/fsd/index"; //redirect to you controller methon in your controller
         if (logged instanceof INSA) return "redirect:/insa/home"; //redirect to you controller method in your controller
         return "redirect:/offers";

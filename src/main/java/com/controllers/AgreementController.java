@@ -61,6 +61,7 @@ public class AgreementController {
 
         }catch(Exception e)
         {
+            e.printStackTrace();
             model.addAttribute("error","there has been an error while generating the application agreement, please try again");
         }
 
@@ -187,7 +188,10 @@ public class AgreementController {
             {
                 if (logged instanceof Company)
                 {
-                    
+                    request.getSession().setAttribute("success","You have successfully signed agreement");
+                    agreement.setSignedByCompany(true);
+                    returnPage = "redirect:/company/detailAccepted?id=" + application.getId();
+
                 }
                 else if (logged instanceof INSA)
                 {
@@ -202,7 +206,9 @@ public class AgreementController {
                     returnPage="insa/suppervisedDetails";
                 }
                 else if (logged instanceof Student) {
+                    request.getSession().setAttribute("success","You have successfully signed agreement");
                     agreement.setSignedByStudent(true);
+                    returnPage = "redirect:/detail?id=" + application.getId();
                 }
 
                 if (agreement.isSignedByCompany() && agreement.isSignedByInsa() && agreement.isSignedByStudent()) {

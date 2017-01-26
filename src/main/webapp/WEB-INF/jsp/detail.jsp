@@ -9,10 +9,28 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<c:if test="${not empty error}">
+    <div class="alert alert-danger"> ${error}</div>
+</c:if>
+<c:if test="${not empty success}">
+    <div class="alert alert-success"> ${success}</div>
+</c:if>
+
 <div class="row">
     <div class="col-md-4">
-        <h2>Your Application detail:</h2>
-        <p>${application.company.username}</p>
+        <h2>Internship offer</h2>
+        <table class="table">
+            <tr>
+                <td>Title:</td><td style="vertical-align: middle">${offer.title}</td>
+            </tr>
+            <tr>
+                <td>Company:</td><td style="vertical-align: middle">${application.company.username}</td>
+            </tr>
+            <tr>
+                <td>Address:</td><td style="vertical-align: middle">${application.company.address}</td>
+            </tr>
+
+        </table>
 
     </div>
     <div class="col-md-4">
@@ -31,31 +49,49 @@
             <tr>
                 <td>Date applied:</td><td style="vertical-align: middle">${application.creationDate}</td>
             </tr>
-            <tr>
-                <td>Documents:</td><td>TODO</td>
-            </tr>
+
 
         </table>
     </div>
     <c:if test="${application.state == 'AcceptedByCompany'}">
         <div class="col-md-4">
-            <h2>Confirm application </h2>
-            <form class="form-horizontal" >
-                <h4>${application.student.firstName}</h4> <p>Are you sure you want to validate this application</p>
-                <button type="button" class="btn btn-danger"  onclick="location.href='<spring:url value="/showApplications"/>'">Return</button>
-                <button type="button" class="btn btn-success"  onclick="location.href='<spring:url value="/accept"/>'">Accept</button>
-            </form>
+            <h2>Confirmation</h2>
+            <p> Finalise you choice of internship.</p>
+            <input type="button" value="Confirm internhip" class="btn btn-success" onclick="location.href='/accept?id=${application.id}'">
+
         </div>
     </c:if>
-    <c:if test="${application.state == 'UnderAgreement'}">
+    <c:if test="${application.state  == 'Sent' || application.state  == 'AcceptedByStudent' || application.state  == 'AcceptedByINSA' }">
         <div class="col-md-4">
-            <h2>Internship Agreement </h2>
-            <form class="form-horizontal" >
-                <h4>${application.student.firstName}</h4> <p>Are you sure you want to generate thea agreement ?</p>
-                <button type="button" class="btn btn-danger"  onclick="location.href='<spring:url value="/agreement"/>'">generate Agreement</button>
-            </form>
+            <h2>In progress</h2>
+            <p>The application is in the process of acceptation, you will be notified of further development.</p>
         </div>
+    </c:if>
+    <c:if test="${application.state  == 'UnderAgreement' }">
+        <div class="col-md-4">
+            <h2>Agreement</h2>
+
+            <c:if test="${application.agreement !=null}">
+
+                <c:if test="${ ! application.agreement.signedByStudent}">
+                    <p>Your are now requested to review application and sign the agreement documenet.</p>
+                    <input type="button" value="Sign agreement" class="btn btn-success" onclick="location.href='/signAgreement?id=${application.id}'">
+                </c:if>
+                <c:if test="${application.agreement.signedByStudent}">
+                    <p>You have already signed the agreement.</p>
+
+                </c:if>
+                <input type="button" value="View agreement" class="btn btn-primary" onclick="location.href='/download?id=${application.id}'">
+
+            </c:if>
+        </div>
+    </c:if>
+    <c:if test="${application.state  == 'Done' }">
+    <div class="col-md-4">
+        <h2>Agreement</h2>
+        <p>The agreement document is signed by all parties. Internship application proccess is successfully finished.</p>
+        <input type="button" value="View agreement" class="btn btn-primary" onclick="location.href='/download?id=${application.id}'">
+    </div>
     </c:if>
 
 </div>
-
