@@ -80,9 +80,9 @@ public class AgreementController {
         Offer offer=offerService.findById(application.getOffer_id(),company.getId());
         Document document = new Document();
 
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("c:/insaship/"+application.getId()+"agreement.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("c:/"+application.getId()+"agreement.pdf"));
             document.open();
-            Image image1 = Image.getInstance("c:/insaship/header.jpg");
+            Image image1 = Image.getInstance("c:/header.jpg");
             image1.scaleAbsolute(585, 200);
             //Add to document
             document.add(image1);
@@ -108,7 +108,7 @@ public class AgreementController {
 
             //presistence of the agreement
             com.entities.Document agreementDoc=new com.entities.Document();
-            agreementDoc.setFileUrl("c:/insaship/"+application.getId()+"agreement.pdf");
+            agreementDoc.setFileUrl("c:/"+application.getId()+"agreement.pdf");
             agreementDoc.setFileType("agreement");
             agreementDoc.setName("Internship agreement");
             agreementDoc.setCreationDate(new Date(System.currentTimeMillis()));
@@ -254,6 +254,8 @@ public class AgreementController {
             String name=url.substring(url.lastIndexOf('/'),url.lastIndexOf('.'));
             IOUtils.copy(is, response.getOutputStream());
             response.setHeader("Content-Disposition", "attachment; filename="+name+".pdf");
+            //response.setContentType("application/pdf");
+
             response.flushBuffer();
         } catch (Exception ex) {
             ex.printStackTrace();

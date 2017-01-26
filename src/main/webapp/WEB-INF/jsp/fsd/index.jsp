@@ -67,7 +67,7 @@
                                              </tr>
                                              <tr>
                                                  <th>State</th>
-                                                 <td style="vertical-align: middle">${app.state.toString() == 'ValidatedByStudent' ? 'Validated by student' : 'Validated by INSA'}</td>
+                                                 <td style="vertical-align: middle">${app.state.toString() == 'AcceptedByStudent' ? 'Validated by student' : 'Validated by INSA'}</td>
                                              </tr>
                                          </table>
                                     </div>
