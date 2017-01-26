@@ -251,7 +251,7 @@ public class AgreementController {
             DefaultResourceLoader loader = new DefaultResourceLoader();
             String url=app.getAgreement().getAgreementDoc().getFileUrl();
             InputStream is =new FileInputStream(url);
-            String name=url.substring(url.lastIndexOf('\\'),url.lastIndexOf('.'));
+            String name=url.substring(url.lastIndexOf('/'),url.lastIndexOf('.'));
             IOUtils.copy(is, response.getOutputStream());
             response.setHeader("Content-Disposition", "attachment; filename="+name+".pdf");
             response.flushBuffer();
